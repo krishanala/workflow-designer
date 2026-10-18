@@ -38,7 +38,7 @@ Every placeholder has a dashed outline on the page so it's easy to spot. Replace
 - [ ] Website plus Smart Enquiry System price: `RM[set your price]`
 - [ ] Your photo and one personal sentence in the About section
 - [ ] The 1-minute demo video in the `#demo` frame
-- [ ] The example result line ("Weekly reporting went from 5 hours to 10 minutes") with a real number after your first client
+- [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
 - [ ] The privacy policy text in `privacy.html`
 - [ ] Check the prices. They are estimates for the Malaysian market
 
