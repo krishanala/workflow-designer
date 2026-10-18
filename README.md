@@ -35,12 +35,10 @@ Then open http://localhost:8100.
 
 Every placeholder has a dashed outline on the page so it's easy to spot. Replace:
 
-- [ ] `[Your Name]`: About section
 - [ ] WhatsApp number: `https://wa.me/60000000000` link and `[your number]` text
 - [ ] Email: `mailto:you@example.com` link and `[your email]` text
 - [ ] Your SSM registration number in the footer, once you have it
-- [ ] Website plus Smart Enquiry System price: `RM[set your price]`
-- [ ] One personal sentence in the About section
+- [ ] Optional: the languages you work in, in the About section
 - [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
 - [ ] The privacy policy text in `privacy.html`
 - [ ] Check the prices. They are estimates for the Malaysian market
