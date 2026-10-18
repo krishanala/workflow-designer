@@ -169,7 +169,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-weight: 700;
   font-size: 0.95rem;
 }
-.nav__links a { text-decoration: none; padding-block: 4px; border-bottom: 2px solid transparent; }
+.nav__links a { text-decoration: none; padding-block: 4px; border-bottom: 2px solid transparent; white-space: nowrap; }
 .nav__links a:hover { border-bottom-color: var(--ink); }
 .score {
   font-size: 0.8rem;
@@ -181,6 +181,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap;
 }
 .score b { font-family: var(--font-d); font-weight: 800; }
+
+.nav__meet { gap: 8px; padding: 0.3em 1em 0.3em 0.3em; white-space: nowrap; flex: none; }
+.nav__avatar {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--tint);
+}
+.nav .btn--sm { flex: none; }
 
 /* ---------- Shared type ---------- */
 
@@ -979,9 +991,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Responsive ---------- */
 
+/* Narrower screens: the puzzle score stays in the footer, so the nav can drop it */
+@media (max-width: 1240px) {
+  .nav .score { display: none; }
+}
+
 @media (max-width: 1080px) {
   .nav__links { display: none; }
-  .score { margin-left: auto; }
+  .nav__meet { margin-left: auto; }
   .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .inds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -1033,6 +1050,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 600px) {
   .score { display: none; }
   .nav__in { justify-content: space-between; gap: 12px; }
+  .nav .btn.nav__meet { margin-left: auto; padding: 3px; }
+  .nav__meet-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .nav__avatar { width: 30px; height: 30px; }
   .brand { font-size: 0.95rem; gap: 8px; }
   .brand__mark { width: 46px; height: 29px; }
   .nav .btn--sm { white-space: nowrap; padding: 0.55em 0.9em; font-size: 0.85rem; }
@@ -1049,4 +1076,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .step:nth-child(n) { margin-left: 0; }
   .flow li:not(:last-child)::after { left: 37px; }
   .faq details p { padding-right: 0; }
+}
+
+/* Small phones: logo plus "Two Loaves" is enough for the brand, so the buttons fit */
+@media (max-width: 480px) {
+  .brand__sub { display: none; }
+  .nav__in { gap: 8px; }
 }
