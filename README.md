@@ -35,8 +35,6 @@ Then open http://localhost:8100.
 
 Every placeholder has a dashed outline on the page so it's easy to spot. Replace:
 
-- [ ] WhatsApp number: `https://wa.me/60000000000` link and `[your number]` text
-- [ ] Email: `mailto:you@example.com` link and `[your email]` text
 - [ ] Your SSM registration number in the footer, once you have it
 - [ ] Optional: the languages you work in, in the About section
 - [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
@@ -47,11 +45,11 @@ Every placeholder has a dashed outline on the page so it's easy to spot. Replace
 
 The form isn't connected to anything yet. To receive enquiries in a Google Sheet:
 
-1. Create a Google Apps Script web app that appends the posted fields (`name`, `business`, `spreadsheet`, `whatsapp`) to a sheet.
+1. Create a Google Apps Script web app that appends the posted fields (`name`, `business`, `email`, `spreadsheet`) to a sheet.
 2. Deploy it with access set to "Anyone".
 3. Paste the web app URL into `FORM_ENDPOINT` at the top of `js/main.js`.
 
-Until then, the form asks visitors to message you on WhatsApp or by email instead.
+Until then, submitting the form opens the visitor's email app with their enquiry addressed to `CONTACT_EMAIL` (krishanalathamby@gmail.com), set at the top of `js/main.js`. Every enquiry goes to that address.
 
 The "Book a free 20-minute call" buttons point to the contact form (`#contact`). To link them to a booking page instead, such as a Google Calendar appointment schedule, change those `href`s.
 

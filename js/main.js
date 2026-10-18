@@ -1,5 +1,8 @@
-// Paste your Google Apps Script web app URL here to receive enquiries in a Google Sheet.
-// While it is empty, the form shows a friendly "message me instead" note.
+// Every enquiry goes to this address.
+const CONTACT_EMAIL = 'krishanalathamby@gmail.com';
+
+// Optional: paste a Google Apps Script web app URL here to receive enquiries in a Google Sheet.
+// While it is empty, the form opens the visitor's email app with the enquiry addressed to CONTACT_EMAIL.
 const FORM_ENDPOINT = '';
 
 /* ---------- Rebus puzzles + score ---------- */
@@ -51,6 +54,19 @@ function say(message) {
   status.textContent = message;
 }
 
+function enquiryMailto(data) {
+  const subject = `New enquiry from ${data.get('name')} (${data.get('business')})`;
+  const body = [
+    `Name: ${data.get('name')}`,
+    `Business: ${data.get('business')}`,
+    `Email: ${data.get('email')}`,
+    '',
+    'Which spreadsheet is causing trouble:',
+    data.get('spreadsheet'),
+  ].join('\n');
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -58,13 +74,14 @@ form?.addEventListener('submit', async (event) => {
   fields.forEach((field) => field.setAttribute('aria-invalid', String(!field.checkValidity())));
   const firstInvalid = fields.find((field) => !field.checkValidity());
   if (firstInvalid) {
-    say('Please fill in every field so I can get back to you.');
+    say('Please fill in every field, with a valid email, so I can get back to you.');
     firstInvalid.focus();
     return;
   }
 
   if (!FORM_ENDPOINT) {
-    say('Thanks! This form isn’t connected yet, so please message me on WhatsApp or email for now.');
+    window.location.href = enquiryMailto(new FormData(form));
+    say(`Your email app should open with your message ready, so just press send. If nothing opens, email me at ${CONTACT_EMAIL}.`);
     return;
   }
 
@@ -79,7 +96,7 @@ form?.addEventListener('submit', async (event) => {
     fields.forEach((field) => field.removeAttribute('aria-invalid'));
     say('Thanks! Your message is on its way. I’ll be in touch soon.');
   } catch {
-    say('Sorry, that didn’t send. Please message me on WhatsApp or email instead.');
+    say(`Sorry, that didn’t send. Please email me at ${CONTACT_EMAIL} instead.`);
   } finally {
     button.disabled = false;
     button.innerHTML = label;
