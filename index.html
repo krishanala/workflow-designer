@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en-MY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Sheets Automation and Dashboards for Malaysian SMEs | [Your Brand]</title>
+  <meta name="description" content="I turn messy Google Sheets into clean, easy tools for small Malaysian teams. Built on Google Workspace. Fixed prices. Book a free 20-minute call.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Google Sheets Automation and Dashboards for Malaysian SMEs | [Your Brand]">
+  <meta property="og:description" content="I turn messy Google Sheets into clean, easy tools for small Malaysian teams. Built on Google Workspace. Fixed prices. Book a free 20-minute call.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Pictogram sprite: black outlines, colour lives only inside the symbols -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <symbol id="p-spread" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#ffc21a" d="M16 30C10 30 7 25 7 20C7 13 13 8 21 8H43C51 8 57 13 57 20C57 25 54 30 48 30V55H16Z"/>
+    <path fill="#fff" stroke-width="2" d="M20.5 28C16 28 13 24.5 13 20.5C13 16 17 14 22 14H42C47 14 51 16 51 20.5C51 24.5 48 28 43.5 28V49H20.5Z"/>
+    <path fill="#ff4f36" stroke-width="2" d="M20 23C24 19 28 24 32 21C36 18 40 22 44 20V33C40 37 36 32 32 36C28 40 24 34 20 37Z"/>
+    <g transform="rotate(-28 40 37)">
+      <path fill="#fff" d="M18 34H42V40H23C20 40 18 38 18 36Z"/>
+      <rect fill="currentColor" x="42" y="33" width="19" height="8" rx="4"/>
+    </g>
+  </symbol>
+  <symbol id="p-sheet" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12Q32 20 61 12"/>
+    <path fill="#18a873" d="M11 15Q32 21 53 15V49Q48 54 42 50Q37 46 32 50Q27 54 22 50Q16 46 11 50Z"/>
+    <path stroke-width="2" d="M25 18V51.5M39 18V48.5M11 27Q32 32 53 27M11 38Q32 42 53 38"/>
+    <rect fill="#ffc21a" x="14" y="10" width="5" height="10" rx="1.5"/>
+    <rect fill="#ffc21a" x="45" y="10" width="5" height="10" rx="1.5"/>
+  </symbol>
+  <symbol id="p-soft" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#2f6bff" d="M9 18Q7 9 16 11Q32 6 48 11Q57 9 55 18Q59 32 55 46Q57 55 48 53Q32 58 16 53Q7 55 9 46Q5 32 9 18Z"/>
+    <path stroke="#fff" stroke-width="2" stroke-dasharray="3 4" d="M17 18Q32 14 47 18Q51 32 47 46Q32 50 17 46Q13 32 17 18Z"/>
+  </symbol>
+  <symbol id="p-wear" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#ff4f36" d="M23 9L11 14L4 27L13 32L17 26V56H47V26L51 32L60 27L53 14L41 9Q32 17 23 9Z"/>
+  </symbol>
+  <symbol id="p-run" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 20H9M2 28H6M4 38H9"/>
+    <path d="M15 27L8 34M49 24L57 17"/>
+    <path d="M27 46L22 55L14 56M38 46L45 53L41 61"/>
+    <rect fill="#fff" x="15" y="5" width="34" height="41" rx="3"/>
+    <path fill="#18a873" d="M18 5H46Q49 5 49 8V15H15V8Q15 5 18 5Z"/>
+    <path stroke-width="2" d="M15 25H49M15 35H49M27 15V46M38 15V46"/>
+    <path fill="#2f6bff" d="M56 29C56 29 52.5 34 52.5 36.5A3.5 3.5 0 0 0 59.5 36.5C59.5 34 56 29 56 29Z"/>
+  </symbol>
+  <symbol id="p-eye" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 18V11M21 20.5L18 14.5M43 20.5L46 14.5"/>
+    <path fill="#fff" d="M4 32Q32 4 60 32Q32 60 4 32Z"/>
+    <circle fill="#18a873" cx="32" cy="32" r="11"/>
+    <circle fill="currentColor" stroke="none" cx="32" cy="32" r="4.5"/>
+    <circle fill="#fff" stroke="none" cx="35.5" cy="28.5" r="2"/>
+  </symbol>
+  <symbol id="p-dew" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#18a873" d="M6 54Q18 32 58 42Q36 64 6 54Z"/>
+    <path stroke-width="2" d="M11 53Q30 46 50 44"/>
+    <path fill="#2f6bff" d="M33 6C33 6 21 21 21 29C21 36 26 41 33 41C40 41 45 36 45 29C45 21 33 6 33 6Z"/>
+    <path stroke="#fff" d="M27 30Q27 25 30 22"/>
+  </symbol>
+  <symbol id="p-bee" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse fill="#fff" cx="27" cy="18" rx="7" ry="11" transform="rotate(-20 27 18)"/>
+    <ellipse fill="#fff" cx="40" cy="17" rx="7" ry="11" transform="rotate(20 40 17)"/>
+    <ellipse fill="#ffc21a" cx="35" cy="38" rx="19" ry="13"/>
+    <path stroke-width="5" stroke-linecap="butt" d="M30 26Q27 38 30 50M40 25.5Q37 38 40 50.5"/>
+    <path fill="currentColor" d="M53 35L61 38L53 41Z"/>
+    <path d="M12 31Q8 23 3 23M16 30Q16 22 12 18"/>
+    <circle fill="currentColor" cx="14" cy="38" r="8"/>
+    <circle fill="#fff" stroke="none" cx="11.5" cy="36" r="2"/>
+  </symbol>
+  <symbol id="p-stairs" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#18a873" x="5" y="44" width="13.5" height="13"/>
+    <rect fill="#2f6bff" x="18.5" y="31" width="13.5" height="26"/>
+    <rect fill="#ffc21a" x="32" y="18" width="13.5" height="39"/>
+    <rect fill="#ff4f36" x="45.5" y="5" width="13.5" height="52"/>
+  </symbol>
+  <symbol id="p-scope" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="8" d="M40 40L56 56"/>
+    <circle fill="#fff" cx="27" cy="27" r="18"/>
+    <path stroke="#2f6bff" stroke-width="3.2" d="M16 26Q17 18 25 16"/>
+    <path stroke="#2f6bff" stroke-width="3.2" d="M16.5 33V33"/>
+  </symbol>
+  <symbol id="p-tag" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#ffc21a" d="M34 5H57Q59 5 59 7V30L32 57Q30 59 28 57L7 36Q5 34 7 32Z"/>
+    <circle fill="#fff" cx="48" cy="16" r="4"/>
+    <g transform="rotate(45 31 33)">
+      <rect fill="#fff" x="12" y="27" width="38" height="12" rx="6"/>
+      <path stroke-width="2" d="M25 27V39M37 27V39"/>
+      <g fill="currentColor" stroke="none"><circle cx="29" cy="31" r="1.2"/><circle cx="33" cy="31" r="1.2"/><circle cx="29" cy="35" r="1.2"/><circle cx="33" cy="35" r="1.2"/></g>
+    </g>
+  </symbol>
+  <symbol id="p-bandage" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="rotate(-35 32 32)">
+      <rect fill="#ffc21a" x="5" y="21" width="54" height="22" rx="11"/>
+      <rect fill="#fff" x="23" y="21" width="18" height="22"/>
+      <g fill="currentColor" stroke="none"><circle cx="28" cy="27" r="1.4"/><circle cx="36" cy="27" r="1.4"/><circle cx="32" cy="32" r="1.4"/><circle cx="28" cy="37" r="1.4"/><circle cx="36" cy="37" r="1.4"/></g>
+    </g>
+  </symbol>
+  <symbol id="p-calc" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="14" y="5" width="36" height="54" rx="5"/>
+    <rect fill="#18a873" x="19" y="10" width="26" height="12" rx="2"/>
+    <g fill="currentColor" stroke="none"><circle cx="23" cy="31" r="3"/><circle cx="32" cy="31" r="3"/><circle cx="23" cy="40" r="3"/><circle cx="32" cy="40" r="3"/><circle cx="23" cy="49" r="3"/><circle cx="32" cy="49" r="3"/></g>
+    <circle fill="#ffc21a" cx="41" cy="31" r="3"/>
+    <rect fill="#ff4f36" x="38" y="37" width="6" height="15" rx="3"/>
+  </symbol>
+  <symbol id="p-apple" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 19Q31 11 35 6"/>
+    <path fill="#18a873" d="M35 13Q41 4 50 8Q44 16 35 13Z"/>
+    <path fill="#ff4f36" d="M32 19C26 13 11 14 11 31C11 46 22 59 32 54C42 59 53 46 53 31C53 14 38 13 32 19Z"/>
+    <path stroke="#fff" d="M19 31Q19 25 24 23"/>
+  </symbol>
+  <symbol id="p-parcel" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fff" d="M8 19L32 31V58L8 46Z"/>
+    <path fill="#ffc21a" d="M56 19L32 31V58L56 46Z"/>
+    <path fill="#ffc21a" d="M32 7L56 19L32 31L8 19Z"/>
+    <path stroke-width="4" d="M20 13L44 25V45"/>
+  </symbol>
+  <symbol id="p-clinic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="7" y="7" width="50" height="50" rx="12"/>
+    <path fill="#ff4f36" d="M26 15H38V26H49V38H38V49H26V38H15V26H26Z"/>
+  </symbol>
+  <symbol id="p-kanban" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="5" y="9" width="54" height="46" rx="4"/>
+    <path d="M23 9V55M41 9V55"/>
+    <rect fill="#2f6bff" x="9" y="16" width="10" height="8" rx="1.5"/>
+    <rect fill="#2f6bff" x="9" y="28" width="10" height="8" rx="1.5"/>
+    <rect fill="#ffc21a" x="27" y="16" width="10" height="8" rx="1.5"/>
+    <rect fill="#18a873" x="45" y="16" width="10" height="8" rx="1.5"/>
+    <rect fill="#18a873" x="45" y="28" width="10" height="8" rx="1.5"/>
+    <rect fill="#18a873" x="45" y="40" width="10" height="8" rx="1.5"/>
+  </symbol>
+  <symbol id="p-house" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fff" d="M11 31L32 12L53 31V57H11Z"/>
+    <path fill="#ff4f36" d="M3 32L32 5L61 32L55 37.5L32 16L9 37.5Z"/>
+    <rect fill="#2f6bff" x="26" y="39" width="12" height="18"/>
+    <rect fill="#ffc21a" x="15" y="36" width="7" height="7"/>
+    <rect fill="#ffc21a" x="42" y="36" width="7" height="7"/>
+  </symbol>
+  <symbol id="p-can" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fff" d="M16 13V51A16 5 0 0 0 48 51V13"/>
+    <path fill="#2f6bff" d="M16 23A16 5 0 0 0 48 23V41A16 5 0 0 1 16 41Z"/>
+    <ellipse fill="#fff" cx="32" cy="13" rx="16" ry="5"/>
+    <ellipse stroke-width="2" cx="32" cy="13" rx="11" ry="2.8"/>
+  </symbol>
+  <symbol id="p-bricks" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#ff4f36" x="5" y="13" width="54" height="39" rx="2"/>
+    <path stroke="#fff" stroke-width="2.6" stroke-linecap="butt" d="M6.5 26H57.5M6.5 39H57.5M23 14.5V26M41 14.5V26M14 26V39M32 26V39M50 26V39M23 39V50.5M41 39V50.5"/>
+  </symbol>
+  <symbol id="p-web" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 32L60 32M32 32L51.8 51.8M32 32L32 60M32 32L12.2 51.8M32 32L4 32M32 32L12.2 12.2M32 32L32 4M32 32L51.8 12.2"/>
+    <path d="M40 32Q37.6 34.3 37.7 37.7Q34.3 37.6 32 40Q29.7 37.6 26.3 37.7Q26.4 34.3 24 32Q26.4 29.7 26.3 26.3Q29.7 26.4 32 24Q34.3 26.4 37.7 26.3Q37.6 29.7 40 32"/>
+    <path d="M48 32Q43.2 36.6 43.3 43.3Q36.6 43.2 32 48Q27.4 43.2 20.7 43.3Q20.8 36.6 16 32Q20.8 27.4 20.7 20.7Q27.4 20.8 32 16Q36.6 20.8 43.3 20.7Q43.2 27.4 48 32"/>
+    <path d="M57 32Q49.5 39.2 49.7 49.7Q39.2 49.5 32 57Q24.8 49.5 14.3 49.7Q14.5 39.2 7 32Q14.5 24.8 14.3 14.3Q24.8 14.5 32 7Q39.2 14.5 49.7 14.3Q49.5 24.8 57 32"/>
+    <path d="M39.5 40L36 37.5M39 45.5L35.5 48M47.5 40L51 37.5M48 45.5L51.5 48"/>
+    <circle fill="#2f6bff" stroke-width="2.6" cx="43.5" cy="43" r="4.8"/>
+  </symbol>
+  <symbol id="p-pin" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse stroke-width="2" cx="32" cy="58" rx="12" ry="3"/>
+    <path fill="#ff4f36" d="M32 56C32 56 12 35 12 23C12 12 21 5 32 5C43 5 52 12 52 23C52 35 32 56 32 56Z"/>
+    <circle fill="#fff" cx="32" cy="23" r="7.5"/>
+  </symbol>
+  <symbol id="p-owl" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fff" d="M14 24Q13 12 17 7L25 15Q32 13 39 15L47 7Q51 12 50 24V44Q50 58 32 58Q14 58 14 44Z"/>
+    <path d="M14 34Q21 42 19 53M50 34Q43 42 45 53"/>
+    <circle fill="#ffc21a" cx="24.5" cy="27" r="7.5"/>
+    <circle fill="#ffc21a" cx="39.5" cy="27" r="7.5"/>
+    <circle fill="currentColor" stroke="none" cx="24.5" cy="27" r="3"/>
+    <circle fill="currentColor" stroke="none" cx="39.5" cy="27" r="3"/>
+    <path fill="#ff4f36" d="M29 34H35L32 39Z"/>
+    <path stroke-width="2" d="M26 46Q28 48 30 46Q32 48 34 46Q36 48 38 46M28 51Q30 53 32 51Q34 53 36 51"/>
+  </symbol>
+  <symbol id="p-axe" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="rotate(32 32 34)">
+      <rect fill="#ffc21a" x="29" y="10" width="7" height="52" rx="3.5"/>
+      <path fill="#fff" d="M36 10H24Q12 5 7 12Q4 21 7 30Q12 37 24 32H36Z"/>
+      <path stroke="#2f6bff" stroke-width="3" d="M11 15Q9 21 11 27"/>
+    </g>
+  </symbol>
+  <symbol id="p-hat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse fill="currentColor" cx="32" cy="51" rx="28" ry="7"/>
+    <path fill="currentColor" d="M17 50Q24 34 27 16Q29 5 44 7Q36 11 37 21Q40 36 47 50Z"/>
+    <path fill="#18a873" d="M20.8 41Q32 45 43.2 41L45.6 47.5Q32 52 18.1 47.5Z"/>
+    <rect fill="#ffc21a" x="28" y="41.5" width="8" height="8" rx="1.5"/>
+  </symbol>
+  <symbol id="p-book" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#2f6bff" d="M6 51Q20 47 32 55Q44 47 58 51V56Q44 52 32 60Q20 52 6 56Z"/>
+    <path fill="#fff" d="M32 17Q20 9 6 13V51Q20 47 32 55Q44 47 58 51V13Q44 9 32 17Z"/>
+    <path d="M32 17V55"/>
+    <path stroke-width="2" d="M12 22Q19 20 26 23M12 30Q19 28 26 31M12 38Q19 36 26 39M38 23Q45 20 52 22M38 31Q45 28 52 30M38 39Q45 36 52 38"/>
+    <path fill="#ff4f36" d="M44 12.2V26L47.5 23L51 26V11.8"/>
+  </symbol>
+  <symbol id="p-phone" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M38 16Q47 17 48 26M39 7Q56 9 57 26"/>
+    <path fill="#18a873" d="M15 7H24Q26 7 26.6 9L29.5 19Q30 21 28.5 22.5L23 27Q28 37 37 42L41.5 36.5Q43 35 45 35.5L55 38.4Q57 39 57 41V50Q57 57 50 57Q32 57 19.5 44.5Q7 32 7 14Q7 7 15 7Z"/>
+  </symbol>
+  <symbol id="p-cursor" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#2f6bff" stroke-width="3.2" d="M16 14L9 11M19 8L17 2.5M27 8L29 2.5"/>
+    <path fill="#ffc21a" d="M23 14V52L32 43.5L39 58L46.5 54.5L39.5 40.5H52Z"/>
+  </symbol>
+  <symbol id="p-gear" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#2f6bff" d="M27.4 13.6L27.9 6.3L36.1 6.3L36.6 13.6L41.8 15.7L47.3 11L53 16.7L48.3 22.2L50.4 27.4L57.7 27.9L57.7 36.1L50.4 36.6L48.3 41.8L53 47.3L47.3 53L41.8 48.3L36.6 50.4L36.1 57.7L27.9 57.7L27.4 50.4L22.2 48.3L16.7 53L11 47.3L15.7 41.8L13.6 36.6L6.3 36.1L6.3 27.9L13.6 27.4L15.7 22.2L11 16.7L16.7 11L22.2 15.7Z"/>
+    <circle fill="#fff" cx="32" cy="32" r="9"/>
+  </symbol>
+  <symbol id="p-key" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#18a873" d="M29 28.5H58V35.5H55V43H50V35.5H46V41H41V35.5H29Z"/>
+    <circle fill="#18a873" cx="19" cy="32" r="12"/>
+    <circle fill="#fff" cx="15" cy="32" r="4"/>
+  </symbol>
+  <symbol id="p-form" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="12" y="9" width="40" height="50" rx="4"/>
+    <rect fill="currentColor" x="23" y="5" width="18" height="9" rx="2"/>
+    <rect fill="#fff" x="19" y="21" width="26" height="7" rx="1.5"/>
+    <rect fill="#fff" x="19" y="34" width="26" height="7" rx="1.5"/>
+    <rect fill="#2f6bff" x="19" y="47" width="14" height="6" rx="1.5"/>
+  </symbol>
+  <symbol id="p-mail" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="6" y="15" width="50" height="36" rx="4"/>
+    <path d="M7 17L31 36L55 17"/>
+    <circle fill="#ff4f36" cx="54" cy="15" r="7"/>
+  </symbol>
+  <symbol id="p-dash" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="6" y="10" width="52" height="47" rx="4"/>
+    <path fill="#18a873" d="M10 10H54Q58 10 58 14V21H6V14Q6 10 10 10Z"/>
+    <path stroke-width="4" d="M19 5V14M45 5V14"/>
+    <rect fill="#ffc21a" x="33" y="34" width="9" height="9" rx="2"/>
+    <g fill="currentColor" stroke="none"><circle cx="17" cy="29" r="2.4"/><circle cx="27" cy="29" r="2.4"/><circle cx="37.5" cy="29" r="2.4"/><circle cx="47" cy="29" r="2.4"/><circle cx="17" cy="38.5" r="2.4"/><circle cx="27" cy="38.5" r="2.4"/><circle cx="47" cy="38.5" r="2.4"/><circle cx="17" cy="48" r="2.4"/><circle cx="27" cy="48" r="2.4"/><circle cx="37.5" cy="48" r="2.4"/></g>
+  </symbol>
+  <symbol id="p-chart" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="6" y="8" width="52" height="48" rx="4"/>
+    <rect fill="#2f6bff" x="14" y="34" width="9" height="15"/>
+    <rect fill="#ffc21a" x="27.5" y="24" width="9" height="25"/>
+    <rect fill="#18a873" x="41" y="16" width="9" height="33"/>
+    <path d="M11 49H53"/>
+  </symbol>
+  <symbol id="tick" viewBox="0 0 64 64">
+    <circle fill="#18a873" stroke="currentColor" stroke-width="4" cx="32" cy="32" r="28"/>
+    <path fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M19 33L28 42L45 23"/>
+  </symbol>
+  <symbol id="mark" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round">
+    <rect fill="#fff" x="4" y="4" width="56" height="56" rx="10"/>
+    <rect fill="#ffc21a" stroke="none" x="23" y="23" width="18" height="18"/>
+    <path d="M4 23H60M4 41H60M23 4V60M41 4V60"/>
+  </symbol>
+  <symbol id="glyph-gear" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linejoin="round">
+    <path fill="#ffc21a" d="M26.8 12.7L27.8 5.3L36.2 5.3L37.2 12.7L43.9 15.9L50.2 12.1L55.5 18.7L50.3 24L52 31.3L58.9 33.8L57.1 42.1L49.7 41.3L45 47.2L47.4 54.2L39.8 57.9L35.7 51.7L28.3 51.7L24.2 57.9L16.6 54.2L19 47.2L14.3 41.3L6.9 42.1L5.1 33.8L12 31.3L13.7 24L8.5 18.7L13.8 12.1L20.1 15.9Z"/>
+    <circle fill="#fff" cx="32" cy="32" r="9"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12H19M13 6L19 12L13 18"/>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M8 5.5V18.5L19 12Z"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top">
+      <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="ph">[Your Brand]</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#problem">Problem</a>
+      <a href="#services">What I do</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#examples">Examples</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <p class="score" aria-live="polite"><b data-score>0</b>/<span data-total>12</span> puzzles solved</p>
+    <a class="btn btn--sm" href="#contact">Book a free call</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Workflow design for Google Workspace</p>
+        <h1>Your spreadsheet, but it <span class="sr-only">works</span><span class="hybrid" aria-hidden="true">w<svg class="glyph-gear"><use href="#glyph-gear"/></svg>rks</span> like real software.</h1>
+        <p class="lede">I turn messy Google Sheets into clean, simple tools your team will actually enjoy using, built on the Google Workspace you already pay for. No new software to buy. No complicated setup.</p>
+        <div class="cta-row">
+          <a class="btn" href="#contact">Book a free 20-minute call <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#demo"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg> Watch the 1-minute demo</a>
+        </div>
+        <div class="trust">
+          <p>Built for small teams in Malaysia: accounting firms, tuition centres, online sellers, clinics and agencies.</p>
+          <ul class="trust__icons" aria-hidden="true">
+            <li><svg><use href="#p-calc"/></svg></li>
+            <li><svg><use href="#p-apple"/></svg></li>
+            <li><svg><use href="#p-parcel"/></svg></li>
+            <li><svg><use href="#p-clinic"/></svg></li>
+            <li><svg><use href="#p-kanban"/></svg></li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="rebus rebus--board" type="button" aria-pressed="false">
+        <span class="rebus__top">
+          <span class="rebus__no">Puzzle No. 01</span>
+          <span class="rebus__no">Read the pictures</span>
+        </span>
+        <span class="sr-only">Rebus puzzle: toast with butter being spread, plus a bed sheet on a washing line, turns into a pillow plus a T-shirt.</span>
+        <span class="board__row">
+          <span class="pic"><svg aria-hidden="true"><use href="#p-spread"/></svg><span class="pic__word">spread</span></span>
+          <span class="op" aria-hidden="true">+</span>
+          <span class="pic"><svg aria-hidden="true"><use href="#p-sheet"/></svg><span class="pic__word">sheet</span></span>
+        </span>
+        <span class="board__arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+        <span class="board__row">
+          <span class="pic"><svg aria-hidden="true"><use href="#p-soft"/></svg><span class="pic__word">soft</span></span>
+          <span class="op" aria-hidden="true">+</span>
+          <span class="pic"><svg aria-hidden="true"><use href="#p-wear"/></svg><span class="pic__word">wear</span></span>
+        </span>
+        <span class="rebus__foot">
+          <span class="rebus__hint">Tap to solve</span>
+          <span class="rebus__answer">Spreadsheet → software</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="sec" id="problem">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>Is your spreadsheet running your team, instead of the other way around?</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 02</span>
+          <span class="sr-only">Rebus: a spreadsheet with legs, running away.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-run"/></svg><span class="pic__word">sheet on the run</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">A runaway spreadsheet</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="sheet" data-sheet>
+        <div class="sheet__bar">
+          <svg class="sheet__icon" aria-hidden="true"><use href="#mark"/></svg>
+          <p class="sheet__name">
+            <span class="when-messy">Team tracker FINAL v3 (Copy of Copy)</span>
+            <span class="when-tidy">Team tracker</span>
+          </p>
+          <button class="btn btn--sm btn--ghost sheet__btn" type="button" data-tidy aria-pressed="false">Tidy this sheet</button>
+        </div>
+        <div class="sheet__fx" aria-hidden="true">
+          <span class="sheet__fxlabel">fx</span>
+          <span class="when-messy">=IF(nobody_knows, "ask around", "copy it again")</span>
+          <span class="when-tidy">=ONE_SOURCE_OF_TRUTH()</span>
+        </div>
+        <div class="sheet__cols" aria-hidden="true"><span></span><span>A</span><span>B</span></div>
+        <ol class="sheet__rows">
+          <li class="row"><span class="row__n" aria-hidden="true">1</span><span class="row__text">Someone copies the same data into three different sheets every week.</span><span class="row__status" aria-hidden="true"><span class="err">#REF!</span><svg class="ok"><use href="#tick"/></svg></span></li>
+          <li class="row"><span class="row__n" aria-hidden="true">2</span><span class="row__text">Two people edit at once, and one overwrites the other.</span><span class="row__status" aria-hidden="true"><span class="err">#N/A</span><svg class="ok"><use href="#tick"/></svg></span></li>
+          <li class="row"><span class="row__n" aria-hidden="true">3</span><span class="row__text">Nobody is sure which file is the latest version.</span><span class="row__status" aria-hidden="true"><span class="err">#NAME?</span><svg class="ok"><use href="#tick"/></svg></span></li>
+          <li class="row"><span class="row__n" aria-hidden="true">4</span><span class="row__text">Month-end reports take hours that should take minutes.</span><span class="row__status" aria-hidden="true"><span class="err">#VALUE!</span><svg class="ok"><use href="#tick"/></svg></span></li>
+          <li class="row"><span class="row__n" aria-hidden="true">5</span><span class="row__text">New staff need a full day of training just to find the right tab.</span><span class="row__status" aria-hidden="true"><span class="err">#DIV/0!</span><svg class="ok"><use href="#tick"/></svg></span></li>
+          <li class="row"><span class="row__n" aria-hidden="true">6</span><span class="row__text">You’re afraid to touch the formulas, because one wrong click breaks everything.</span><span class="row__status" aria-hidden="true"><span class="err">#ERROR!</span><svg class="ok"><use href="#tick"/></svg></span></li>
+        </ol>
+      </div>
+
+      <p class="sec__close">You don’t need expensive software or a big IT project. You need your spreadsheet to work better for the people using it.</p>
+    </div>
+  </section>
+
+  <!-- What I do -->
+  <section class="sec sec--ink" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">What I do</p>
+          <h2>Simple tools, built on what you already use.</h2>
+          <p class="sec-head__lede">I design and build internal tools on top of Google Sheets, Forms, Gmail and Drive. Your team keeps working in tools they already know, only cleaner, faster and harder to break.</p>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 03</span>
+          <span class="sr-only">Rebus: an eye, plus a dew drop on a leaf.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-eye"/></svg><span class="pic__word">eye</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-dew"/></svg><span class="pic__word">dew</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">I do</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <span class="tile"><svg aria-hidden="true"><use href="#p-cursor"/></svg></span>
+          <h3>Easy to use.</h3>
+          <p>Clear screens, simple forms and dashboards designed around how your staff actually work, so they learn it in minutes, not days.</p>
+        </article>
+        <article class="feature">
+          <span class="tile tile--spin"><svg aria-hidden="true"><use href="#p-gear"/></svg></span>
+          <h3>Automatic by default.</h3>
+          <p>Reports, reminders, invoices and approvals run on their own. Less copying and pasting, fewer mistakes.</p>
+        </article>
+        <article class="feature">
+          <span class="tile"><svg aria-hidden="true"><use href="#p-key"/></svg></span>
+          <h3>Yours to keep.</h3>
+          <p>Everything lives in your own Google account. You own it, and your data never leaves your hands.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- What changes -->
+  <section class="sec" id="changes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">What changes for your team</p>
+          <h2>Same spreadsheet, far less stress.</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 04</span>
+          <span class="sr-only">Rebus: a bee, plus the number four.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-bee"/></svg><span class="pic__word">bee</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic pic--type" aria-hidden="true">4<span class="pic__word">four</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Before (&amp; after)</span>
+          </span>
+        </button>
+      </div>
+
+      <table class="ba">
+        <thead>
+          <tr><th scope="col">Before</th><th scope="col">After</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="Before">The same data typed into several sheets</td><td data-label="After"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>One simple form, one source of truth</td></tr>
+          <tr><td data-label="Before">A weekly report built by hand</td><td data-label="After"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>A report that updates itself</td></tr>
+          <tr><td data-label="Before">“Which file is the latest?”</td><td data-label="After"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>One link everyone uses</td></tr>
+          <tr><td data-label="Before">Follow-ups remembered, or forgotten</td><td data-label="After"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>Automatic email reminders</td></tr>
+          <tr><td data-label="Before">Fear of breaking the formulas</td><td data-label="After"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>Tidy, protected screens that are hard to break</td></tr>
+        </tbody>
+      </table>
+
+      <figure class="result">
+        <blockquote>“Weekly reporting went from 5 hours to 10 minutes.”</blockquote>
+        <figcaption class="ph">[Example result: replace with a real number after your first client]</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="sec sec--rule" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2>Four simple steps, no surprises.</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 05</span>
+          <span class="sr-only">Rebus: the number four, plus a flight of stairs.</span>
+          <span class="rebus__pics">
+            <span class="pic pic--type" aria-hidden="true">4<span class="pic__word">four</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-stairs"/></svg><span class="pic__word">steps</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Four steps</span>
+          </span>
+        </button>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step__n" style="--c:#18a873">1</span>
+          <h3>Free 20-minute chat.</h3>
+          <p>Tell me which spreadsheet your team dreads opening. I’ll ask a few questions and tell you honestly whether I can help.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" style="--c:#2f6bff">2</span>
+          <h3>Workflow audit.</h3>
+          <p>I review your current sheets and give you a one-page list of where time is being lost and what can be automated.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" style="--c:#ffc21a">3</span>
+          <h3>Build in about two weeks.</h3>
+          <p>I design and build one workflow at a time, and show you progress along the way.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" style="--c:#ff4f36">4</span>
+          <h3>Handover and support.</h3>
+          <p>I train your team, give you simple instructions, and stay available through an optional monthly care plan.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Packages and pricing -->
+  <section class="sec sec--ink" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Packages and pricing</p>
+          <h2>Clear scope. Fixed price. Start small.</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 06</span>
+          <span class="sr-only">Rebus: a clear magnifying glass, plus a price tag with a plaster on it.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-scope"/></svg><span class="pic__word">clear scope</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-tag"/></svg><span class="pic__word">fixed price</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">No surprise bills</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="plans">
+        <article class="plan">
+          <svg class="plan__icon" aria-hidden="true"><use href="#p-scope"/></svg>
+          <h3>Workflow Audit</h3>
+          <dl>
+            <dt>Best for</dt><dd>Not sure where to start</dd>
+            <dt>What you get</dt><dd>A review of your current sheets, plus a one-page plan showing where time is lost and what to automate</dd>
+          </dl>
+          <p class="plan__price"><small>From</small> RM300</p>
+        </article>
+        <article class="plan">
+          <svg class="plan__icon" aria-hidden="true"><use href="#p-run"/></svg>
+          <h3>Sheet-to-Tool Sprint</h3>
+          <dl>
+            <dt>Best for</dt><dd>One workflow that needs fixing</dd>
+            <dt>What you get</dt><dd>A clean dashboard, form or approval flow, with automation behind it, built in about 2 weeks, plus team training and simple instructions</dd>
+          </dl>
+          <p class="plan__price"><small>From</small> RM2,500</p>
+        </article>
+        <article class="plan">
+          <svg class="plan__icon" aria-hidden="true"><use href="#p-pin"/></svg>
+          <h3>Website plus Smart Enquiry System</h3>
+          <dl>
+            <dt>Best for</dt><dd>Businesses that need a website that also handles what happens next</dd>
+            <dt>What you get</dt><dd>A professionally designed website, plus a connected enquiry or booking form, a tidy lead tracker, and automatic confirmation emails</dd>
+          </dl>
+          <p class="plan__price"><small>From</small> RM<span class="ph">[set your price]</span></p>
+        </article>
+        <article class="plan">
+          <svg class="plan__icon" aria-hidden="true"><use href="#p-bandage"/></svg>
+          <h3>Care Plan</h3>
+          <dl>
+            <dt>Best for</dt><dd>Teams that want it to keep working</dd>
+            <dt>What you get</dt><dd>Monthly fixes, small changes and help when something breaks, for your tools and your website</dd>
+          </dl>
+          <p class="plan__price"><small>From</small> RM250 <small>per month</small></p>
+        </article>
+      </div>
+
+      <div class="plans__notes">
+        <ul>
+          <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>The audit fee is credited toward your project if you decide to build with me.</li>
+          <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>Every project has a written scope and a fixed price, so there are no surprise bills.</li>
+        </ul>
+        <a class="btn" href="#contact">Book a free 20-minute call to see which package fits <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I can build -->
+  <section class="sec" id="examples">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">What I can build for you</p>
+          <h2>Built around the way your business actually runs.</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 07</span>
+          <span class="sr-only">Rebus: an eye, plus a tin can, plus a brick wall.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-eye"/></svg><span class="pic__word">I</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-can"/></svg><span class="pic__word">can</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-bricks"/></svg><span class="pic__word">build</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">I can build</span>
+          </span>
+        </button>
+      </div>
+
+      <ul class="inds">
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-calc"/></svg></span><div><h3>Accounting and bookkeeping firms</h3><p>A client tracker with deadline reminders, document request forms, and invoice data kept tidy and ready for your accounting software</p></div></li>
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-apple"/></svg></span><div><h3>Tuition and enrichment centres</h3><p>Attendance, fee tracking, and automatic reminders to parents</p></div></li>
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-parcel"/></svg></span><div><h3>Online sellers</h3><p>An order and inventory dashboard with low-stock alerts</p></div></li>
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-clinic"/></svg></span><div><h3>Clinics and service businesses</h3><p>An appointment and follow-up tracker with a simple customer intake form</p></div></li>
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-kanban"/></svg></span><div><h3>Agencies and project teams</h3><p>A project tracker with owners, status and a weekly summary email</p></div></li>
+        <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-house"/></svg></span><div><h3>Property and renovation firms</h3><p>A lead tracker, quotation generator and approval flow</p></div></li>
+      </ul>
+
+      <div class="demo" id="demo">
+        <div class="demo__frame">
+          <span class="demo__play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <p class="ph">[Embed your 1-minute demo video here, showing a messy sheet turning into a clean tool.]</p>
+        </div>
+        <div class="demo__side">
+          <p class="eyebrow">Watch the 1-minute demo</p>
+          <p class="demo__q"><strong>Not on the list?</strong> Tell me about your spreadsheet. If I can’t help, I’ll say so.</p>
+          <a class="btn btn--ghost" href="#contact">Tell me about your spreadsheet <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Websites -->
+  <section class="sec sec--rule" id="websites">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Websites that work with your business</p>
+          <h2>A website that doesn’t stop at “Contact us.”</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 08</span>
+          <span class="sr-only">Rebus: a spider web, plus a map pin marking a site.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-web"/></svg><span class="pic__word">web</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-pin"/></svg><span class="pic__word">site</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Website</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="web">
+        <div class="web__copy">
+          <p class="big">Most websites look nice, then leave you copying enquiries from emails into a notebook. I design your website and connect it to the way your team already works, so every visitor becomes something you can follow up on.</p>
+          <p><strong>Already have a website?</strong> I can connect your existing one to a lead tracker and automatic replies, without rebuilding it.</p>
+          <a class="btn" href="#contact">Ask about a website that works for you <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <ol class="flow">
+          <li><span class="tile"><svg aria-hidden="true"><use href="#p-form"/></svg></span><p>An enquiry form that feeds a tidy lead tracker automatically.</p></li>
+          <li><span class="tile"><svg aria-hidden="true"><use href="#p-mail"/></svg></span><p>An instant confirmation email to your visitor, and a notification to you.</p></li>
+          <li><span class="tile"><svg aria-hidden="true"><use href="#p-dash"/></svg></span><p>A booking form that feeds a simple dashboard your staff can check each morning.</p></li>
+          <li><span class="tile"><svg aria-hidden="true"><use href="#p-chart"/></svg></span><p>A monthly summary of enquiries, sent straight to your inbox.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="sec sec--ink" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>A designer who also builds the automation.</h2>
+        </div>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 09</span>
+          <span class="sr-only">Rebus: an owl, plus the letters A M, plus an eye.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-owl"/></svg><span class="pic__word">who</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic pic--type" aria-hidden="true">AM<span class="pic__word">am</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-eye"/></svg><span class="pic__word">I</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Who am I?</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="about">
+        <div class="about__photo">
+          <p class="ph">[Add a photo of yourself. People hire people.]</p>
+        </div>
+        <div class="about__copy">
+          <p class="big">Hi, I’m <span class="ph">[Your Name]</span>, a web and UI/UX designer in Malaysia. I help small teams stop fighting their spreadsheets.</p>
+          <p>Most people who build Google Sheets automation make things that work but are hard to use. Most designers can’t touch the automation. I do both, which means your tool is easy to use and runs on its own.</p>
+          <ul class="ticks">
+            <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg><span><strong>Designed for people.</strong> I use UI/UX principles so your staff understand the tool without training.</span></li>
+            <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg><span><strong>Consistent and professional.</strong> I build with a design system, so every screen, form and dashboard looks like it belongs together.</span></li>
+            <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg><span><strong>Automated where it counts.</strong> I use Google Apps Script to handle the boring work: emails, reports, reminders and approvals.</span></li>
+          </ul>
+          <p class="ph">[Add one personal sentence here, for example why you started helping small businesses, and the languages you work in.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq">
+    <div class="wrap faq-grid">
+      <div class="faq-grid__head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Frequently asked questions</h2>
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 10</span>
+          <span class="sr-only">Rebus: an axe.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-axe"/></svg><span class="pic__word">axe</span></span>
+            <span class="op" aria-hidden="true">=</span>
+            <span class="pic pic--type" aria-hidden="true">?<span class="pic__word">&nbsp;</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Ask away</span>
+          </span>
+        </button>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Do I need to buy new software?<span class="pm" aria-hidden="true"></span></summary>
+          <p>No. Everything runs on Google Workspace tools you already use: Sheets, Forms, Gmail and Drive. If your team already uses Google Sheets, you’re ready.</p>
+        </details>
+        <details>
+          <summary>Is my data safe?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Your data stays in your own Google account. I only get access for the project, you decide who can see what, and you can remove my access at any time. I don’t copy your data anywhere else.</p>
+        </details>
+        <details>
+          <summary>What if we outgrow it?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Google tools have limits, and I’ll be honest about them. If your business grows past what a spreadsheet-based tool can handle, I’ll tell you plainly and help you plan the move to something bigger.</p>
+        </details>
+        <details>
+          <summary>How long does a project take?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Most single-workflow projects take about two weeks. Bigger projects are scoped and priced upfront, so you know the timeline before we start.</p>
+        </details>
+        <details>
+          <summary>What does the care plan cover?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Fixes, small changes and help when something breaks. It’s optional, and you can stop anytime.</p>
+        </details>
+        <details>
+          <summary>Can you help with e-invoicing?<span class="pm" aria-hidden="true"></span></summary>
+          <p>I can keep your invoice and customer data clean and organised in Sheets, so it’s ready for your accounting or e-invoicing software. I don’t replace certified e-invoicing systems, and I’ll tell you when you need one.</p>
+        </details>
+        <details>
+          <summary>What if I’m not sure what I need?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Start with the free 20-minute chat, or the Workflow Audit. You don’t have to know the answer before you ask.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final call to action -->
+  <section class="sec sec--ink" id="contact">
+    <div class="wrap contact">
+      <div class="contact__copy">
+        <button class="rebus" type="button" aria-pressed="false">
+          <span class="rebus__no">No. 11</span>
+          <span class="sr-only">Rebus: a witch’s hat, plus a bed sheet on a washing line.</span>
+          <span class="rebus__pics">
+            <span class="pic"><svg aria-hidden="true"><use href="#p-hat"/></svg><span class="pic__word">witch</span></span>
+            <span class="op" aria-hidden="true">+</span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-sheet"/></svg><span class="pic__word">sheet</span></span>
+          </span>
+          <span class="rebus__foot">
+            <span class="rebus__hint">Tap to solve</span>
+            <span class="rebus__answer">Which sheet?</span>
+          </span>
+        </button>
+        <h2>Which spreadsheet does your team dread opening?</h2>
+        <p class="big">Tell me about it. In 20 minutes, I’ll tell you whether I can help, and what it would take. No pressure, no jargon.</p>
+        <p class="contact__alt"><strong>Or message me:</strong>
+          <a href="https://wa.me/60000000000">WhatsApp <span class="ph">[your number]</span></a> ·
+          <a href="mailto:you@example.com">Email <span class="ph">[your email]</span></a>
+        </p>
+      </div>
+
+      <form class="form" data-form novalidate>
+        <div class="form__head">
+          <button class="rebus rebus--mini" type="button" aria-pressed="false">
+            <span class="rebus__no">No. 12</span>
+            <span class="sr-only">Rebus: a book, plus a telephone handset.</span>
+            <span class="rebus__pics">
+              <span class="pic"><svg aria-hidden="true"><use href="#p-book"/></svg><span class="pic__word">book</span></span>
+              <span class="op" aria-hidden="true">+</span>
+              <span class="pic"><svg aria-hidden="true"><use href="#p-phone"/></svg><span class="pic__word">call</span></span>
+            </span>
+            <span class="rebus__foot">
+              <span class="rebus__hint">Tap to solve</span>
+              <span class="rebus__answer">Book a call</span>
+            </span>
+          </button>
+          <h3>Book a free 20-minute call</h3>
+        </div>
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Business name<input name="business" autocomplete="organization" required></label>
+        <label>Which spreadsheet is causing you trouble?<textarea name="spreadsheet" rows="4" required></textarea></label>
+        <label>WhatsApp number<input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+60" required></label>
+        <button class="btn btn--block" type="submit">Book a free 20-minute call <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <p class="form__note">By sending this, you agree to the <a href="privacy.html">privacy policy</a>.</p>
+        <p class="form__status" data-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <p>© 2026 <span class="ph">[Your Brand]</span> · <span class="ph">[SSM registration number]</span> · <a href="privacy.html">Privacy policy</a></p>
+    <p class="footer__score"><b data-score>0</b>/<span data-total>12</span> puzzles solved · <a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<div class="toast" data-toast role="status" hidden>
+  <svg aria-hidden="true"><use href="#mark"/></svg>
+  <p><strong>All puzzles solved.</strong> Imagine what we could do with your spreadsheet.</p>
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
