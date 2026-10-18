@@ -27,7 +27,7 @@ Then open http://localhost:8100.
 | `index.html` | The whole page, including the SVG pictogram sprite at the top of `<body>` |
 | `css/styles.css` | All styles. Colour tokens are on `:root` |
 | `js/main.js` | Rebus puzzles and score, the "Tidy this sheet" toggle, and the contact form |
-| `privacy.html` | Privacy policy page (placeholder, still to be written) |
+| `privacy.html` | Privacy policy (PDPA notice) in English and Bahasa Malaysia |
 | `images/founder.webp` | Photo in the About section |
 | `favicon.svg` | Browser tab icon |
 
@@ -38,7 +38,8 @@ Every placeholder has a dashed outline on the page so it's easy to spot. Replace
 - [ ] Your SSM registration number in the footer, once you have it
 - [ ] Optional: the languages you work in, in the About section
 - [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
-- [ ] The privacy policy text in `privacy.html`
+- [ ] Check the privacy policy matches how you actually work (two-step verification on, retention periods, free access requests), and have the Bahasa Malaysia version read by a fluent speaker
+- [ ] If you connect the form to Google Sheets or change any service the site uses, update `privacy.html` and its "Last updated" date
 - [ ] Check the prices. They are estimates for the Malaysian market
 
 ## Connecting the contact form
