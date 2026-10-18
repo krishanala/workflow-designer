@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Google Sheets Automation and Dashboards for Malaysian SMEs | [Your Brand]</title>
+  <title>Google Sheets Automation and Dashboards for Malaysian SMEs | Two Loaves Studio</title>
   <meta name="description" content="I turn messy Google Sheets into clean, easy tools for small Malaysian teams. Built on Google Workspace. Fixed prices. Book a free 20-minute call.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Google Sheets Automation and Dashboards for Malaysian SMEs | [Your Brand]">
+  <meta property="og:title" content="Google Sheets Automation and Dashboards for Malaysian SMEs | Two Loaves Studio">
   <meta property="og:description" content="I turn messy Google Sheets into clean, easy tools for small Malaysian teams. Built on Google Workspace. Fixed prices. Book a free 20-minute call.">
   <meta name="theme-color" content="#0b0b0b">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -243,9 +243,21 @@
     <circle fill="#18a873" stroke="currentColor" stroke-width="4" cx="32" cy="32" r="28"/>
     <path fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M19 33L28 42L45 23"/>
   </symbol>
-  <symbol id="mark" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round">
+  <!-- Two Loaves Studio logo: two smiling loaves, the big one scored like a spreadsheet grid -->
+  <symbol id="mark" viewBox="1 20 62 39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#ffc21a" d="M8 56Q4 56 4 52C4 35 14 23 27 23C40 23 50 35 50 52Q50 56 46 56Z"/>
+    <path stroke-width="2.2" d="M12.5 31Q27 26 41.5 31M20.5 25.5V35.5M33.5 25.5V35.5"/>
+    <g fill="currentColor" stroke="none"><circle cx="13" cy="43" r="1.9"/><circle cx="21" cy="43" r="1.9"/></g>
+    <path stroke-width="2.2" d="M15 47Q17 49 19 47"/>
+    <g fill="#ff4f36" stroke="none" opacity=".75"><ellipse cx="9.5" cy="46.5" rx="2.2" ry="1.4"/><ellipse cx="24.5" cy="46.5" rx="2.2" ry="1.4"/></g>
+    <path fill="#ffc21a" d="M33 56Q29 56 29 52C29 42 36 35 45 35C54 35 61 42 61 52Q61 56 57 56Z"/>
+    <g fill="currentColor" stroke="none"><circle cx="41" cy="46" r="1.9"/><circle cx="49" cy="46" r="1.9"/></g>
+    <path stroke-width="2.2" d="M43 50Q45 52 47 50"/>
+    <g fill="#ff4f36" stroke="none" opacity=".75"><ellipse cx="37.5" cy="49.5" rx="2.2" ry="1.4"/><ellipse cx="52.5" cy="49.5" rx="2.2" ry="1.4"/></g>
+  </symbol>
+  <symbol id="grid" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round">
     <rect fill="#fff" x="4" y="4" width="56" height="56" rx="10"/>
-    <rect fill="#ffc21a" stroke="none" x="23" y="23" width="18" height="18"/>
+    <rect fill="#18a873" stroke="none" x="6" y="6" width="52" height="17" rx="4"/>
     <path d="M4 23H60M4 41H60M23 4V60M41 4V60"/>
   </symbol>
   <symbol id="glyph-gear" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linejoin="round">
@@ -255,16 +267,13 @@
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 12H19M13 6L19 12L13 18"/>
   </symbol>
-  <symbol id="i-play" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M8 5.5V18.5L19 12Z"/>
-  </symbol>
 </svg>
 
 <header class="nav">
   <div class="wrap nav__in">
     <a class="brand" href="#top">
       <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="ph">[Your Brand]</span>
+      <span>Two Loaves <span class="brand__sub">Studio</span></span>
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#problem">Problem</a>
@@ -289,7 +298,6 @@
         <p class="lede">I turn messy Google Sheets into clean, simple tools your team will actually enjoy using, built on the Google Workspace you already pay for. No new software to buy. No complicated setup.</p>
         <div class="cta-row">
           <a class="btn" href="#contact">Book a free 20-minute call <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--ghost" href="#demo"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg> Watch the 1-minute demo</a>
         </div>
         <div class="trust">
           <p>Built for small teams in Malaysia: accounting firms, tuition centres, online sellers, clinics and agencies.</p>
@@ -351,7 +359,7 @@
 
       <div class="sheet" data-sheet>
         <div class="sheet__bar">
-          <svg class="sheet__icon" aria-hidden="true"><use href="#mark"/></svg>
+          <svg class="sheet__icon" aria-hidden="true"><use href="#grid"/></svg>
           <p class="sheet__name">
             <span class="when-messy">Team tracker FINAL v3 (Copy of Copy)</span>
             <span class="when-tidy">Team tracker</span>
@@ -627,16 +635,9 @@
         <li class="ind"><span class="tile"><svg aria-hidden="true"><use href="#p-house"/></svg></span><div><h3>Property and renovation firms</h3><p>A lead tracker, quotation generator and approval flow</p></div></li>
       </ul>
 
-      <div class="demo" id="demo">
-        <div class="demo__frame">
-          <span class="demo__play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <p class="ph">[Embed your 1-minute demo video here, showing a messy sheet turning into a clean tool.]</p>
-        </div>
-        <div class="demo__side">
-          <p class="eyebrow">Watch the 1-minute demo</p>
-          <p class="demo__q"><strong>Not on the list?</strong> Tell me about your spreadsheet. If I can’t help, I’ll say so.</p>
-          <a class="btn btn--ghost" href="#contact">Tell me about your spreadsheet <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
+      <div class="notlist">
+        <p><strong>Not on the list?</strong> Tell me about your spreadsheet. If I can’t help, I’ll say so.</p>
+        <a class="btn btn--ghost" href="#contact">Tell me about your spreadsheet <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -706,9 +707,9 @@
       </div>
 
       <div class="about">
-        <div class="about__photo">
-          <p class="ph">[Add a photo of yourself. People hire people.]</p>
-        </div>
+        <figure class="about__photo">
+          <img src="images/founder.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait of the founder of Two Loaves Studio, smiling at a desk">
+        </figure>
         <div class="about__copy">
           <p class="big">Hi, I’m <span class="ph">[Your Name]</span>, a web and UI/UX designer in Malaysia. I help small teams stop fighting their spreadsheets.</p>
           <p>Most people who build Google Sheets automation make things that work but are hard to use. Most designers can’t touch the automation. I do both, which means your tool is easy to use and runs on its own.</p>
@@ -718,6 +719,7 @@
             <li><svg class="tick" aria-hidden="true"><use href="#tick"/></svg><span><strong>Automated where it counts.</strong> I use Google Apps Script to handle the boring work: emails, reports, reminders and approvals.</span></li>
           </ul>
           <p class="ph">[Add one personal sentence here, for example why you started helping small businesses, and the languages you work in.]</p>
+          <a class="btn about__btn" href="https://krishanala.github.io/krishaPortfolio/" target="_blank" rel="noopener">See my design portfolio <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
@@ -763,10 +765,6 @@
         <details>
           <summary>What does the care plan cover?<span class="pm" aria-hidden="true"></span></summary>
           <p>Fixes, small changes and help when something breaks. It’s optional, and you can stop anytime.</p>
-        </details>
-        <details>
-          <summary>Can you help with e-invoicing?<span class="pm" aria-hidden="true"></span></summary>
-          <p>I can keep your invoice and customer data clean and organised in Sheets, so it’s ready for your accounting or e-invoicing software. I don’t replace certified e-invoicing systems, and I’ll tell you when you need one.</p>
         </details>
         <details>
           <summary>What if I’m not sure what I need?<span class="pm" aria-hidden="true"></span></summary>
@@ -832,7 +830,7 @@
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <p>© 2026 <span class="ph">[Your Brand]</span> · <span class="ph">[SSM registration number]</span> · <a href="privacy.html">Privacy policy</a></p>
+    <p>© 2026 Two Loaves Studio · <a href="privacy.html">Privacy policy</a></p>
     <p class="footer__score"><b data-score>0</b>/<span data-total>12</span> puzzles solved · <a href="#top">Back to top</a></p>
   </div>
 </footer>

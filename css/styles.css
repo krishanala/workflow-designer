@@ -160,7 +160,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   text-decoration: none;
   white-space: nowrap;
 }
-.brand__mark { width: 34px; height: 34px; }
+.brand__mark { width: 54px; height: 34px; flex: none; }
+.brand__sub { font-weight: 500; }
 .nav__links {
   display: flex;
   gap: 22px;
@@ -683,45 +684,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .ind h3 { font-size: 1.2rem; }
 .ind p { margin-top: 0.45em; color: var(--mute); font-size: 0.98rem; }
 
-.demo {
-  margin-top: clamp(40px, 5vw, 64px);
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 56px);
+.notlist {
+  margin-top: clamp(32px, 4vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-}
-.demo__frame {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 18px;
-  padding: 24px;
-  text-align: center;
-  border: 2px solid var(--ink);
+  justify-content: space-between;
+  gap: 18px 32px;
+  padding: clamp(20px, 3vw, 28px) clamp(22px, 3vw, 32px);
+  border: 2px dashed var(--ink);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(var(--hair) 1.5px, transparent 1.5px),
-    linear-gradient(90deg, var(--hair) 1.5px, transparent 1.5px);
-  background-size: 96px 32px;
-  background-position: -1px -1px;
 }
-.demo__frame .ph { max-width: 30ch; font-size: 0.95rem; background: var(--paper); }
-.demo__play {
-  display: grid;
-  place-items: center;
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  border: 2.5px solid var(--ink);
-  background: var(--r);
-  color: var(--paper);
-}
-.demo__play svg { width: 40px; height: 40px; margin-left: 5px; }
-.demo__q { margin: 14px 0 22px; font-size: 1.2rem; line-height: 1.5; }
+.notlist p { font-size: 1.2rem; line-height: 1.5; max-width: 46ch; }
 
 /* ---------- Websites ---------- */
 
@@ -760,16 +734,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   gap: clamp(32px, 6vw, 88px);
   align-items: start;
 }
-.about__photo {
+.about__photo { margin: 0; }
+.about__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  text-align: center;
-  border: 2px dashed var(--paper);
+  object-fit: cover;
+  object-position: 50% 30%;
+  border: 2px solid var(--paper);
   border-radius: var(--radius);
-  color: var(--mute);
+  background: #222;
 }
+.about__btn { margin-top: 2rem; }
 .about__copy > p + p, .about__copy > p + ul, .about__copy > ul + p { margin-top: 1.2em; }
 .about__copy > p:not(.big) { color: var(--mute); }
 .about__copy .ph { display: inline-block; color: var(--paper); }
@@ -894,7 +871,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .toast.is-in { transform: translate(-50%, 0); }
-.toast svg { width: 36px; height: 36px; flex: none; color: var(--ink); }
+.toast svg { width: 62px; height: 42px; padding: 5px 7px; flex: none; color: var(--ink); background: var(--paper); border-radius: 10px; }
 
 /* ---------- Motion ---------- */
 
@@ -923,7 +900,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .step:nth-child(2) { margin-left: 16px; }
   .step:nth-child(3) { margin-left: 32px; }
   .step:nth-child(4) { margin-left: 48px; }
-  .demo, .web, .about, .faq-grid, .contact { grid-template-columns: 1fr; }
+  .web, .about, .faq-grid, .contact { grid-template-columns: 1fr; }
   .faq-grid__head { position: static; }
   .about__photo { max-width: 360px; }
 }
@@ -960,7 +937,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 600px) {
   .score { display: none; }
   .nav__in { justify-content: space-between; gap: 12px; }
-  .brand { font-size: 1rem; }
+  .brand { font-size: 0.95rem; gap: 8px; }
+  .brand__mark { width: 46px; height: 29px; }
+  .nav .btn--sm { white-space: nowrap; padding: 0.55em 0.9em; font-size: 0.85rem; }
   .plans { grid-template-columns: 1fr; }
   .sheet__cols, .row { grid-template-columns: 34px minmax(0, 1fr) 82px; }
   .row__text { padding: 12px 12px; font-size: 0.98rem; }
