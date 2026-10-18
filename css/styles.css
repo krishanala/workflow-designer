@@ -871,6 +871,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .form__status { font-weight: 700; font-size: 0.95rem; }
 .form__status:empty { display: none; }
 
+/* Hidden from people; only spam bots fill it in */
+.form__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* "I've received your email" card, shown after a successful send */
+.form.is-sent > :not(.form__done) { display: none; }
+.form__done {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: clamp(28px, 5vw, 56px) 8px;
+  text-align: center;
+  outline: none;
+  animation: pop-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.form__done[hidden] { display: none; }
+.form__done-mark { width: 104px; height: 66px; margin-bottom: 6px; color: var(--ink); }
+.form__done h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); max-width: 16ch; }
+.form__done p { color: #555; font-size: 1.1rem; }
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
 /* ---------- Privacy policy page ---------- */
 
 .nav__back { margin-left: auto; white-space: nowrap; }

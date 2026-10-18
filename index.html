@@ -839,9 +839,15 @@
         <label>Business name<input name="business" autocomplete="organization" required></label>
         <label>Your email<input name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@yourbusiness.com" required></label>
         <label>Which spreadsheet is causing you trouble?<textarea name="spreadsheet" rows="4" required></textarea></label>
+        <div class="form__hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn--block" type="submit">Book a free 20-minute call <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         <p class="form__note">I’ll only use your details to reply to you. Read the <a href="privacy.html">privacy policy</a> (English &amp; Bahasa Malaysia).</p>
         <p class="form__status" data-status role="status" aria-live="polite"></p>
+        <div class="form__done" data-done tabindex="-1" hidden>
+          <svg class="form__done-mark" aria-hidden="true"><use href="#mark"/></svg>
+          <h3>Thank you, I’ve received your email!</h3>
+          <p>I’ll get back to you within 24 hours.</p>
+        </div>
       </form>
     </div>
   </section>

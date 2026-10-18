@@ -1,7 +1,8 @@
 // Every enquiry goes to this address.
 const CONTACT_EMAIL = 'krishanalathamby@gmail.com';
 
-// Optional: paste a Google Apps Script web app URL here to receive enquiries in a Google Sheet.
+// The Google Apps Script web app URL (ends in /exec) from apps-script/README.md.
+// With it set, the form sends enquiries in the background and shows the "received" card.
 // While it is empty, the form opens the visitor's email app with the enquiry addressed to CONTACT_EMAIL.
 const FORM_ENDPOINT = '';
 
@@ -49,9 +50,17 @@ tidyBtn?.addEventListener('click', () => {
 
 const form = document.querySelector('[data-form]');
 const status = form?.querySelector('[data-status]');
+const received = form?.querySelector('[data-done]');
 
 function say(message) {
   status.textContent = message;
+}
+
+// Swap the form for the "I've received your email" card.
+function showReceived() {
+  form.classList.add('is-sent');
+  received.hidden = false;
+  received.focus();
 }
 
 function enquiryMailto(data) {
@@ -89,12 +98,14 @@ form?.addEventListener('submit', async (event) => {
   const label = button.innerHTML;
   button.disabled = true;
   button.textContent = 'Sending…';
+  say('');
 
   try {
-    await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+    const response = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form) });
+    const result = await response.json();
+    if (!result.ok) throw new Error(result.error || 'not-sent');
     form.reset();
-    fields.forEach((field) => field.removeAttribute('aria-invalid'));
-    say('Thanks! Your message is on its way. I’ll be in touch soon.');
+    showReceived();
   } catch {
     say(`Sorry, that didn’t send. Please email me at ${CONTACT_EMAIL} instead.`);
   } finally {
