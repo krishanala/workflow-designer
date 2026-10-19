@@ -52,7 +52,7 @@ Setup: follow [`apps-script/README.md`](apps-script/README.md), then paste the w
 
 While `FORM_ENDPOINT` is empty, submitting the form opens the visitor's email app instead, with the enquiry addressed to `CONTACT_EMAIL`.
 
-The "Book a free 20-minute call" buttons point to the contact form (`#contact`). To link them to a booking page instead, such as a Google Calendar appointment schedule, change those `href`s.
+The "Talk to me" buttons point to the contact form (`#contact`). To link them to a booking page instead, such as a Google Calendar appointment schedule, change those `href`s.
 
 ## Deploying
 
