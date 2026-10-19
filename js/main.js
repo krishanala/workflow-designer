@@ -24,7 +24,11 @@ function celebrate() {
   setTimeout(() => toast.classList.remove('is-in'), 6000);
 }
 
-puzzles.forEach((puzzle) => {
+puzzles.forEach((puzzle, index) => {
+  // Stagger the nudge dance so neighbouring puzzles don't move at the same moment.
+  puzzle.style.setProperty('--nudge-delay', `${((index * 0.9) % 4.5).toFixed(1)}s`);
+  puzzle.querySelectorAll('.pic').forEach((pic, step) => pic.style.setProperty('--nudge-step', step));
+
   puzzle.addEventListener('click', () => {
     const solving = puzzle.getAttribute('aria-pressed') !== 'true';
     puzzle.setAttribute('aria-pressed', String(solving));

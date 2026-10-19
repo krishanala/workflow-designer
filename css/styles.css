@@ -300,7 +300,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.04em;
   color: #6b6b6b;
 }
-.rebus__hint::after { content: " →"; }
+.rebus__hint::after { content: "→"; display: inline-block; margin-left: 0.3em; }
 .rebus__answer {
   font: 800 1.3rem/1.15 var(--font-d);
   letter-spacing: -0.02em;
@@ -312,6 +312,32 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .rebus[aria-pressed="true"] .pic__word { opacity: 1; visibility: visible; transform: none; }
 .rebus[aria-pressed="true"] .rebus__hint { opacity: 0; visibility: hidden; transform: translateY(-6px); }
 .rebus[aria-pressed="true"] .rebus__answer { opacity: 1; visibility: visible; transform: none; }
+
+/* Nudge dance: every few seconds an unsolved puzzle's pictures hop one after another,
+   and the "Tap to solve" arrow nudges. js/main.js staggers the puzzles with --nudge-delay
+   and orders the pictures with --nudge-step. Solving a puzzle stops it. */
+.pic { transform-origin: 50% 85%; }
+.rebus:not([aria-pressed="true"]) .pic {
+  animation: nudge-dance 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--nudge-delay, 0s) + var(--nudge-step, 0) * 0.14s);
+}
+.rebus:not([aria-pressed="true"]) .rebus__hint::after {
+  animation: nudge-arrow 4.5s ease-in-out infinite;
+  animation-delay: var(--nudge-delay, 0s);
+}
+
+@keyframes nudge-dance {
+  0%, 16%, 100% { transform: none; }
+  3% { transform: translateY(-12%) rotate(-7deg); }
+  7% { transform: translateY(0) rotate(6deg); }
+  11% { transform: translateY(-5%) rotate(-3deg); }
+}
+
+@keyframes nudge-arrow {
+  0%, 14%, 100% { transform: none; }
+  4%, 10% { transform: translateX(5px); }
+  7% { transform: translateX(1px); }
+}
 
 .rebus--mini { --pic: 44px; padding: 10px 14px; gap: 8px; }
 .rebus--mini .rebus__answer { font-size: 1.05rem; }
