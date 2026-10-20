@@ -74,7 +74,7 @@ function enquiryMailto(data) {
     `Business: ${data.get('business')}`,
     `Email: ${data.get('email')}`,
     '',
-    'Which spreadsheet is causing trouble:',
+    'What’s messy right now:',
     data.get('spreadsheet'),
   ].join('\n');
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

@@ -10,7 +10,7 @@
 
 const OWNER_EMAIL = 'krishanalathamby@gmail.com';
 const SHEET_NAME = 'Enquiries';
-const HEADERS = ['Received', 'Name', 'Business', 'Email', 'Spreadsheet trouble', 'Status'];
+const HEADERS = ['Received', 'Name', 'Business', 'Email', 'What’s messy', 'Status'];
 const MAX_LENGTH = { name: 100, business: 150, email: 254, spreadsheet: 3000 };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -97,7 +97,7 @@ function emailOwner_(enquiry) {
       `Business: ${enquiry.business}`,
       `Email: ${enquiry.email}`,
       '',
-      'Which spreadsheet is causing trouble:',
+      'What’s messy right now:',
       enquiry.spreadsheet,
       '',
       'Reply to this email to answer them directly. You promised a reply within 24 hours.',
