@@ -6,6 +6,14 @@ Live at https://krishanala.github.io/workflow-designer/
 
 **Style:** Rebus. Every section opens with a picture puzzle that visitors can tap to solve, and a counter tracks how many they've solved. The page is black and white; colour only appears inside the pictograms and symbols.
 
+**Three sides, one body:** the page has three personalities that share every component and only swap colour tokens.
+
+1. **Bright side** (white, shown first): how most teams use Google, done by hand.
+2. **Dark side** (black): Google supercharged with Apps Script. Drag the handle on the right (or click the dark strip) to slide over. Links to dark-side sections, like `index.html#pricing`, open it directly.
+3. **Build department** (orange): websites, web apps and portals. Click the floating bubble on the dark side; the orange world ripples out from it. `index.html#build` opens it directly. Its case studies are under construction for now.
+
+Each side has its own puzzles and score. Pictograms take their "white" from `--w`, so they invert on the dark side.
+
 **Fonts:** Bricolage Grotesque for headings, Lato for body text (both from Google Fonts).
 
 **Logo:** two smiling loaves, the big one with its crust scored like a spreadsheet grid. It lives as the `#mark` symbol in the sprite in `index.html`, and as `favicon.svg`.
