@@ -803,6 +803,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: -0.03em;
 }
 .proof__item p + p { margin-top: 0.7em; color: var(--mute); }
+.proof__item .proof__link { margin-top: 1em; }
+.proof__link a { color: var(--paper); font-weight: 700; text-underline-offset: 4px; }
 .about__copy > p + p, .about__copy > p + ul, .about__copy > ul + p { margin-top: 1.2em; }
 .about__copy > p:not(.big) { color: var(--mute); }
 .about__copy .ph { display: inline-block; color: var(--paper); }
@@ -962,6 +964,46 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   margin-top: clamp(72px, 9vw, 112px);
   padding-top: clamp(48px, 6vw, 72px);
   border-top: 3px solid var(--ink);
+}
+
+/* ---------- Case study page (builds on the .legal article styles) ---------- */
+
+.case__pics { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+.case__arrow { width: 26px; height: 26px; color: var(--ink); }
+.case__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin: 32px 0 0;
+}
+.case__facts div { padding-top: 12px; border-top: 2px solid var(--ink); }
+.case__facts dt {
+  font: 700 0.72rem/1.2 var(--font-b);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.case__facts dd { margin: 6px 0 0; font-size: 0.98rem; }
+.case .ticks { list-style: none; padding-left: 0; }
+.case .ticks .tick { color: var(--ink); }
+.case__quote {
+  margin: 1.4em 0 0;
+  padding-left: 18px;
+  border-left: 4px solid var(--ink);
+  font: 700 clamp(1.15rem, 1rem + 0.6vw, 1.45rem)/1.4 var(--font-d);
+}
+.case__cta {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding: clamp(22px, 3vw, 32px);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.legal .case__cta h2 { margin-top: 0; }
+.case__cta .btn { margin-top: 1.2em; }
+
+@media (max-width: 760px) {
+  .case__facts { grid-template-columns: 1fr; }
 }
 
 /* ---------- Footer ---------- */

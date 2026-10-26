@@ -29,6 +29,7 @@ Then open http://localhost:8100.
 | `js/main.js` | Rebus puzzles and score, the "Tidy this sheet" toggle, and the contact form |
 | `apps-script/` | Google Apps Script that emails each enquiry to you and saves it to a Sheet, plus its setup guide |
 | `privacy.html` | Privacy policy (PDPA notice) in English and Bahasa Malaysia |
+| `case-study-clinic-booking.html` | Case study: WhatsApp bookings to a shared Google Calendar, linked from the About section |
 | `images/founder.webp` | Photo in the About section |
 | `favicon.svg` | Browser tab icon |
 
@@ -37,6 +38,7 @@ Then open http://localhost:8100.
 Every placeholder has a dashed outline on the page so it's easy to spot. Replace:
 
 - [ ] Your SSM registration number in the footer, once you have it
+- [ ] The clinic booking case study's placeholders: no-show and hours-saved numbers, how patients confirm or cancel, and a quote from the clinic
 - [ ] Optional: the languages you work in, in the About section
 - [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
 - [ ] Check the privacy policy matches how you actually work (two-step verification on, retention periods, free access requests), and have the Bahasa Malaysia version read by a fluent speaker
