@@ -1005,24 +1005,24 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .book__state { margin-left: auto; }
 .book__screen { position: relative; overflow: hidden; background: #fff; container-type: inline-size; }
 /* Tall enough for Google's whole page at each of its layouts, so it never scrolls inside the frame */
-.book__screen iframe { position: relative; display: block; width: 100%; height: 1500px; border: 0; transition: opacity 0.5s ease; }
-@container (min-width: 400px) { .book__screen iframe { height: 1380px; } }
-@container (min-width: 560px) { .book__screen iframe { height: 900px; } }
-@container (min-width: 610px) { .book__screen iframe { height: 760px; } }
-@container (min-width: 870px) { .book__screen iframe { height: 980px; } }
+.book__screen iframe { position: relative; display: block; width: 100%; height: 1560px; border: 0; }
+@container (min-width: 610px) { .book__screen iframe { height: 780px; } }
+@container (min-width: 850px) { .book__screen iframe { height: 990px; } }
+/* Warm-up screen on top of the calendar. JS shows it, then fades it once Google's page is ready.
+   The calendar itself is never faded: browsers draw a faded cross-site frame unreliably. */
 .book__wait {
   position: absolute;
   inset: 0;
-  display: grid;
+  z-index: 1;
+  display: none;
   align-content: start;
   justify-items: center;
   padding-top: 120px;
   gap: 14px;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 }
-/* JS adds is-waiting; until Google's page loads, the warm-up screen shows instead */
-.book__frame.is-waiting:not(.is-loaded) iframe { opacity: 0; }
-.book__frame.is-loaded .book__wait { opacity: 0; }
+.book__frame.is-waiting .book__wait { display: grid; }
+.book__frame.is-loaded .book__wait { opacity: 0; visibility: hidden; }
 .book__note { font-size: 0.85rem; color: var(--soft); }
 .book__note a { font-weight: 700; color: var(--ink); text-underline-offset: 3px; }
 
@@ -2109,9 +2109,10 @@ html[data-side="dev"] .side--dev,
 .book--console .is-loaded .book__state { color: var(--g); }
 .book--console .book__wait { justify-items: start; padding: 28px 22px; background: #050505; }
 .book__log { display: grid; gap: 6px; font: 400 0.9rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #cfcfcf; }
-.book__log span { opacity: 0; animation: type-in 0.3s ease forwards; }
-.book__log span:nth-child(2) { animation-delay: 0.7s; }
-.book__log span:nth-child(3) { animation-delay: 1.4s; }
+.book__log span { opacity: 0; }
+.is-booting .book__log span { animation: type-in 0.3s ease forwards; }
+.is-booting .book__log span:nth-child(2) { animation-delay: 0.5s; }
+.is-booting .book__log span:nth-child(3) { animation-delay: 1s; }
 .book__caret { display: inline-block; width: 8px; height: 1em; margin-left: 4px; vertical-align: -2px; background: var(--volt); animation: blink 0.9s steps(2) infinite; }
 @keyframes type-in { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
 
@@ -2175,6 +2176,6 @@ html[data-side="dev"] .side--dev,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .book__log span { animation: none; opacity: 1; }
+  .book__log span, .is-booting .book__log span { animation: none; opacity: 1; }
   .book__loaf, .book__led, .book__caret { animation: none; }
 }

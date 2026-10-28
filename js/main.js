@@ -601,22 +601,28 @@ document.querySelectorAll('[data-flipcal]').forEach((cal) => {
   }, { threshold: 0.6 }).observe(cal);
 });
 
-// Google's calendar takes a moment, so each frame shows its own warm-up screen until it loads.
+// Each frame plays a short warm-up when it scrolls into view, then reveals the calendar once
+// Google's page has loaded. Google's load event can lag, so the calendar never waits more than 3.5s.
 document.querySelectorAll('[data-book-frame]').forEach((frame) => {
   const state = frame.querySelector('[data-book-state]');
+  let loaded = false;
+  let warmedUp = false;
   const ready = () => {
     if (frame.classList.contains('is-loaded')) return;
     frame.classList.add('is-loaded');
     state.textContent = state.dataset.ready;
   };
+  const readyIfBoth = () => { if (loaded && warmedUp) ready(); };
+
   frame.classList.add('is-waiting');
-  frame.querySelector('iframe').addEventListener('load', ready);
-  // If the load event never arrives, show the calendar anyway.
+  frame.querySelector('iframe').addEventListener('load', () => { loaded = true; readyIfBoth(); });
   new IntersectionObserver(([entry], observer) => {
     if (!entry.isIntersecting) return;
     observer.disconnect();
-    setTimeout(ready, 8000);
-  }).observe(frame);
+    frame.classList.add('is-booting');
+    setTimeout(() => { warmedUp = true; readyIfBoth(); }, reduceMotion.matches ? 0 : 1600);
+    setTimeout(ready, 3500);
+  }, { threshold: 0.15 }).observe(frame);
 });
 
 /* ---------- Start ---------- */
