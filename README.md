@@ -34,8 +34,8 @@ Then open http://localhost:8100.
 | --- | --- |
 | `index.html` | The whole page, including the SVG pictogram sprite at the top of `<body>` |
 | `css/styles.css` | All styles. Colour tokens are on `:root` |
-| `js/main.js` | Rebus puzzles and score, the "Tidy this sheet" toggle, and the contact form |
-| `apps-script/` | Google Apps Script that emails each enquiry to you and saves it to a Sheet, plus its setup guide |
+| `js/main.js` | Rebus puzzles and score, the slider between the sides, the bubble transition and the "Tidy this sheet" toggle |
+| `apps-script/` | Google Apps Script for the old enquiry form. The page no longer uses it; it's kept in case a form comes back |
 | `privacy.html` | Privacy policy (PDPA notice) in English and Bahasa Malaysia |
 | `case-study-clinic-booking.html` | Case study: WhatsApp bookings to a shared Google Calendar, linked from the About section |
 | `images/founder.webp` | Photo in the About section |
@@ -50,19 +50,16 @@ Every placeholder has a dashed outline on the page so it's easy to spot. Replace
 - [ ] Optional: the languages you work in, in the About section
 - [ ] Optional: add a number to the clinic result in "What changes for your team" if you measure one (for example, how many check-in messages a week it saved)
 - [ ] Check the privacy policy matches how you actually work (two-step verification on, retention periods, free access requests), and have the Bahasa Malaysia version read by a fluent speaker
-- [ ] Set up the enquiry form's Google Apps Script ([`apps-script/README.md`](apps-script/README.md)) and paste its URL into `FORM_ENDPOINT`
 - [ ] If you change any service the site uses, update `privacy.html` and its "Last updated" date
 - [ ] Check the prices. They are estimates for the Malaysian market
 
-## Connecting the contact form
+## Booking calls
 
-Enquiries are sent in the background by a Google Apps Script in your Google account (`apps-script/Code.gs`). It emails each one to krishanalathamby@gmail.com and saves it to an **Enquiries** sheet. The visitor then sees a "Thank you, I've received your email! I'll get back to you within 24 hours." card.
+Both contact sections (dark side `#contact`, build department `#dev-contact`) embed the Google Calendar appointment schedule "Let's Connect ~ Two Loaves Studio" in an iframe. Visitors pick a slot without leaving the page and Google sends the invite.
 
-Setup: follow [`apps-script/README.md`](apps-script/README.md), then paste the web app URL into `FORM_ENDPOINT` at the top of `js/main.js`.
+To use a different schedule: in Google Calendar, open the appointment schedule → **Share** → **Website embed**, copy the `src` URL (it ends in `?gv=true`) and replace both `<iframe src>` values in `index.html`. Update the "Open the booking page" links next to them with the schedule's short link too.
 
-While `FORM_ENDPOINT` is empty, submitting the form opens the visitor's email app instead, with the enquiry addressed to `CONTACT_EMAIL`.
-
-The "Talk to me" buttons point to the contact form (`#contact`). To link them to a booking page instead, such as a Google Calendar appointment schedule, change those `href`s.
+The "Switch it on" and "Let's build" buttons point to those sections.
 
 ## Deploying
 

@@ -1,11 +1,3 @@
-// Every enquiry goes to this address.
-const CONTACT_EMAIL = 'krishanalathamby@gmail.com';
-
-// The Google Apps Script web app URL (ends in /exec) from apps-script/README.md.
-// With it set, the forms send enquiries in the background and show the "received" card.
-// While it is empty, the forms open the visitor's email app with the enquiry addressed to CONTACT_EMAIL.
-const FORM_ENDPOINT = '';
-
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const worlds = {
@@ -547,74 +539,6 @@ if (rx) {
   });
   show(0, false);
 }
-
-/* ---------- Contact forms ---------- */
-
-function enquiryMailto(data, kind) {
-  const subject = kind === 'build'
-    ? `New build enquiry from ${data.get('name')} (${data.get('business')})`
-    : `New enquiry from ${data.get('name')} (${data.get('business')})`;
-  const body = [
-    `Name: ${data.get('name')}`,
-    `Business: ${data.get('business')}`,
-    `Email: ${data.get('email')}`,
-    '',
-    kind === 'build' ? 'What hurts:' : 'What should run itself:',
-    data.get('spreadsheet'),
-  ].join('\n');
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-document.querySelectorAll('[data-form]').forEach((form) => {
-  const kind = form.dataset.kind || 'google';
-  const status = form.querySelector('[data-status]');
-  const received = form.querySelector('[data-done]');
-  const say = (message) => { status.textContent = message; };
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const fields = [...form.querySelectorAll('input, textarea')];
-    fields.forEach((field) => field.setAttribute('aria-invalid', String(!field.checkValidity())));
-    const firstInvalid = fields.find((field) => !field.checkValidity());
-    if (firstInvalid) {
-      say('Please fill in every field, with a valid email, so we can get back to you.');
-      firstInvalid.focus();
-      return;
-    }
-
-    const data = new FormData(form);
-    if (!FORM_ENDPOINT) {
-      window.location.href = enquiryMailto(data, kind);
-      say(`Your email app should open with your message ready, so just press send. If nothing opens, email ${CONTACT_EMAIL}.`);
-      return;
-    }
-
-    // The Apps Script stores every enquiry in one sheet, so build enquiries are labelled.
-    if (kind === 'build') data.set('spreadsheet', `[Build department] ${data.get('spreadsheet')}`);
-
-    const button = form.querySelector('button[type="submit"]');
-    const label = button.innerHTML;
-    button.disabled = true;
-    button.textContent = 'Sending…';
-    say('');
-
-    try {
-      const response = await fetch(FORM_ENDPOINT, { method: 'POST', body: data });
-      const result = await response.json();
-      if (!result.ok) throw new Error(result.error || 'not-sent');
-      form.reset();
-      form.classList.add('is-sent');
-      received.hidden = false;
-      received.focus();
-    } catch {
-      say(`Sorry, that didn’t send. Please email ${CONTACT_EMAIL} instead.`);
-    } finally {
-      button.disabled = false;
-      button.innerHTML = label;
-    }
-  });
-});
 
 /* ---------- Start ---------- */
 

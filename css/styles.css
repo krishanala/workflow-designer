@@ -875,7 +875,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .contact__alt { margin-top: 2em; line-height: 2; }
 .contact__alt a { font-weight: 700; text-underline-offset: 4px; }
 
-.form {
+.book {
   display: grid;
   gap: 16px;
   padding: clamp(22px, 3vw, 34px);
@@ -883,46 +883,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--ink);
   border-radius: 20px;
 }
-.form__head { display: grid; justify-items: start; gap: 18px; margin-bottom: 6px; }
-.form__head h3 { font-size: 1.6rem; }
-.form .rebus { box-shadow: var(--shadow); border-color: var(--ink); }
-.form label { display: grid; gap: 6px; font-weight: 700; font-size: 0.95rem; }
-.form input, .form textarea {
-  width: 100%;
-  font: 400 1rem/1.4 var(--font-b);
-  color: var(--ink);
-  background: var(--paper);
+.book__head { display: grid; justify-items: start; gap: 18px; margin-bottom: 6px; }
+.book__head h3 { font-size: 1.6rem; }
+.book__head h3 + p { margin-top: -10px; color: var(--soft); }
+.book .rebus { box-shadow: var(--shadow); border-color: var(--ink); }
+/* Google's booking page is always light, so it sits on its own white sheet */
+.book__frame {
+  overflow: hidden;
+  background: #fff;
   border: 2px solid var(--ink);
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 12px;
 }
-.form textarea { resize: vertical; min-height: 110px; }
-.form input:focus-visible, .form textarea:focus-visible { outline-offset: 1px; }
-.form input[aria-invalid="true"], .form textarea[aria-invalid="true"] { border-color: var(--r); }
-.form .btn { margin-top: 6px; background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.form .btn:hover { box-shadow: 4px 4px 0 #9a9a9a; }
-.form__note { font-size: 0.85rem; color: var(--soft); }
-.form__status { font-weight: 700; font-size: 0.95rem; }
-.form__status:empty { display: none; }
-
-/* Hidden from people; only spam bots fill it in */
-.form__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-
-/* "I've received your email" card, shown after a successful send */
-.form.is-sent > :not(.form__done) { display: none; }
-.form__done {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  padding: clamp(28px, 5vw, 56px) 8px;
-  text-align: center;
-  outline: none;
-  animation: pop-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.form__done[hidden] { display: none; }
-.form__done-mark { width: 104px; height: 66px; margin-bottom: 6px; color: var(--ink); }
-.form__done h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); max-width: 16ch; }
-.form__done p { color: var(--soft); font-size: 1.1rem; }
+.book__frame iframe { display: block; width: 100%; height: 680px; border: 0; }
+.book__note { font-size: 0.85rem; color: var(--soft); }
+.book__note a { font-weight: 700; color: var(--ink); text-underline-offset: 3px; }
 
 @keyframes pop-in {
   from { opacity: 0; transform: translateY(10px) scale(0.97); }
@@ -1608,8 +1582,7 @@ html[data-side="dev"] .divider { display: none; }
 .side--dark .result__pics { background: var(--volt); }
 .side--dark .result__pics .tile { border-color: #0a0a0a; }
 .side--dark .result__arrow { color: #0a0a0a; }
-.side--dark .form { border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--volt); }
-.side--dark .form .btn:hover { box-shadow: 4px 4px 0 var(--volt); }
+.side--dark .book { border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--volt); }
 
 /* ---------- The bubble ---------- */
 
@@ -1745,7 +1718,7 @@ html[data-side="dev"] .side--dev,
 .side--dev .sec--ink .rebus { border-color: var(--paper); }
 .side--dev .sec--ink .step { color: var(--ink); }
 .side--dev .sec--ink .step p { color: #5a3520; }
-.side--dev .sec--ink .form { color: var(--ink); }
+.side--dev .sec--ink .book { color: var(--ink); }
 .nav__home { flex: none; }
 .side--dev .nav__links { margin-left: auto; }
 
