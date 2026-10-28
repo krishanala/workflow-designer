@@ -540,6 +540,85 @@ if (rx) {
   show(0, false);
 }
 
+/* ---------- Booking: desk calendars and the warm-up screen ---------- */
+
+// Each desk calendar shows today. Scrolling it into view flips the last few pages up to today,
+// and every click flips to the next day.
+function deskAsk(offset, date) {
+  if (offset < 0) return '';
+  if (offset === 0) return 'Today?';
+  if (offset === 1) return 'Tomorrow?';
+  if (offset > 7) return 'Next week?';
+  const day = date.toLocaleDateString('en-GB', { weekday: 'short' });
+  return date.getDay() === 0 || date.getDay() === 6 ? `${day}? Bold.` : `${day}?`;
+}
+
+document.querySelectorAll('[data-flipcal]').forEach((cal) => {
+  const page = cal.querySelector('.flipcal__page');
+  const month = cal.querySelector('[data-flip-month]');
+  const day = cal.querySelector('[data-flip-day]');
+  const weekday = cal.querySelector('[data-flip-dow]');
+  const ask = cal.querySelector('[data-flip-ask]');
+  let offset = 0;
+  let touched = false;
+
+  const show = (n) => {
+    const date = new Date();
+    date.setDate(date.getDate() + n);
+    month.textContent = date.toLocaleDateString('en-GB', { month: 'short' });
+    day.textContent = date.getDate();
+    weekday.textContent = date.toLocaleDateString('en-GB', { weekday: 'long' });
+    ask.textContent = deskAsk(n, date);
+    cal.setAttribute('aria-label', `Desk calendar showing ${date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}. Flip to the next day.`);
+  };
+
+  const flip = (n) => {
+    if (!reduceMotion.matches) {
+      const leaf = page.cloneNode(true);
+      leaf.className = 'flipcal__leaf';
+      cal.append(leaf);
+      leaf.animate(
+        [{ transform: 'rotateX(0deg)', opacity: 1 }, { transform: 'rotateX(-105deg)', opacity: 0 }],
+        { duration: 380, easing: 'cubic-bezier(0.45, 0, 0.7, 1)' },
+      ).finished.then(() => leaf.remove(), () => leaf.remove());
+    }
+    show(n);
+  };
+
+  cal.addEventListener('click', () => {
+    touched = true;
+    offset = offset >= 13 ? 0 : offset + 1;
+    flip(offset);
+  });
+
+  if (reduceMotion.matches) { show(0); return; }
+  show(-5);
+  new IntersectionObserver(([entry], observer) => {
+    if (!entry.isIntersecting) return;
+    observer.disconnect();
+    // A click during the intro takes over from it.
+    [-4, -3, -2, -1, 0].forEach((n, i) => setTimeout(() => { if (!touched) flip(n); }, 300 + i * 170));
+  }, { threshold: 0.6 }).observe(cal);
+});
+
+// Google's calendar takes a moment, so each frame shows its own warm-up screen until it loads.
+document.querySelectorAll('[data-book-frame]').forEach((frame) => {
+  const state = frame.querySelector('[data-book-state]');
+  const ready = () => {
+    if (frame.classList.contains('is-loaded')) return;
+    frame.classList.add('is-loaded');
+    state.textContent = state.dataset.ready;
+  };
+  frame.classList.add('is-waiting');
+  frame.querySelector('iframe').addEventListener('load', ready);
+  // If the load event never arrives, show the calendar anyway.
+  new IntersectionObserver(([entry], observer) => {
+    if (!entry.isIntersecting) return;
+    observer.disconnect();
+    setTimeout(ready, 8000);
+  }).observe(frame);
+});
+
 /* ---------- Start ---------- */
 
 setSide(root.dataset.side, { keepHash: true });

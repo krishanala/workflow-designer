@@ -887,14 +887,121 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .book__head h3 { font-size: 1.6rem; }
 .book__head h3 + p { margin-top: -10px; color: var(--soft); }
 .book .rebus { box-shadow: var(--shadow); border-color: var(--ink); }
-/* Google's booking page is always light, so it sits on its own white sheet */
-.book__frame {
-  overflow: hidden;
-  background: #fff;
+
+/* Desk calendar: shows today, flips a page per click */
+.book__desk { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; align-items: center; margin: 4px 0 8px; }
+.flipcal {
+  --flip: var(--y);
+  position: relative;
+  display: grid;
+  width: 116px;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
   border: 2px solid var(--ink);
   border-radius: 12px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  perspective: 420px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.book__frame iframe { display: block; width: 100%; height: 680px; border: 0; }
+.flipcal:hover { transform: translate(-2px, -2px) rotate(-2deg); }
+.flipcal:active { transform: translate(1px, 1px); }
+.flipcal__top {
+  position: relative;
+  display: block;
+  padding: 7px 0 5px;
+  background: var(--flip);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+.flipcal__top b { font: 800 0.8rem/1 var(--font-d); letter-spacing: 0.16em; text-transform: uppercase; color: #0b0b0b; }
+/* Two binder rings poking out of the top */
+.flipcal__top i {
+  position: absolute;
+  top: -11px;
+  width: 9px;
+  height: 18px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+}
+.flipcal__top i:first-child { left: 24px; }
+.flipcal__top i:nth-child(2) { right: 24px; }
+.flipcal__page,
+.flipcal__leaf {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 8px 6px 12px;
+  background: var(--paper);
+  border-radius: 0 0 10px 10px;
+}
+.flipcal__page b,
+.flipcal__leaf b { font: 800 3.1rem/1 var(--font-d); letter-spacing: -0.04em; }
+.flipcal__page span,
+.flipcal__leaf span { font-size: 0.78rem; font-weight: 700; color: var(--soft); }
+.flipcal__leaf {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-origin: top center;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+/* The sticky note that asks "Today?" */
+.flipcal__ask {
+  position: absolute;
+  right: -26px;
+  bottom: -14px;
+  padding: 5px 9px;
+  font: 800 0.78rem/1 var(--font-d);
+  white-space: nowrap;
+  color: #0b0b0b;
+  background: var(--flip);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  transform: rotate(-7deg);
+  transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.flipcal__ask:empty { transform: rotate(-7deg) scale(0); }
+
+.book__steps { display: grid; gap: 10px; }
+.book__steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: center; }
+.book__steps svg { width: 34px; height: 34px; color: var(--ink); }
+.book__steps span { display: grid; font-size: 0.85rem; line-height: 1.3; color: var(--soft); }
+.book__steps b { font: 800 1rem/1.2 var(--font-d); color: var(--ink); }
+
+/* The frame around Google's booking page (which is always light) */
+.book__frame { position: relative; }
+.book__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  font: 400 0.78rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.04em;
+}
+.book__bar code, .book__state { white-space: nowrap; }
+.book__state { margin-left: auto; }
+.book__screen { position: relative; overflow: hidden; background: #fff; }
+.book__screen iframe { position: relative; display: block; width: 100%; height: 680px; border: 0; transition: opacity 0.5s ease; }
+.book__wait {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  padding-top: 120px;
+  gap: 14px;
+  transition: opacity 0.5s ease;
+}
+/* JS adds is-waiting; until Google's page loads, the warm-up screen shows instead */
+.book__frame.is-waiting:not(.is-loaded) iframe { opacity: 0; }
+.book__frame.is-loaded .book__wait { opacity: 0; }
 .book__note { font-size: 0.85rem; color: var(--soft); }
 .book__note a { font-weight: 700; color: var(--ink); text-underline-offset: 3px; }
 
@@ -1964,4 +2071,89 @@ html[data-side="dev"] .side--dev,
   .side--dev .nav__home { margin-left: auto; }
   .marquee__track span { font-size: 0.9rem; padding: 11px 0; }
   .rules li { font-size: 1.02rem; }
+}
+
+/* ---------- Booking frames: a console on the dark side, an oven in the build department ---------- */
+
+.book--console .book__frame {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #050505, 0 0 48px rgba(255, 194, 26, 0.18);
+}
+.book--console .book__bar { background: #050505; color: var(--soft); border-bottom: 2px solid var(--ink); }
+.book--console .book__bar code { color: var(--volt); }
+.book__led { width: 9px; height: 9px; border-radius: 50%; background: var(--volt); box-shadow: 0 0 10px var(--volt); animation: blink 1s steps(2) infinite; }
+.book--console .is-loaded .book__led { background: var(--g); box-shadow: 0 0 10px var(--g); animation-duration: 2.4s; }
+.book--console .is-loaded .book__state { color: var(--g); }
+.book--console .book__wait { justify-items: start; padding: 28px 22px; background: #050505; }
+.book__log { display: grid; gap: 6px; font: 400 0.9rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #cfcfcf; }
+.book__log span { opacity: 0; animation: type-in 0.3s ease forwards; }
+.book__log span:nth-child(2) { animation-delay: 0.7s; }
+.book__log span:nth-child(3) { animation-delay: 1.4s; }
+.book__caret { display: inline-block; width: 8px; height: 1em; margin-left: 4px; vertical-align: -2px; background: var(--volt); animation: blink 0.9s steps(2) infinite; }
+@keyframes type-in { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+
+.book--oven .flipcal { --flip: var(--orange); }
+.book--oven .flipcal__top b { color: #fff4e8; }
+.book--oven .book__frame {
+  margin-top: 22px;
+  padding: 0 12px 12px;
+  background: var(--ink);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--orange);
+}
+/* Oven door handle */
+.book--oven .book__frame::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 22%;
+  right: 22%;
+  height: 12px;
+  background: var(--ink);
+  border-radius: 8px 8px 3px 3px;
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.18);
+}
+.book--oven .book__bar { padding: 12px 6px; color: #f0c9a6; }
+.book--oven .book__bar code { color: var(--orange); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; }
+.book__knob {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #3d1f0e;
+  border: 2px solid #f0c9a6;
+  transition: transform 0.8s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.book__knob::after { content: ""; position: absolute; top: 2px; left: 50%; width: 2px; height: 7px; margin-left: -1px; background: var(--orange); border-radius: 1px; }
+.book--oven .is-loaded .book__knob { transform: rotate(140deg); }
+.book--oven .is-loaded .book__knob + .book__knob { transform: rotate(-100deg); }
+.book--oven .is-loaded .book__state { color: var(--orange); font-weight: 700; }
+.book--oven .book__screen { border-radius: 14px; }
+/* Warm glow from the element while it preheats */
+.book--oven .book__wait {
+  background: radial-gradient(120% 60% at 50% 105%, rgba(255, 106, 31, 0.55), transparent 70%), #fff4e8;
+  color: var(--ink);
+  font: 800 1.1rem/1.2 var(--font-d);
+}
+.book__loaf { width: 92px; height: 92px; color: var(--ink); transform-origin: 50% 90%; animation: rise 1.6s ease-in-out infinite; }
+@keyframes rise { 0%, 100% { transform: scale(0.86, 0.8); } 50% { transform: scale(1, 1.06); } }
+
+@media (max-width: 520px) {
+  .book__desk { gap: 16px; }
+  .flipcal { width: 96px; }
+  .flipcal__page b, .flipcal__leaf b { font-size: 2.5rem; }
+  .flipcal__ask { right: -14px; }
+  .book__steps svg { width: 28px; height: 28px; }
+  .book__steps li { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+  .book--oven .book__frame { padding: 0 8px 8px; }
+  .book__bar { gap: 8px; padding-inline: 10px; font-size: 0.72rem; }
+  .book--oven .book__bar code { letter-spacing: 0.06em; }
+  .book__knob { width: 18px; height: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book__log span { animation: none; opacity: 1; }
+  .book__loaf, .book__led, .book__caret { animation: none; }
 }

@@ -1408,7 +1408,7 @@
         </p>
       </div>
 
-      <div class="book">
+      <div class="book book--console">
         <div class="book__head">
           <button class="rebus rebus--mini" type="button" aria-pressed="false">
             <span class="rebus__no">No. 13</span>
@@ -1426,8 +1426,26 @@
           <h3>Book a free 20-minute call</h3>
           <p>Pick a time that suits you. You’ll get a Google Calendar invite straight away.</p>
         </div>
-        <div class="book__frame">
-          <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0pgSrGl9dxGI6-VLOaGixeIOcuhbfmcgRq5hw2PmH264TpcaeII7lVxPVF9qkiaTMtxqdBWCp4?gv=true" title="Book a free 20-minute call with Two Loaves Studio" loading="lazy"></iframe>
+        <div class="book__desk">
+          <button class="flipcal" type="button" data-flipcal>
+            <span class="flipcal__top" aria-hidden="true"><i></i><i></i><b data-flip-month>Oct</b></span>
+            <span class="flipcal__page" aria-hidden="true"><b data-flip-day>28</b><span data-flip-dow>Wednesday</span></span>
+            <span class="flipcal__ask" data-flip-ask aria-hidden="true">Today?</span>
+          </button>
+          <ol class="book__steps">
+            <li><svg aria-hidden="true"><use href="#p-cursor"/></svg><span><b>Pick a slot</b>Any free time below</span></li>
+            <li><svg aria-hidden="true"><use href="#p-mail"/></svg><span><b>Invite lands</b>With a Google Meet link</span></li>
+            <li><svg aria-hidden="true"><use href="#p-plug"/></svg><span><b>We plug in</b>And find your hidden hours</span></li>
+          </ol>
+        </div>
+        <div class="book__frame" data-book-frame>
+          <p class="book__bar" aria-hidden="true"><span class="book__led"></span><code>onBook()</code><span class="book__state" data-book-state data-ready="armed · pick a slot">connecting…</span></p>
+          <div class="book__screen">
+            <div class="book__wait" aria-hidden="true">
+              <p class="book__log"><span>&gt; waking up the calendar…</span><span>&gt; fetching free slots…</span><span>&gt; polishing the buttons<i class="book__caret"></i></span></p>
+            </div>
+            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0pgSrGl9dxGI6-VLOaGixeIOcuhbfmcgRq5hw2PmH264TpcaeII7lVxPVF9qkiaTMtxqdBWCp4?gv=true" title="Book a free 20-minute call with Two Loaves Studio" loading="lazy"></iframe>
+          </div>
         </div>
         <p class="book__note">Booking runs on Google Calendar. Calendar not showing? <a href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Open the booking page</a>. Read the <a href="privacy.html">privacy policy</a> (English &amp; Bahasa Malaysia).</p>
       </div>
@@ -1864,13 +1882,32 @@
         </p>
       </div>
 
-      <div class="book">
+      <div class="book book--oven">
         <div class="book__head">
           <h3>Book a build chat</h3>
           <p>Grab a slot and bring the problem. We’ll tell you honestly what we’d build.</p>
         </div>
-        <div class="book__frame">
-          <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0pgSrGl9dxGI6-VLOaGixeIOcuhbfmcgRq5hw2PmH264TpcaeII7lVxPVF9qkiaTMtxqdBWCp4?gv=true" title="Book a build chat with Two Loaves Studio" loading="lazy"></iframe>
+        <div class="book__desk">
+          <button class="flipcal" type="button" data-flipcal>
+            <span class="flipcal__top" aria-hidden="true"><i></i><i></i><b data-flip-month>Oct</b></span>
+            <span class="flipcal__page" aria-hidden="true"><b data-flip-day>28</b><span data-flip-dow>Wednesday</span></span>
+            <span class="flipcal__ask" data-flip-ask aria-hidden="true">Today?</span>
+          </button>
+          <ol class="book__steps">
+            <li><svg aria-hidden="true"><use href="#p-cursor"/></svg><span><b>Pick a slot</b>Any free time below</span></li>
+            <li><svg aria-hidden="true"><use href="#p-bandage"/></svg><span><b>Bring the pain</b>No spec needed</span></li>
+            <li><svg aria-hidden="true"><use href="#glyph-loaf"/></svg><span><b>We bake the cure</b>Honest plan, zero jargon</span></li>
+          </ol>
+        </div>
+        <div class="book__frame" data-book-frame>
+          <p class="book__bar" aria-hidden="true"><span class="book__knob"></span><span class="book__knob"></span><code>Oven 01</code><span class="book__state" data-book-state data-ready="hot · pick a slot">preheating…</span></p>
+          <div class="book__screen">
+            <div class="book__wait" aria-hidden="true">
+              <svg class="book__loaf" aria-hidden="true"><use href="#glyph-loaf"/></svg>
+              <p>Preheating the calendar…</p>
+            </div>
+            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0pgSrGl9dxGI6-VLOaGixeIOcuhbfmcgRq5hw2PmH264TpcaeII7lVxPVF9qkiaTMtxqdBWCp4?gv=true" title="Book a build chat with Two Loaves Studio" loading="lazy"></iframe>
+          </div>
         </div>
         <p class="book__note">Booking runs on Google Calendar. Calendar not showing? <a href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Open the booking page</a>. Read the <a href="privacy.html">privacy policy</a> (English &amp; Bahasa Malaysia).</p>
       </div>
