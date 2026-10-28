@@ -864,11 +864,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Contact ---------- */
 
-.contact {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(32px, 6vw, 88px);
-  align-items: start;
+/* The pitch on top, the booking card full width below it, so Google's calendar gets room */
+.contact { display: grid; gap: clamp(36px, 5vw, 64px); }
+@media (min-width: 900px) {
+  .contact__copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    column-gap: clamp(32px, 6vw, 88px);
+    align-items: end;
+  }
+  .contact__copy > .rebus { grid-column: 1; justify-self: start; }
+  .contact__copy > h2 { grid-column: 1; grid-row: 2 / span 2; }
+  .contact__copy > .big { grid-column: 2; grid-row: 2; }
+  .contact__copy > .contact__alt { grid-column: 2; grid-row: 3; margin-top: 1em; }
 }
 .contact h2 { font-size: clamp(2.3rem, 1.3rem + 3.6vw, 4.2rem); margin-top: 40px; max-width: 14ch; }
 .contact .big { margin-top: 1.2em; max-width: 34em; color: var(--mute); }
@@ -889,6 +897,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .book .rebus { box-shadow: var(--shadow); border-color: var(--ink); }
 
 /* Desk calendar: shows today, flips a page per click */
+/* Wide screens: intro and desk calendar in a sidebar, the calendar beside them */
+@media (min-width: 1180px) {
+  .book { grid-template-columns: 280px minmax(0, 1fr); column-gap: 40px; align-items: start; }
+  .book__side { position: sticky; top: calc(var(--nav-h) + 24px); grid-row: 1 / span 2; }
+  .book__frame, .book__note { grid-column: 2; }
+  .book__side .book__desk { grid-template-columns: 1fr; gap: 30px; margin-top: 18px; }
+}
+.book__side { display: grid; gap: 16px; align-content: start; }
 .book__desk { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; align-items: center; margin: 4px 0 8px; }
 .flipcal {
   --flip: var(--y);
@@ -987,8 +1003,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .book__bar code, .book__state { white-space: nowrap; }
 .book__state { margin-left: auto; }
-.book__screen { position: relative; overflow: hidden; background: #fff; }
-.book__screen iframe { position: relative; display: block; width: 100%; height: 680px; border: 0; transition: opacity 0.5s ease; }
+.book__screen { position: relative; overflow: hidden; background: #fff; container-type: inline-size; }
+/* Tall enough for Google's whole page at each of its layouts, so it never scrolls inside the frame */
+.book__screen iframe { position: relative; display: block; width: 100%; height: 1500px; border: 0; transition: opacity 0.5s ease; }
+@container (min-width: 400px) { .book__screen iframe { height: 1380px; } }
+@container (min-width: 560px) { .book__screen iframe { height: 900px; } }
+@container (min-width: 610px) { .book__screen iframe { height: 760px; } }
+@container (min-width: 870px) { .book__screen iframe { height: 980px; } }
 .book__wait {
   position: absolute;
   inset: 0;
