@@ -679,6 +679,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: -0.03em;
 }
 .plan__price small { font: 700 0.85rem/1 var(--font-b); letter-spacing: 0; color: var(--soft); }
+.plan__price { white-space: nowrap; }
+.plan__price .plan__per { margin-left: 2px; }
 
 .plans__notes {
   margin-top: clamp(32px, 4vw, 48px);
@@ -1054,6 +1056,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* While all six section links show, there isn't room for the puzzle score too (it stays in the footer) */
 @media (min-width: 1081px) and (max-width: 1240px) {
   .nav .score { display: none; }
+  .plan__price { font-size: 1.8rem; }
 }
 
 @media (max-width: 1080px) {
