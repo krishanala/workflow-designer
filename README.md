@@ -57,6 +57,7 @@ Then open http://localhost:8100.
 
 ## Still to fill in
 
+- [ ] The hero's background photo (currently a striped placeholder). Save it as `images/hero.jpg`, about 2400px wide, and follow the comment above `hero__bg` in `index.html`
 - [ ] Deepak's photo, bio, skills and selected work in About us
 - [ ] The fourth service (currently "Coming soon")
 - [ ] The privacy policy still speaks as Krisha alone ("I"). Update it if Deepak also handles client data
