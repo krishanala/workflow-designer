@@ -1,6 +1,6 @@
 # Two Loaves Studio: website
 
-A short one-page site for Two Loaves Studio, a design-and-build studio for small teams in Malaysia.
+A one-page site for Two Loaves Studio, a design and engineering studio in Malaysia run by Krisha (UI/UX design) and Deepak (full-stack development).
 
 Live at https://krishanala.github.io/workflow-designer/
 
@@ -12,11 +12,15 @@ Live at https://krishanala.github.io/workflow-designer/
 
 ## The page
 
-1. **Hero:** what the studio does, with the founder photo and a **Contact us** button.
+The order follows "explain, prove, ask": say what we do, show who we are and what we've built, then ask for a call.
+
+1. **Hero:** what the studio does, a product mock-up drawn in HTML, and a strip of short facts.
 2. **Services:** four cards. UI/UX design, Web development and Google Workspace, plus a fourth "Coming soon" placeholder (the last `<li class="service service--soon">` in `index.html`).
-3. **Testimonials:** client reviews as cards, each with the client's logo beside their review. It stays hidden until there's at least one approved review. See [Client reviews](#client-reviews).
-4. **About:** a short intro with links to the design portfolio and the clinic case study.
-5. **Contact:** a **Contact us** button.
+3. **About us:** Krisha and Deepak side by side. Krisha's card lists selected work from her portfolio (images in `images/work-*.jpg`) and links to the full portfolio. Deepak's card has placeholders until his content arrives.
+4. **Live demo:** three tabs visitors can try, all running in the browser with nothing sent anywhere: an enquiry form that sets off a Google Workspace workflow, a booking picker, and a before/after slider of a form redesign.
+5. **Process:** the heading stays in view on the left while four numbered steps run down a timeline on the right, from free consultation to launch and support. Each step says who leads it.
+6. **Testimonials:** client reviews as cards, each with the client's logo beside their review. It stays hidden until there's at least one approved review. See [Client reviews](#client-reviews).
+7. **Contact:** a **Contact us** button, then a footer with services, studio links and contact details.
 
 Every **Contact us** button opens the Google Calendar booking page (https://calendar.app.google/YWKjsHaXESSNEb7WA) in a new tab. To use a different schedule, replace that link in `index.html` (it appears three times).
 
@@ -43,16 +47,19 @@ Then open http://localhost:8100.
 | `index.html` | The homepage, including the SVG icon sprite at the top of `<body>` |
 | `review.html` | The page clients use to leave a review, with a live preview of their card |
 | `css/styles.css` | All styles for every page |
-| `js/main.js` | Scroll fade-ins, the testimonial cards and the review form |
+| `js/main.js` | Scroll fade-ins, the testimonial cards, the review form and the live demos |
 | `apps-script/` | Google Apps Script that stores reviews and serves the approved ones |
 | `privacy.html` | Privacy policy (PDPA notice) in English and Bahasa Malaysia |
 | `case-study-clinic-booking.html` | Case study: WhatsApp bookings to a shared Google Calendar, linked from About |
-| `images/founder.webp` | Photo in the hero |
+| `images/founder.webp` | Krisha's photo in About us |
+| `images/work-*.jpg` | Thumbnails for Krisha's selected work |
 | `favicon.svg` | Browser tab icon |
 
 ## Still to fill in
 
+- [ ] Deepak's photo, bio, skills and selected work in About us
 - [ ] The fourth service (currently "Coming soon")
+- [ ] The privacy policy still speaks as Krisha alone ("I"). Update it if Deepak also handles client data
 - [ ] Set up client reviews ([`apps-script/README.md`](apps-script/README.md))
 - [ ] The clinic booking case study's placeholders (dashed outlines): no-show and hours-saved numbers, how patients confirm or cancel, and a quote from the clinic
 - [ ] Have the Bahasa Malaysia privacy policy read by a fluent speaker

@@ -3,6 +3,7 @@
    1. Blocks fade up as they scroll in
    2. Testimonials: loaded from the reviews Google Sheet, shown as cards
    3. Review page (review.html): the form clients fill in, with a live card preview
+   4. Live demos: an enquiry workflow, a booking picker and a before/after slider
 ------------------------------------------------------------------- */
 
 // The Apps Script web app that stores and serves reviews (setup: apps-script/README.md).
@@ -235,3 +236,166 @@ if (reviewForm) {
 
   render();
 }
+
+/* ---------- 4. Live demos ---------- */
+
+const pause = (ms) => new Promise((resolve) => setTimeout(resolve, reduceMotion.matches ? 0 : ms));
+const shortDate = (date) => date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+const clock = (date) => date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+// The next `count` weekdays after today
+function nextWeekdays(count) {
+  const days = [];
+  const day = new Date();
+  while (days.length < count) {
+    day.setDate(day.getDate() + 1);
+    if (day.getDay() !== 0 && day.getDay() !== 6) days.push(new Date(day));
+  }
+  return days;
+}
+
+// Tabs (arrow keys move between them)
+document.querySelectorAll('[data-demo]').forEach((demo) => {
+  const tabs = [...demo.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    // On phones the tab row scrolls sideways; bring the picked tab fully into view
+    const row = tab.parentElement;
+    const offset = tab.getBoundingClientRect().left - row.getBoundingClientRect().left;
+    row.scrollBy({ left: offset - (row.clientWidth - tab.offsetWidth) / 2, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      select(tabs[(i + step + tabs.length) % tabs.length], true);
+    });
+  });
+});
+
+// Demo 1: an enquiry form that sets off a Google Workspace workflow
+const flowForm = document.querySelector('[data-flow-form]');
+if (flowForm) {
+  const flow = document.querySelector('[data-flow]');
+  const steps = [...flow.querySelectorAll('[data-step]')];
+  const defaultNotes = steps.map((step) => step.querySelector('[data-step-note]').textContent);
+  const time = flow.querySelector('[data-flow-time]');
+  const newRow = flow.querySelector('[data-sheet-new]');
+  const submit = flowForm.querySelector('button[type="submit"]');
+
+  flowForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const name = flowForm.elements.name.value.trim();
+    const need = flowForm.elements.need.value;
+    const owner = /UI\/UX|Google/.test(need) ? 'Krisha' : 'Deepak';
+    const now = new Date();
+    const followUp = nextWeekdays(2)[1];
+
+    const notes = [
+      `New row added at ${clock(now)}`,
+      `${owner} is looking after it`,
+      `“Hi ${name}, thanks for getting in touch. We’ll reply within one working day.”`,
+      `${owner} gets a nudge on ${shortDate(followUp)} if it’s still open`,
+    ];
+
+    submit.disabled = true;
+    time.textContent = '';
+    newRow.replaceChildren();
+    steps.forEach((step, i) => {
+      step.classList.remove('is-running', 'is-done');
+      step.querySelector('[data-step-note]').textContent = defaultNotes[i];
+    });
+
+    const start = performance.now();
+    for (const [i, step] of steps.entries()) {
+      step.classList.add('is-running');
+      await pause(600);
+      step.classList.replace('is-running', 'is-done');
+      step.querySelector('[data-step-note]').textContent = notes[i];
+      if (i === 0) {
+        const row = el('div', 'sheet__row is-new');
+        [`${now.toLocaleDateString('en-GB', { weekday: 'short' })} ${clock(now)}`, name, need, owner]
+          .forEach((cell) => row.append(el('span', '', cell)));
+        newRow.append(row);
+      }
+    }
+    time.textContent = `Done in ${((performance.now() - start) / 1000).toFixed(1)} s`;
+    submit.disabled = false;
+    submit.textContent = 'Send another';
+  });
+}
+
+// Demo 2: a booking picker
+const booker = document.querySelector('[data-booker]');
+if (booker) {
+  const TIMES = ['10:00', '11:30', '14:00', '15:30', '17:00'];
+  const days = nextWeekdays(5);
+  const daysBox = booker.querySelector('[data-booker-days]');
+  const slotsBox = booker.querySelector('[data-booker-slots]');
+  const summary = booker.querySelector('[data-booker-summary]');
+  const confirm = booker.querySelector('[data-booker-confirm]');
+  const pick = booker.querySelector('[data-booker-pick]');
+  const done = booker.querySelector('[data-booker-done]');
+  let day = 0;
+  let time = null;
+
+  // A couple of slots each day are already taken, so it feels like a real calendar
+  const taken = (d, t) => (days[d].getDate() + d * 2 + t * 3) % 4 === 0;
+  const longDate = (date) => date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  const render = () => {
+    daysBox.querySelectorAll('button').forEach((button, i) => button.setAttribute('aria-pressed', String(i === day)));
+    slotsBox.replaceChildren(...TIMES.map((t, i) => {
+      const button = el('button', '', t);
+      button.type = 'button';
+      button.disabled = taken(day, i);
+      if (button.disabled) button.setAttribute('aria-label', `${t}, taken`);
+      button.setAttribute('aria-pressed', String(t === time));
+      button.addEventListener('click', () => { time = t; render(); });
+      return button;
+    }));
+    summary.textContent = time ? `${longDate(days[day])} at ${time}` : 'No time picked yet';
+    confirm.disabled = !time;
+  };
+
+  days.forEach((date, i) => {
+    const button = el('button');
+    button.type = 'button';
+    button.append(
+      el('small', '', date.toLocaleDateString('en-GB', { weekday: 'short' })),
+      el('b', '', String(date.getDate())),
+      el('span', '', date.toLocaleDateString('en-GB', { month: 'short' })),
+    );
+    button.addEventListener('click', () => { day = i; time = null; render(); });
+    daysBox.append(button);
+  });
+
+  confirm.addEventListener('click', () => {
+    booker.querySelector('[data-booker-when]').textContent = summary.textContent;
+    pick.hidden = true;
+    done.hidden = false;
+  });
+  booker.querySelector('[data-booker-again]').addEventListener('click', () => {
+    time = null;
+    render();
+    done.hidden = true;
+    pick.hidden = false;
+  });
+  render();
+}
+
+// Demo 3: drag to compare a form before and after a redesign
+document.querySelectorAll('[data-compare]').forEach((box) => {
+  const range = box.querySelector('[data-compare-range]');
+  const set = () => box.style.setProperty('--split', `${range.value}%`);
+  range.addEventListener('input', set);
+  set();
+});

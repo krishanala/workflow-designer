@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Two Loaves Studio | UI/UX design, web development and Google Workspace</title>
-  <meta name="description" content="Two Loaves Studio designs and builds for small teams in Malaysia: UI/UX design, websites and web apps, and Google Workspace automation.">
+  <meta name="description" content="Two Loaves Studio is a design and engineering studio in Malaysia. We design and build websites, web apps and Google Workspace automation for growing businesses.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Two Loaves Studio | UI/UX design, web development and Google Workspace">
-  <meta property="og:description" content="Two Loaves Studio designs and builds for small teams in Malaysia: UI/UX design, websites and web apps, and Google Workspace automation.">
+  <meta property="og:description" content="Two Loaves Studio is a design and engineering studio in Malaysia. We design and build websites, web apps and Google Workspace automation for growing businesses.">
   <meta name="theme-color" content="#ffffff">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -53,6 +53,13 @@
       <circle fill="#fff" cx="32" cy="32" r="9"/>
     </g>
   </symbol>
+  <symbol id="s-cal" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect fill="#fff" x="6" y="10" width="52" height="47" rx="4"/>
+    <path fill="#ff6a1f" d="M10 10H54Q58 10 58 14V21H6V14Q6 10 10 10Z"/>
+    <path stroke-width="4" d="M19 5V14M45 5V14"/>
+    <rect fill="#ffd9c2" x="33" y="34" width="9" height="9" rx="2"/>
+    <g fill="currentColor" stroke="none"><circle cx="17" cy="29" r="2.4"/><circle cx="27" cy="29" r="2.4"/><circle cx="37.5" cy="29" r="2.4"/><circle cx="47" cy="29" r="2.4"/><circle cx="17" cy="38.5" r="2.4"/><circle cx="27" cy="38.5" r="2.4"/><circle cx="47" cy="38.5" r="2.4"/><circle cx="17" cy="48" r="2.4"/><circle cx="27" cy="48" r="2.4"/><circle cx="37.5" cy="48" r="2.4"/></g>
+  </symbol>
   <symbol id="s-soon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 5">
     <path d="M10 54Q5 54 5 49C5 29 16 13 32 13C48 13 59 29 59 49Q59 54 54 54Z"/>
     <path stroke-dasharray="none" d="M32 28V40M26 34H38"/>
@@ -60,9 +67,27 @@
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 12H19M13 6L19 12L13 18"/>
   </symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 4H20V10M20 4L11 13M18 14V20H4V6H10"/>
+  </symbol>
   <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/>
     <path d="M3.5 10H20.5M8 3V7M16 3V7"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12.5L10 17.5L19 7"/>
+  </symbol>
+  <symbol id="i-sheet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M4 9H20M4 14.5H20M10 9V20.5"/>
+  </symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 21C4 16.6 7.6 14 12 14S20 16.6 20 21"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13L20.5 6.5"/>
+  </symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 16V11A6 6 0 0 1 18 11V16L19.5 18H4.5Z"/><path d="M10 21H14"/>
   </symbol>
 </svg>
 
@@ -74,8 +99,10 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#services">Services</a>
+      <a href="#about">About us</a>
+      <a href="#demo">Live demo</a>
+      <a href="#process">Process</a>
       <a href="#testimonials" data-testimonials-link hidden>Testimonials</a>
-      <a href="#about">About</a>
     </nav>
     <a class="btn btn--sm" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Contact us</a>
   </div>
@@ -83,27 +110,55 @@
 
 <main id="main">
 
+  <!-- 1. What we do -->
   <section class="hero" id="top">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <p class="eyebrow">Design · Build · Automate</p>
-        <h1>Tools your team will <span class="hl">enjoy</span> using.</h1>
-        <p class="lede">Two Loaves Studio designs and builds for small teams in Malaysia: clear interfaces, fast websites and a Google Workspace that runs itself.</p>
+        <p class="eyebrow">Design &amp; engineering studio · Malaysia</p>
+        <h1>Software your team will <span class="hl">enjoy</span> using.</h1>
+        <p class="lede">We design and build websites, web apps and Google Workspace automation for growing businesses. One team, from the first sketch to launch.</p>
         <div class="hero__cta">
           <a class="btn" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Contact us <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--ghost" href="#services">See services</a>
+          <a class="btn btn--ghost" href="#demo">Try a live demo</a>
         </div>
       </div>
 
-      <figure class="hero__art">
-        <img src="images/founder.webp" width="1086" height="1448" decoding="async" alt="Krisha, founder of Two Loaves Studio, smiling at a desk">
-        <span class="chip chip--1" aria-hidden="true"><svg><use href="#s-ux"/></svg>UI/UX design</span>
-        <span class="chip chip--2" aria-hidden="true"><svg><use href="#s-web"/></svg>Web development</span>
-        <span class="chip chip--3" aria-hidden="true"><svg><use href="#s-auto"/></svg>Google Workspace</span>
-      </figure>
+      <!-- A product mock-up, drawn in HTML -->
+      <div class="hero__art" aria-hidden="true">
+        <div class="mock">
+          <div class="mock__bar"><i></i><i></i><i></i><span>app.yourbusiness.my</span></div>
+          <div class="mock__body">
+            <div class="mock__side"><b></b><span class="is-on"></span><span></span><span></span><span></span></div>
+            <div class="mock__main">
+              <p class="mock__title">Good morning <span>· This week</span></p>
+              <div class="mock__kpis">
+                <div><small>Bookings</small><strong>128</strong></div>
+                <div><small>Enquiries</small><strong>42</strong></div>
+                <div><small>Open tasks</small><strong>6</strong></div>
+              </div>
+              <div class="mock__chart">
+                <span style="--h:38%"></span><span style="--h:52%"></span><span style="--h:46%"></span><span style="--h:70%"></span><span style="--h:61%"></span><span style="--h:84%"></span><span style="--h:76%"></span>
+              </div>
+              <div class="mock__rows"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="float float--1"><span class="float__icon"><svg><use href="#i-check"/></svg></span><span><b>Booking confirmed</b><small>Invite sent to the customer</small></span></div>
+        <div class="float float--2"><span class="float__icon float__icon--soft"><svg><use href="#s-auto"/></svg></span><span><b>Weekly report</b><small>Ran automatically</small></span></div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="proofbar">
+        <li><b>Google-certified</b> UX design</li>
+        <li><b>Senior</b> full-stack engineering</li>
+        <li><b>One team</b> from design to launch</li>
+        <li><b>Based in</b> Subang Jaya, Malaysia</li>
+      </ul>
     </div>
   </section>
 
+  <!-- 2. Services -->
   <section class="sec" id="services">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -123,8 +178,8 @@
           <span class="service__no">02</span>
           <span class="service__icon"><svg aria-hidden="true"><use href="#s-web"/></svg></span>
           <h3>Web development</h3>
-          <p>Fast, accessible websites and web apps that are easy to update, from landing pages to client portals.</p>
-          <ul class="tags"><li>Websites</li><li>Web apps</li><li>Booking systems</li></ul>
+          <p>Fast, secure websites and web apps that are easy to update, from landing pages to client portals.</p>
+          <ul class="tags"><li>Websites</li><li>Web apps</li><li>Integrations</li></ul>
         </li>
         <li class="service reveal">
           <span class="service__no">03</span>
@@ -144,7 +199,249 @@
     </div>
   </section>
 
-  <!-- Filled from client reviews (js/main.js). Stays hidden until there's at least one. -->
+  <!-- 3. About us: the team -->
+  <section class="sec sec--tint" id="about">
+    <div class="wrap">
+      <div class="sec-head sec-head--split reveal">
+        <div>
+          <p class="eyebrow">About us</p>
+          <h2>A designer and an engineer, on every project.</h2>
+        </div>
+        <p class="lede">Most projects pass from a designer to a separate developer, and something gets lost on the way. At Two Loaves Studio the same two people design it and build it, so what you approve is what you get.</p>
+      </div>
+
+      <div class="team">
+        <article class="person reveal">
+          <div class="person__head">
+            <img class="person__photo" src="images/founder.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait of Krisha">
+            <div>
+              <h3>Krisha</h3>
+              <p class="person__role">UI/UX Designer</p>
+            </div>
+          </div>
+          <p>Krisha leads design. She’s a Google-certified UX designer who turns messy processes into screens people understand without training, and has designed websites, booking tools and app navigation for clinics and tech brands in Malaysia and Singapore.</p>
+          <ul class="tags"><li>User research</li><li>Prototyping</li><li>Design systems</li><li>Apps Script</li></ul>
+
+          <div class="person__work">
+            <p class="person__label">Selected work</p>
+            <ul class="works">
+              <li>
+                <a class="work" href="https://drsharanclinic.my/" target="_blank" rel="noopener">
+                  <img src="images/work-drsharan.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="">
+                  <span class="work__text"><b>Dr. Sharan’s Clinic</b><small>Clinic website</small></span>
+                  <svg class="i" aria-hidden="true"><use href="#i-out"/></svg>
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a class="work" href="https://krishanala.github.io/krishaPortfolio/case-study-internship.html" target="_blank" rel="noopener">
+                  <img src="images/work-navigation.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="">
+                  <span class="work__text"><b>App navigation redesign</b><small>Support queries down 40%</small></span>
+                  <svg class="i" aria-hidden="true"><use href="#i-out"/></svg>
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a class="work" href="case-study-clinic-booking.html">
+                  <span class="work__thumb"><svg aria-hidden="true"><use href="#s-cal"/></svg></span>
+                  <span class="work__text"><b>Clinic booking system</b><small>WhatsApp to Google Calendar</small></span>
+                  <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg>
+                </a>
+              </li>
+            </ul>
+            <a class="link-arrow" href="https://krishanala.github.io/krishaPortfolio/" target="_blank" rel="noopener">View Krisha’s full portfolio <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Deepak: content to come -->
+        <article class="person reveal">
+          <div class="person__head">
+            <span class="person__photo person__photo--initials" aria-hidden="true">D</span>
+            <div>
+              <h3>Deepak</h3>
+              <p class="person__role">Senior Full-Stack Developer</p>
+            </div>
+          </div>
+          <p><span class="ph">Deepak leads engineering. His bio is on its way.</span></p>
+
+          <div class="person__work">
+            <p class="person__label">Selected work</p>
+            <p class="person__soon">Coming soon</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Live demo -->
+  <section class="sec" id="demo">
+    <div class="wrap">
+      <div class="sec-head sec-head--split reveal">
+        <div>
+          <p class="eyebrow">Live demo</p>
+          <h2>Try it before you talk to us.</h2>
+        </div>
+        <p class="lede">Three small examples of what we build. They run right here in your browser, and nothing you type is sent anywhere.</p>
+      </div>
+
+      <div class="demo reveal" data-demo>
+        <div class="demo__tabs" role="tablist" aria-label="Demos">
+          <button type="button" role="tab" id="tab-auto" aria-controls="panel-auto" aria-selected="true"><svg aria-hidden="true"><use href="#s-auto"/></svg>Automate an enquiry</button>
+          <button type="button" role="tab" id="tab-book" aria-controls="panel-book" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#s-cal"/></svg>Book an appointment</button>
+          <button type="button" role="tab" id="tab-ux" aria-controls="panel-ux" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#s-ux"/></svg>Redesign a form</button>
+        </div>
+
+        <!-- Demo 1: a form that runs a Google Workspace workflow -->
+        <div class="demo__panel" role="tabpanel" id="panel-auto" aria-labelledby="tab-auto">
+          <div class="demo__grid">
+            <form class="demo__form" data-flow-form>
+              <p class="demo__kicker">Your website’s enquiry form</p>
+              <div class="field">
+                <label for="flow-name">Name</label>
+                <input id="flow-name" name="name" type="text" maxlength="40" placeholder="Your name" required>
+              </div>
+              <div class="field">
+                <label for="flow-need">What do you need?</label>
+                <select id="flow-need" name="need">
+                  <option>A new website</option>
+                  <option>A web app or portal</option>
+                  <option>A UI/UX redesign</option>
+                  <option>Google Workspace automation</option>
+                </select>
+              </div>
+              <button class="btn" type="submit">Send enquiry</button>
+            </form>
+
+            <div class="flow" data-flow>
+              <p class="demo__kicker">What happens next, automatically <span class="flow__time" data-flow-time></span></p>
+              <ol class="flow__steps">
+                <li data-step><span class="flow__dot"><svg><use href="#i-sheet"/></svg></span><span><b>Saved to the enquiries sheet</b><small data-step-note>Waiting for an enquiry</small></span></li>
+                <li data-step><span class="flow__dot"><svg><use href="#i-user"/></svg></span><span><b>Assigned to the right person</b><small data-step-note>Based on what they need</small></span></li>
+                <li data-step><span class="flow__dot"><svg><use href="#i-mail"/></svg></span><span><b>Confirmation email sent</b><small data-step-note>A personal reply, in seconds</small></span></li>
+                <li data-step><span class="flow__dot"><svg><use href="#i-bell"/></svg></span><span><b>Follow-up reminder set</b><small data-step-note>So nobody is forgotten</small></span></li>
+              </ol>
+              <div class="sheet" aria-label="Enquiries sheet">
+                <div class="sheet__row sheet__row--head"><span>Received</span><span>Name</span><span>Needs</span><span>Owner</span></div>
+                <div class="sheet__row"><span>Mon 09:12</span><span>Aisha</span><span>A new website</span><span>Deepak</span></div>
+                <div class="sheet__row"><span>Mon 14:40</span><span>Daniel</span><span>A UI/UX redesign</span><span>Krisha</span></div>
+                <div data-sheet-new></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo 2: a booking widget -->
+        <div class="demo__panel" role="tabpanel" id="panel-book" aria-labelledby="tab-book" hidden>
+          <div class="booker" data-booker>
+            <div class="booker__pick" data-booker-pick>
+              <p class="demo__kicker">Pick a day</p>
+              <div class="booker__days" data-booker-days></div>
+              <p class="demo__kicker">Pick a time</p>
+              <div class="booker__slots" data-booker-slots></div>
+              <div class="booker__foot">
+                <p data-booker-summary>No time picked yet</p>
+                <button class="btn" type="button" data-booker-confirm disabled>Confirm booking</button>
+              </div>
+            </div>
+            <div class="booker__done" data-booker-done hidden>
+              <span class="booker__tick"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+              <h3>You’re booked</h3>
+              <p class="booker__when" data-booker-when></p>
+              <ul class="booker__list">
+                <li><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Added to the team calendar</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>Calendar invite sent to you</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg>Reminder set for the day before</li>
+              </ul>
+              <button class="btn btn--ghost" type="button" data-booker-again>Book another</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo 3: before and after a redesign -->
+        <div class="demo__panel" role="tabpanel" id="panel-ux" aria-labelledby="tab-ux" hidden>
+          <div class="compare" data-compare style="--split: 50%">
+            <div class="compare__side compare__side--before" aria-hidden="true">
+              <span class="compare__tag">Before</span>
+              <div class="old-form">
+                <p class="old-form__title">PATIENT REGISTRATION FORM (PLEASE FILL IN ALL FIELDS*)</p>
+                <div class="old-form__grid">
+                  <span>FULL NAME (AS PER IC)*</span><span>IC NO.*</span><span>DATE OF BIRTH*</span>
+                  <span>GENDER*</span><span>RACE*</span><span>NATIONALITY*</span>
+                  <span>ADDRESS LINE 1*</span><span>ADDRESS LINE 2</span><span>POSTCODE*</span>
+                  <span>PHONE (H)</span><span>PHONE (M)*</span><span>EMAIL</span>
+                  <span>EMERGENCY CONTACT*</span><span>RELATIONSHIP*</span><span>REFERRED BY</span>
+                </div>
+                <p class="old-form__small">By submitting you agree to the terms and conditions, privacy notice and clinic policy stated overleaf.</p>
+                <div class="old-form__btns"><span>RESET</span><span>CANCEL</span><span>SUBMIT</span></div>
+              </div>
+            </div>
+            <div class="compare__side compare__side--after" aria-hidden="true">
+              <span class="compare__tag compare__tag--after">After</span>
+              <div class="new-form">
+                <p class="new-form__step">Step 1 of 3 · About you</p>
+                <div class="new-form__bar"><span></span></div>
+                <p class="new-form__title">Let’s get you registered</p>
+                <div class="new-form__field"><small>Full name</small><span>Aisha Rahman</span></div>
+                <div class="new-form__field"><small>Mobile number</small><span>012-345 6789</span></div>
+                <span class="new-form__btn">Continue</span>
+                <p class="new-form__note">Takes about 2 minutes</p>
+              </div>
+            </div>
+            <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg class="i i--flip"><use href="#i-arrow"/></svg><svg class="i"><use href="#i-arrow"/></svg></span></span>
+            <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare the form before and after the redesign" data-compare-range>
+          </div>
+          <p class="demo__caption">Drag the handle. Same information, but the redesign splits it into short steps, asks only what’s needed first and makes the next action obvious.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. How we work -->
+  <section class="sec sec--tight" id="process">
+    <div class="wrap process">
+      <div class="sec-head process__intro reveal">
+        <p class="eyebrow">Process</p>
+        <h2>How we work</h2>
+        <p class="lede">Four steps from first call to launch. You always know what happens next, and who’s doing it.</p>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__step reveal">
+          <span class="timeline__no">01</span>
+          <div>
+            <h3>Free consultation</h3>
+            <p>A call to understand your business, what’s slowing you down and what success looks like.</p>
+            <p class="timeline__who">Krisha &amp; Deepak</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__no">02</span>
+          <div>
+            <h3>Design</h3>
+            <p>A clickable prototype you can try and comment on before anything is built.</p>
+            <p class="timeline__who">Led by Krisha</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__no">03</span>
+          <div>
+            <h3>Build</h3>
+            <p>We build it, test it with your team and keep you updated as each part is ready.</p>
+            <p class="timeline__who">Led by Deepak</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__no">04</span>
+          <div>
+            <h3>Launch &amp; support</h3>
+            <p>We launch, train your team and stay on hand for fixes and improvements.</p>
+            <p class="timeline__who">Krisha &amp; Deepak</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. Proof. Filled from client reviews (js/main.js); stays hidden until there's at least one. -->
   <section class="sec sec--tint" id="testimonials" data-testimonials hidden>
     <div class="wrap">
       <div class="sec-head sec-head--row">
@@ -161,28 +458,13 @@
     </div>
   </section>
 
-  <section class="sec" id="about">
-    <div class="wrap about reveal">
-      <div>
-        <p class="eyebrow">About</p>
-        <h2>A designer who also builds.</h2>
-      </div>
-      <div class="about__copy">
-        <p class="big">Hi, I’m Krisha, a Google-certified UX designer in Subang Jaya. Most builders make things that work but are hard to use. Most designers can’t build. We do both.</p>
-        <p class="about__links">
-          <a href="https://krishanala.github.io/krishaPortfolio/" target="_blank" rel="noopener">Design portfolio <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a href="case-study-clinic-booking.html">Clinic booking case study <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </p>
-      </div>
-    </div>
-  </section>
-
+  <!-- 7. The ask -->
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="contact__card reveal">
         <div>
-          <h2>Got a project in mind?</h2>
-          <p>Book a free call and tell us what you need. Pick any time that suits you.</p>
+          <h2>Let’s talk about your project.</h2>
+          <p>Book a free consultation with Krisha and Deepak. Pick any time that suits you, and we’ll send a calendar invite.</p>
         </div>
         <a class="btn btn--ink btn--lg" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg> Contact us</a>
       </div>
@@ -191,10 +473,44 @@
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer__in">
-    <p>© 2026 Two Loaves Studio · Subang Jaya, Malaysia</p>
-    <p><a href="privacy.html">Privacy policy</a></p>
+<footer class="footer footer--full">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top">
+          <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
+          <span>Two Loaves <span class="brand__sub">Studio</span></span>
+        </a>
+        <p>Design and engineering for growing businesses. Subang Jaya, Malaysia.</p>
+      </div>
+      <nav aria-label="Services">
+        <p class="footer__head">Services</p>
+        <ul>
+          <li><a href="#services">UI/UX design</a></li>
+          <li><a href="#services">Web development</a></li>
+          <li><a href="#services">Google Workspace</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Studio">
+        <p class="footer__head">Studio</p>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#demo">Live demo</a></li>
+          <li><a href="#process">Process</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="footer__head">Get in touch</p>
+        <ul>
+          <li><a href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Book a consultation</a></li>
+          <li><a href="mailto:krishanalathamby@gmail.com">krishanalathamby@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__in footer__base">
+      <p>© 2026 Two Loaves Studio</p>
+      <p><a href="privacy.html">Privacy policy</a></p>
+    </div>
   </div>
 </footer>
 
