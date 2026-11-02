@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-MY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leave a review | Two Loaves Studio</title>
+  <meta name="description" content="Worked with Two Loaves Studio? Leave a short review for the website.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ffffff">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <symbol id="mark" viewBox="1 20 62 39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#ff8a3d" d="M8 56Q4 56 4 52C4 35 14 23 27 23C40 23 50 35 50 52Q50 56 46 56Z"/>
+    <path stroke-width="2.2" d="M12.5 31Q27 26 41.5 31M20.5 25.5V35.5M33.5 25.5V35.5"/>
+    <g fill="currentColor" stroke="none"><circle cx="13" cy="43" r="1.9"/><circle cx="21" cy="43" r="1.9"/></g>
+    <path stroke-width="2.2" d="M15 47Q17 49 19 47"/>
+    <path fill="#ffb27a" d="M33 56Q29 56 29 52C29 42 36 35 45 35C54 35 61 42 61 52Q61 56 57 56Z"/>
+    <g fill="currentColor" stroke="none"><circle cx="41" cy="46" r="1.9"/><circle cx="49" cy="46" r="1.9"/></g>
+    <path stroke-width="2.2" d="M43 50Q45 52 47 50"/>
+  </symbol>
+  <symbol id="tick" viewBox="0 0 64 64">
+    <circle fill="#ff6a1f" stroke="currentColor" stroke-width="4" cx="32" cy="32" r="28"/>
+    <path fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M19 33L28 42L45 23"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12H19M13 6L19 12L13 18"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html">
+      <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span>Two Loaves <span class="brand__sub">Studio</span></span>
+    </a>
+    <a class="btn btn--sm btn--ghost nav__back" href="index.html">← <span class="nav__back-long">Back to the homepage</span><span class="nav__back-short">Home</span></a>
+  </div>
+</header>
+
+<main id="main" class="review">
+  <div class="wrap review__grid">
+    <div>
+      <p class="eyebrow">Leave a review</p>
+      <h1>How was working with us?</h1>
+      <p class="lede">A few honest lines help other small teams decide. It takes about two minutes.</p>
+
+      <form class="form" data-review-form>
+        <div class="field__row">
+          <div class="field">
+            <label for="r-name">Your name</label>
+            <input id="r-name" name="name" type="text" maxlength="80" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="r-role">Your role <small>(optional)</small></label>
+            <input id="r-role" name="role" type="text" maxlength="80" autocomplete="organization-title" placeholder="e.g. Clinic manager">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="r-company">Company</label>
+          <input id="r-company" name="company" type="text" maxlength="100" autocomplete="organization" required>
+        </div>
+
+        <div class="field">
+          <span class="field__label"><b>Company logo</b> <small>(optional, PNG, JPG or SVG)</small></span>
+          <label class="drop" data-logo-drop>
+            <input name="logoFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+            <span class="drop__thumb" data-logo-thumb aria-hidden="true">+</span>
+            <span class="drop__text"><b data-logo-label>Add your logo</b><span>Click or drop an image here</span></span>
+            <button class="drop__clear" type="button" data-logo-clear hidden>Remove</button>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="r-quote">Your review</label>
+          <textarea id="r-quote" name="quote" maxlength="600" required placeholder="What did we work on, and what changed for your team?"></textarea>
+          <span class="field__count" data-review-count aria-live="polite"></span>
+        </div>
+
+        <!-- Leave this empty: it's a trap for spam bots -->
+        <div class="hp" aria-hidden="true">
+          <label for="r-website">Website</label>
+          <input id="r-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label class="check">
+          <input name="consent" type="checkbox" required>
+          <span>I’m happy for Two Loaves Studio to show my name, role, company, logo and review on its website. I can ask for it to be removed at any time. See the <a href="privacy.html">privacy policy</a>.</span>
+        </label>
+
+        <p class="form__status" data-review-status role="alert"></p>
+
+        <div><button class="btn btn--lg" type="submit">Send review</button></div>
+      </form>
+
+      <div class="thanks" data-review-thanks hidden>
+        <svg class="thanks__icon" aria-hidden="true"><use href="#tick"/></svg>
+        <h2>Thank you!</h2>
+        <p>Your review is on its way. It’ll appear on the website once it’s been checked.</p>
+        <a class="btn btn--ghost" href="index.html">Visit the website <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <aside class="review__preview" aria-label="Preview">
+      <p>Preview: how your review will look</p>
+      <div class="preview-stage" data-review-preview></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <p>© 2026 Two Loaves Studio · <a href="privacy.html">Privacy policy</a></p>
+    <p><a href="index.html">Homepage</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
