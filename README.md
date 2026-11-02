@@ -14,7 +14,7 @@ Live at https://krishanala.github.io/workflow-designer/
 
 The order follows "explain, prove, ask": say what we do, show who we are and what we've built, then ask for a call.
 
-1. **Hero:** what the studio does, a product mock-up drawn in HTML, and a strip of short facts.
+1. **Hero:** what the studio does over a background photo (a placeholder for now), and a strip of short facts.
 2. **Services:** four cards. UI/UX design, Web development and Google Workspace, plus a fourth "Coming soon" placeholder (the last `<li class="service service--soon">` in `index.html`).
 3. **About us:** Krisha and Deepak side by side. Krisha's card lists selected work from her portfolio (images in `images/work-*.jpg`) and links to the full portfolio. Deepak's card has placeholders until his content arrives.
 4. **Live demo:** three tabs visitors can try, all running in the browser with nothing sent anywhere: an enquiry form that sets off a Google Workspace workflow, a booking picker, and a before/after slider of a form redesign.

@@ -228,7 +228,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Hero ---------- */
 
-.hero { padding-block: clamp(40px, 6vw, 88px) clamp(56px, 7vw, 96px); overflow: hidden; position: relative; isolation: isolate; }
+.hero { padding-block: clamp(64px, 10vw, 140px) clamp(56px, 7vw, 96px); overflow: hidden; position: relative; isolation: isolate; }
 
 /* Background picture, washed with white towards the text side */
 .hero__bg { position: absolute; inset: 0; z-index: -1; }
@@ -252,95 +252,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-size: 0.8rem;
   font-weight: 700;
 }
-.hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(40px, 6vw, 88px);
-}
-.hero__copy { display: grid; gap: 22px; justify-items: start; }
+.hero__copy { display: grid; gap: 22px; justify-items: start; max-width: 760px; }
 .hero h1 { font-size: clamp(2.8rem, 1.6rem + 4.6vw, 5.4rem); letter-spacing: -0.04em; line-height: 0.98; }
 .hero .lede { max-width: 34em; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
-
-/* A product mock-up on an orange block */
-.hero__art { position: relative; padding: 32px 0 44px 32px; }
-.hero__art::before {
-  content: "";
-  position: absolute;
-  inset: 0 10% 14% 0;
-  background: var(--orange);
-  border-radius: 32px;
-}
-.mock {
-  position: relative;
-  border-radius: 18px;
-  background: var(--paper);
-  box-shadow: 0 30px 60px -24px rgba(23, 18, 14, 0.4), 0 0 0 1px rgba(23, 18, 14, 0.06);
-  overflow: hidden;
-}
-.mock__bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--hair); background: #fbf8f6; }
-.mock__bar i { width: 9px; height: 9px; border-radius: 50%; background: #e4dcd5; }
-.mock__bar span { margin-left: 10px; padding: 3px 12px; border: 1px solid var(--hair); border-radius: 999px; background: var(--paper); font-size: 0.72rem; color: var(--mute); }
-.mock__body { display: grid; grid-template-columns: 54px minmax(0, 1fr); }
-.mock__side { display: grid; align-content: start; justify-items: center; gap: 12px; padding: 16px 0; border-right: 1px solid var(--hair); }
-.mock__side b { width: 24px; height: 24px; margin-bottom: 8px; border-radius: 8px; background: var(--orange); }
-.mock__side span { width: 22px; height: 6px; border-radius: 3px; background: #ece6e0; }
-.mock__side span.is-on { background: var(--ink); }
-.mock__main { display: grid; align-content: start; gap: 14px; padding: 18px; }
-.mock__title { font: 800 1rem/1.2 var(--font-d); }
-.mock__title span { font: 400 0.8rem var(--font-b); color: var(--mute); }
-.mock__kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.mock__kpis div { padding: 10px 12px; border-radius: 12px; background: var(--tint); }
-.mock__kpis small { display: block; font-size: 0.68rem; color: var(--mute); }
-.mock__kpis strong { font: 800 1.3rem/1.15 var(--font-d); }
-.mock__chart { display: flex; align-items: end; gap: 8px; height: 96px; padding: 10px 12px 0; border: 1px solid var(--hair); border-radius: 12px; }
-.mock__chart span {
-  flex: 1;
-  height: var(--h);
-  border-radius: 6px 6px 0 0;
-  background: var(--peach);
-  transform-origin: bottom;
-  animation: grow 0.9s cubic-bezier(.2, .7, .2, 1) both;
-}
-.mock__chart span:nth-child(6) { background: var(--orange); }
-.mock__chart span:nth-child(2) { animation-delay: 0.06s; }
-.mock__chart span:nth-child(3) { animation-delay: 0.12s; }
-.mock__chart span:nth-child(4) { animation-delay: 0.18s; }
-.mock__chart span:nth-child(5) { animation-delay: 0.24s; }
-.mock__chart span:nth-child(6) { animation-delay: 0.3s; }
-.mock__chart span:nth-child(7) { animation-delay: 0.36s; }
-.mock__rows { display: grid; gap: 8px; }
-.mock__rows span { height: 10px; border-radius: 5px; background: #f1ece7; }
-.mock__rows span:nth-child(2) { width: 82%; }
-.mock__rows span:nth-child(3) { width: 64%; }
-
-.float {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px 10px 10px;
-  border-radius: 16px;
-  background: var(--paper);
-  box-shadow: 0 18px 36px -14px rgba(23, 18, 14, 0.4);
-  white-space: nowrap;
-  animation: bob 6s ease-in-out infinite;
-}
-.float b { display: block; font-size: 0.9rem; }
-.float small { display: block; font-size: 0.75rem; color: var(--mute); }
-.float__icon { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--orange); color: var(--ink); }
-.float__icon svg { width: 18px; height: 18px; }
-.float__icon--soft { background: var(--tint); }
-.float__icon--soft svg { width: 26px; height: 26px; }
-.float--1 { top: 4px; right: 0; }
-.float--2 { bottom: 4px; left: 0; animation-delay: -3s; }
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes grow { from { transform: scaleY(0); } }
 
 /* Short facts under the hero */
 .proofbar {
@@ -1059,9 +974,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 @media (max-width: 860px) {
-  .hero__grid { grid-template-columns: 1fr; }
   .hero__bg::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 55%, rgba(255, 255, 255, 0.55) 100%); }
-  .hero__art { max-width: 560px; width: 100%; justify-self: center; }
   .proofbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sec-head--split { grid-template-columns: 1fr; }
   .process { grid-template-columns: 1fr; }
@@ -1081,17 +994,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .brand { font-size: 1rem; gap: 8px; }
   .brand__mark { width: 44px; height: 28px; }
   .services { grid-template-columns: 1fr; }
-  .hero__art { padding: 24px 0 40px 16px; }
-  .mock__body { grid-template-columns: 40px minmax(0, 1fr); }
-  .mock__main { padding: 14px; gap: 10px; }
-  .mock__kpis { gap: 6px; }
-  .mock__kpis div { padding: 8px; }
-  .mock__kpis strong { font-size: 1.05rem; }
-  .mock__chart { height: 70px; }
-  .float { padding: 8px 12px 8px 8px; }
-  .float__icon { width: 28px; height: 28px; }
-  .float b { font-size: 0.8rem; }
-  .float small { font-size: 0.7rem; }
+  .hero__ph span { right: 16px; bottom: 12px; padding: 4px 10px; font-size: 0.72rem; }
   .person__photo { width: 68px; height: 68px; border-radius: 18px; }
   .booker__days { gap: 6px; }
   .booker__days button { padding: 10px 2px; }
