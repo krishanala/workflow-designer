@@ -86,6 +86,9 @@
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13L20.5 6.5"/>
   </symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="9.5" r="1.8"/><path d="M3.5 18L9.5 12.5L13.5 16L16 13.5L20.5 18"/>
+  </symbol>
   <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M6 16V11A6 6 0 0 1 18 11V16L19.5 18H4.5Z"/><path d="M10 21H14"/>
   </symbol>
@@ -133,9 +136,16 @@
     <path d="M5 31Q32 39 59 31"/>
     <rect fill="#ffc21a" x="26" y="29" width="12" height="10" rx="2"/>
   </symbol>
-  <symbol id="p-wave" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke-width="9"><path d="M6 17Q13 10 20 17T34 17T48 17T60 17"/><path d="M6 32Q13 25 20 32T34 32T48 32T60 32"/><path d="M6 47Q13 40 20 47T34 47T48 47T60 47"/></g>
-    <g stroke="#2f6bff" stroke-width="4.5"><path d="M6 17Q13 10 20 17T34 17T48 17T60 17"/><path d="M6 32Q13 25 20 32T34 32T48 32T60 32"/><path d="M6 47Q13 40 20 47T34 47T48 47T60 47"/></g>
+  <symbol id="p-clock" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 9Q32 4 40 9"/>
+    <path d="M17 54L12 60M47 54L52 60"/>
+    <circle fill="#ffc21a" cx="14" cy="14" r="8"/>
+    <circle fill="#ffc21a" cx="50" cy="14" r="8"/>
+    <circle fill="#2f6bff" cx="32" cy="35" r="22"/>
+    <circle style="fill:var(--w,#fff)" cx="32" cy="35" r="17"/>
+    <path stroke-width="2.4" d="M32 20V23M32 47V50M17 35H20M44 35H47"/>
+    <path stroke-width="3" d="M32 35V24M32 35L40 40"/>
+    <circle fill="#ff4f36" cx="32" cy="35" r="2.6"/>
   </symbol>
   <symbol id="p-book" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
     <path fill="#2f6bff" d="M6 51Q20 47 32 55Q44 47 58 51V56Q44 52 32 60Q20 52 6 56Z"/>
@@ -160,7 +170,7 @@
       <a href="#services">Services</a>
       <a href="#about">About us</a>
       <a href="demo.html">Live demo</a>
-      <a href="#process">Process</a>
+      <a href="#principles">Principles</a>
       <a href="#testimonials" data-testimonials-link hidden>Testimonials</a>
     </nav>
     <p class="score" aria-live="polite"><b data-score>0</b>/<span data-total>5</span> puzzles solved</p>
@@ -187,15 +197,6 @@
           <a class="btn btn--ghost" href="demo.html">Try a live demo</a>
         </div>
       </div>
-    </div>
-
-    <div class="wrap">
-      <ul class="proofbar">
-        <li><b>Google-certified</b> UX design</li>
-        <li><b>Senior</b> full-stack engineering</li>
-        <li><b>One team</b> from design to launch</li>
-        <li><b>Based in</b> Subang Jaya, Malaysia</li>
-      </ul>
     </div>
   </section>
 
@@ -292,6 +293,8 @@
       <ul class="services">
         <li class="service reveal">
           <span class="service__no">01</span>
+          <!-- Image placeholder. Swap for: <img class="shot service__shot" src="images/service-ux.jpg" alt="A UI/UX design project" loading="lazy"> (1200 × 750) -->
+          <div class="img-ph service__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Screenshot: a UI/UX project · 1200 × 750</span></div>
           <span class="service__icon"><svg aria-hidden="true"><use href="#s-ux"/></svg></span>
           <h3>UI/UX design</h3>
           <p>Screens people understand without training, from research and wireframes to polished prototypes.</p>
@@ -299,6 +302,8 @@
         </li>
         <li class="service reveal">
           <span class="service__no">02</span>
+          <!-- Image placeholder. Swap for: <img class="shot service__shot" src="images/service-web.jpg" alt="A website we built" loading="lazy"> (1200 × 750) -->
+          <div class="img-ph service__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Screenshot: a website we built · 1200 × 750</span></div>
           <span class="service__icon"><svg aria-hidden="true"><use href="#s-web"/></svg></span>
           <h3>Web development</h3>
           <p>Fast, secure websites and web apps that are easy to update, from landing pages to client portals.</p>
@@ -306,6 +311,8 @@
         </li>
         <li class="service reveal">
           <span class="service__no">03</span>
+          <!-- Image placeholder. Swap for: <img class="shot service__shot" src="images/service-workspace.jpg" alt="A Google Workspace automation" loading="lazy"> (1200 × 750) -->
+          <div class="img-ph service__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Screenshot: a Workspace automation · 1200 × 750</span></div>
           <span class="service__icon"><svg aria-hidden="true"><use href="#s-auto"/></svg></span>
           <h3>Google Workspace</h3>
           <p>Apps Script automation that makes Sheets, Gmail, Drive and Calendar do the repetitive work for you.</p>
@@ -314,6 +321,7 @@
         <!-- Placeholder: the fourth service is added later -->
         <li class="service service--soon reveal">
           <span class="service__no">04</span>
+          <div class="img-ph img-ph--blank service__shot" aria-hidden="true"></div>
           <span class="service__icon"><svg aria-hidden="true"><use href="#s-soon"/></svg></span>
           <h3>Coming soon</h3>
           <p>Something new is still in the oven.</p>
@@ -345,6 +353,9 @@
           </span>
         </button>
       </div>
+
+      <!-- Image placeholder. Swap for: <img class="shot team__photo" src="images/team.jpg" alt="Krisha and Deepak working together" loading="lazy"> (1600 × 700) -->
+      <div class="img-ph team__photo" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Photo: Krisha and Deepak working together · 1600 × 700</span></div>
 
       <div class="team">
         <article class="person reveal">
@@ -392,7 +403,8 @@
         <!-- Deepak: content to come -->
         <article class="person reveal">
           <div class="person__head">
-            <span class="person__photo person__photo--initials" aria-hidden="true">D</span>
+            <!-- Image placeholder. Swap for: <img class="person__photo" src="images/deepak.webp" alt="Portrait of Deepak"> (about 600 × 800) -->
+            <span class="person__photo img-ph img-ph--icon" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></span>
             <div>
               <h3>Deepak</h3>
               <p class="person__role">Senior Full-Stack Developer</p>
@@ -409,59 +421,58 @@
     </div>
   </section>
 
-  <!-- 5. How we work -->
-  <section class="sec sec--tight" id="process">
-    <div class="wrap process">
-      <div class="sec-head process__intro reveal">
-        <p class="eyebrow">Process</p>
-        <h2>How we work</h2>
-        <p class="lede">Four steps from first call to launch. You always know what happens next, and who’s doing it.</p>
+  <!-- 5. Guiding principles. Placeholder: replace the lede and each principle's title and text -->
+  <section class="sec" id="principles">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">Guiding principles</p>
+          <h2>The principles we work by.</h2>
+          <p class="lede"><span class="ph">A sentence on how these principles shape every project.</span></p>
+        </div>
         <button class="rebus" type="button" aria-pressed="false">
           <span class="rebus__no">No. 04</span>
-          <span class="sr-only">Rebus: a briefcase, plus flowing waves.</span>
+          <span class="sr-only">Rebus: a clock, plus a briefcase.</span>
           <span class="rebus__pics">
-            <span class="pic"><svg aria-hidden="true"><use href="#p-case"/></svg><span class="pic__word">work</span></span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-clock"/></svg><span class="pic__word">clock</span></span>
             <span class="op" aria-hidden="true">+</span>
-            <span class="pic"><svg aria-hidden="true"><use href="#p-wave"/></svg><span class="pic__word">flow</span></span>
+            <span class="pic"><svg aria-hidden="true"><use href="#p-case"/></svg><span class="pic__word">work</span></span>
           </span>
           <span class="rebus__foot">
             <span class="rebus__hint">Tap to solve</span>
-            <span class="rebus__answer">Workflow</span>
+            <span class="rebus__answer">Runs like clockwork</span>
           </span>
         </button>
       </div>
-      <ol class="timeline">
-        <li class="timeline__step reveal">
-          <span class="timeline__no">01</span>
-          <div>
-            <h3>Free consultation</h3>
-            <p>A call to understand your business, what’s slowing you down and what success looks like.</p>
-            <p class="timeline__who">Krisha &amp; Deepak</p>
-          </div>
+
+      <ol class="principles">
+        <li class="principle reveal">
+          <!-- Image placeholder. Swap for: <img class="shot principle__shot" src="images/principle-1.jpg" alt="" loading="lazy"> (1200 × 600) -->
+          <div class="img-ph principle__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Image for principle one · 1200 × 600</span></div>
+          <span class="principle__no">01</span>
+          <h3><span class="ph">Principle one</span></h3>
+          <p><span class="ph">One or two sentences on what this principle means for the people you work with.</span></p>
         </li>
-        <li class="timeline__step reveal">
-          <span class="timeline__no">02</span>
-          <div>
-            <h3>Design</h3>
-            <p>A clickable prototype you can try and comment on before anything is built.</p>
-            <p class="timeline__who">Led by Krisha</p>
-          </div>
+        <li class="principle reveal">
+          <!-- Image placeholder. Swap for: <img class="shot principle__shot" src="images/principle-2.jpg" alt="" loading="lazy"> (1200 × 600) -->
+          <div class="img-ph principle__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Image for principle two · 1200 × 600</span></div>
+          <span class="principle__no">02</span>
+          <h3><span class="ph">Principle two</span></h3>
+          <p><span class="ph">One or two sentences on what this principle means for the people you work with.</span></p>
         </li>
-        <li class="timeline__step reveal">
-          <span class="timeline__no">03</span>
-          <div>
-            <h3>Build</h3>
-            <p>We build it, test it with your team and keep you updated as each part is ready.</p>
-            <p class="timeline__who">Led by Deepak</p>
-          </div>
+        <li class="principle reveal">
+          <!-- Image placeholder. Swap for: <img class="shot principle__shot" src="images/principle-3.jpg" alt="" loading="lazy"> (1200 × 600) -->
+          <div class="img-ph principle__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Image for principle three · 1200 × 600</span></div>
+          <span class="principle__no">03</span>
+          <h3><span class="ph">Principle three</span></h3>
+          <p><span class="ph">One or two sentences on what this principle means for the people you work with.</span></p>
         </li>
-        <li class="timeline__step reveal">
-          <span class="timeline__no">04</span>
-          <div>
-            <h3>Launch &amp; support</h3>
-            <p>We launch, train your team and stay on hand for fixes and improvements.</p>
-            <p class="timeline__who">Krisha &amp; Deepak</p>
-          </div>
+        <li class="principle reveal">
+          <!-- Image placeholder. Swap for: <img class="shot principle__shot" src="images/principle-4.jpg" alt="" loading="lazy"> (1200 × 600) -->
+          <div class="img-ph principle__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Image for principle four · 1200 × 600</span></div>
+          <span class="principle__no">04</span>
+          <h3><span class="ph">Principle four</span></h3>
+          <p><span class="ph">One or two sentences on what this principle means for the people you work with.</span></p>
         </li>
       </ol>
     </div>
@@ -535,7 +546,7 @@
         <ul>
           <li><a href="#about">About us</a></li>
           <li><a href="demo.html">Live demo</a></li>
-          <li><a href="#process">Process</a></li>
+          <li><a href="#principles">Principles</a></li>
         </ul>
       </nav>
       <div>

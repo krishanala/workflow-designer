@@ -14,17 +14,17 @@ Live at https://krishanala.github.io/workflow-designer/
 
 The order follows "explain, prove, ask": name the problems, say what we do, show who we are and what we've built, then ask for a call.
 
-1. **Hero:** what the studio does over a background photo (a placeholder for now), and a strip of short facts.
+1. **Hero:** what the studio does, over a background photo (a placeholder for now).
 2. **Problems:** six problems growing businesses run into, each saying which service fixes it, with a link down to Services.
 3. **Services:** four cards. UI/UX design, Web development and Google Workspace, plus a fourth "Coming soon" placeholder (the last `<li class="service service--soon">` in `index.html`).
 4. **About us:** Krisha and Deepak side by side. Krisha's card lists selected work from her portfolio (images in `images/work-*.jpg`) and links to the full portfolio. Deepak's card has placeholders until his content arrives.
-5. **Process:** the heading stays in view on the left while four numbered steps run down a timeline on the right, from free consultation to launch and support. Each step says who leads it.
+5. **Guiding principles:** four principle cards, each with an image across the top. Placeholder for now: the lede and each principle's title and text have dashed outlines to replace.
 6. **Testimonials:** client reviews as cards, each with the client's logo beside their review. It stays hidden until there's at least one approved review. See [Client reviews](#client-reviews).
 7. **Contact:** a **Contact us** button, then a footer with services, studio links and contact details.
 
 **Live demo** is its own page, `demo.html`, linked from the menu, the hero and the footer. It has three tabs visitors can try, all running in the browser with nothing sent anywhere: an enquiry form that sets off a Google Workspace workflow, a booking picker, and a before/after slider of a form redesign.
 
-**Puzzles:** the homepage has five (Problems, Services, About us, Process, Contact) and the demo page has two. Each is a `<button class="rebus">`, and its pictures are `p-*` symbols in the sprite at the top of the page. The score counts the puzzles on the page by itself, and a message pops up once they're all solved.
+**Puzzles:** the homepage has five (Problems, Services, About us, Guiding principles, Contact) and the demo page has two. Each is a `<button class="rebus">`, and its pictures are `p-*` symbols in the sprite at the top of the page. The score counts the puzzles on the page by itself, and a message pops up once they're all solved.
 
 Every **Contact us** button opens the Google Calendar booking page (https://calendar.app.google/YWKjsHaXESSNEb7WA) in a new tab. To use a different schedule, replace that link everywhere it appears in `index.html` and `demo.html`.
 
@@ -63,7 +63,12 @@ Then open http://localhost:8100.
 ## Still to fill in
 
 - [ ] The hero's background photo (currently a striped placeholder). Save it as `images/hero.jpg`, about 2400px wide, and follow the comment above `hero__bg` in `index.html`
-- [ ] Deepak's photo, bio, skills and selected work in About us
+- [ ] The other photos. Each placeholder is a striped box labelled with the photo it needs and its size, and the comment above it in `index.html` has the `<img>` line to swap in. Use real photos of your own work and team rather than stock:
+  - `images/service-ux.jpg`, `images/service-web.jpg`, `images/service-workspace.jpg`: a screenshot of real work on each service card (1200 × 750)
+  - `images/team.jpg`: Krisha and Deepak working together, above the About us cards (1600 × 700)
+  - `images/deepak.webp`: Deepak's portrait (about 600 × 800, like Krisha's)
+- [ ] Deepak's bio, skills and selected work in About us
+- [ ] The guiding principles: a lede and four principles (title and a sentence or two each), plus an image for each card (`images/principle-1.jpg` to `principle-4.jpg`, 1200 × 600; the comment above each placeholder has the `<img>` line)
 - [ ] The fourth service (currently "Coming soon")
 - [ ] The privacy policy still speaks as Krisha alone ("I"). Update it if Deepak also handles client data
 - [ ] Set up client reviews ([`apps-script/README.md`](apps-script/README.md))
