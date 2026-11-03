@@ -1,9 +1,10 @@
 /* ------------------------------------------------------------------
    Two Loaves Studio
    1. Blocks fade up as they scroll in
-   2. Testimonials: loaded from the reviews Google Sheet, shown as cards
-   3. Review page (review.html): the form clients fill in, with a live card preview
-   4. Live demos: an enquiry workflow, a booking picker and a before/after slider
+   2. Rebus puzzles: tap to solve, with a score for the page
+   3. Testimonials: loaded from the reviews Google Sheet, shown as cards
+   4. Review page (review.html): the form clients fill in, with a live card preview
+   5. Live demos (demo.html): an enquiry workflow, a booking picker and a before/after slider
 ------------------------------------------------------------------- */
 
 // The Apps Script web app that stores and serves reviews (setup: apps-script/README.md).
@@ -28,7 +29,48 @@ if ('IntersectionObserver' in window && !reduceMotion.matches) {
   revealed.forEach((el) => el.classList.add('is-in'));
 }
 
-/* ---------- 2. Testimonial cards ---------- */
+/* ---------- 2. Rebus puzzles and the score ---------- */
+
+const puzzles = [...document.querySelectorAll('.rebus')];
+const toast = document.querySelector('[data-toast]');
+let toastTimer = 0;
+
+function showToast(html) {
+  if (!toast) return;
+  toast.querySelector('[data-toast-text]').innerHTML = html;
+  toast.hidden = false;
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('is-in')));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-in'), 6000);
+}
+
+if (puzzles.length) {
+  const scoreEls = document.querySelectorAll('[data-score]');
+  const solved = new Set();
+  let celebrated = false;
+
+  document.querySelectorAll('[data-total]').forEach((el) => { el.textContent = puzzles.length; });
+
+  puzzles.forEach((puzzle, index) => {
+    // Stagger the nudge dance so neighbouring puzzles don't move at the same moment.
+    puzzle.style.setProperty('--nudge-delay', `${((index * 0.9) % 4.5).toFixed(1)}s`);
+    puzzle.querySelectorAll('.pic').forEach((pic, step) => pic.style.setProperty('--nudge-step', step));
+
+    puzzle.addEventListener('click', () => {
+      const solving = puzzle.getAttribute('aria-pressed') !== 'true';
+      puzzle.setAttribute('aria-pressed', String(solving));
+      if (!solving) return;
+      solved.add(puzzle);
+      scoreEls.forEach((el) => { el.textContent = solved.size; });
+      if (solved.size === puzzles.length && !celebrated) {
+        celebrated = true;
+        showToast('<strong>All puzzles solved.</strong> You’d make a great product owner.');
+      }
+    });
+  });
+}
+
+/* ---------- 3. Testimonial cards ---------- */
 
 // Only images we made ourselves (data URLs from the review form) or https links the owner pasted in.
 const SAFE_LOGO = /^(data:image\/(png|jpeg|webp|gif);base64,[a-z0-9+/=]+|https:\/\/[^\s"'<>]+)$/i;
@@ -111,7 +153,7 @@ if (testimonials && REVIEWS_ENDPOINT) {
     .catch(() => { /* No reviews to show: the section stays hidden. */ });
 }
 
-/* ---------- 3. Review page ---------- */
+/* ---------- 4. Review page ---------- */
 
 const reviewForm = document.querySelector('[data-review-form]');
 if (reviewForm) {
@@ -237,7 +279,7 @@ if (reviewForm) {
   render();
 }
 
-/* ---------- 4. Live demos ---------- */
+/* ---------- 5. Live demos ---------- */
 
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, reduceMotion.matches ? 0 : ms));
 const shortDate = (date) => date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
