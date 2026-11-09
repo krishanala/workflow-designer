@@ -27,7 +27,15 @@
   --radius: 14px;
   --line: 2px solid var(--ink);
   --shadow: 5px 5px 0 var(--ink);
+  --glow-edge: #ff8f52; /* the outline on anything orange, with --glow around it */
+  --glow: 0 0 0 2px rgba(255, 106, 31, 0.14), 0 0 10px rgba(255, 106, 31, 0.3);
+  --glow-hi: 0 0 0 3px rgba(255, 106, 31, 0.18), 0 0 16px rgba(255, 106, 31, 0.42);
   --nav-h: 68px;
+  --sky: #a8dcf5;        /* Krisha's half of the About us page */
+  --rust: #9a3412;       /* orange text on sky (passes contrast) */
+  --teal: #2ec4b6;       /* Deepak's half */
+  --teal-ink: #0b3d38;   /* teal text on teal (passes contrast) */
+  --heart: #e63946;      /* where our paths meet */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -154,23 +162,27 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   justify-content: center;
   gap: 0.55em;
   padding: 0.9em 1.45em;
-  border: var(--line);
+  border: 2px solid var(--glow-edge);
   border-radius: 999px;
   background: var(--orange);
-  color: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--glow);
   font: 700 1rem/1.15 var(--font-b);
   text-decoration: none;
   text-align: center;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-.btn:active { transform: none; box-shadow: none; }
+/* Orange buttons glow; the white and black ones keep the ink outline and hard shadow */
+.btn:hover { transform: translateY(-2px); box-shadow: var(--glow-hi); }
+.btn:active { transform: none; box-shadow: var(--glow); }
 .btn .i { width: 1.15em; height: 1.15em; flex: none; }
 
-.btn--ghost { background: var(--paper); color: var(--ink); }
-.btn--ink { background: var(--ink); color: var(--paper); }
-.btn--ink:hover { box-shadow: 4px 4px 0 var(--paper); }
+.btn--ghost { border-color: var(--ink); background: var(--paper); color: var(--ink); box-shadow: none; }
+.btn--ink { border-color: var(--ink); background: var(--ink); color: var(--paper); box-shadow: none; }
+.btn--ghost:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn--ink:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--paper); }
+.btn--ghost:active, .btn--ink:active { transform: none; box-shadow: none; }
 .btn--sm { padding: 0.6em 1.1em; font-size: 0.92rem; }
 .btn--lg { padding: 1.05em 1.8em; font-size: 1.08rem; }
 .btn[disabled] { opacity: 0.55; cursor: progress; transform: none; box-shadow: none; }
@@ -212,9 +224,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-size: 0.95rem;
 }
 .nav__links a {
+  white-space: nowrap;
   text-decoration: none;
   padding-block: 4px;
-  background: linear-gradient(var(--ink), var(--ink)) left bottom / 0 2px no-repeat;
+  background: linear-gradient(var(--orange), var(--orange)) left bottom / 0 2px no-repeat;
   transition: background-size 0.25s ease;
 }
 .nav__links a:hover { background-size: 100% 2px; }
@@ -388,34 +401,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Hero ---------- */
 
-.hero { padding-block: clamp(64px, 10vw, 140px); overflow: hidden; position: relative; isolation: isolate; }
+.hero { padding-bottom: clamp(64px, 9vw, 120px); }
 
-/* Background picture, washed with white towards the text side */
-.hero__bg { position: absolute; inset: 0; z-index: -1; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; }
-.hero__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 45%, rgba(255, 255, 255, 0.4) 100%);
-}
-.hero__ph { position: absolute; inset: 0; background: repeating-linear-gradient(135deg, var(--tint) 0 22px, #ffe8d9 22px 44px); }
-.hero__ph span {
-  position: absolute;
-  right: 24px; bottom: 20px;
-  z-index: 1;
-  padding: 6px 14px;
-  border: 1.5px dashed var(--orange);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--orange-ink);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.hero__copy { display: grid; gap: 22px; justify-items: start; max-width: 760px; }
-.hero h1 { font-size: clamp(2.8rem, 1.6rem + 4.6vw, 5.4rem); letter-spacing: -0.04em; line-height: 0.98; }
-.hero .lede { max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+/* Picture across the full width of the screen, right under the menu, with the headline below it */
+.hero__shot { aspect-ratio: 12 / 5; max-height: 72vh; margin-bottom: clamp(40px, 6vw, 72px); border-width: 0 0 2px; border-radius: 0; }
+.hero__copy { display: grid; gap: 22px; justify-items: center; max-width: 820px; margin-inline: auto; text-align: center; }
+.hero h1 { font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; }
 
 /* ---------- Problems ---------- */
 
@@ -469,9 +460,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: var(--radius);
   background: var(--paper);
   box-shadow: var(--shadow);
-  transition: box-shadow 0.2s ease, transform 0.2s ease, opacity 0.7s ease;
+  rotate: 1.5deg;
+  transition: box-shadow 0.25s ease, transform 0.2s ease, opacity 0.7s ease, rotate 0.3s ease, border-color 0.25s ease;
 }
-.service:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+/* Tilted a little until hovered, then straight with an orange glow */
+.service:hover {
+  rotate: 0deg;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(255, 106, 31, 0.16), 0 0 22px rgba(255, 106, 31, 0.38);
+}
 .services .service:nth-child(2) { transition-delay: 0s, 0s, 0.08s; }
 .services .service:nth-child(3) { transition-delay: 0s, 0s, 0.16s; }
 .services .service:nth-child(4) { transition-delay: 0s, 0s, 0.24s; }
@@ -515,18 +512,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--ink);
   font-size: 0.8rem;
   font-weight: 700;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
+.service:hover .tags li { border-color: var(--glow-edge); background: var(--orange); color: var(--paper); box-shadow: var(--glow); }
 
 /* The placeholder card */
 .service--soon { border: 2px dashed #b5b5b5; background: transparent; box-shadow: none; }
-.service--soon:hover { box-shadow: none; transform: none; }
+.service--soon:hover { border-color: #b5b5b5; box-shadow: none; }
 .service--soon .service__icon { background: var(--paper); border: 2px dashed #b5b5b5; color: #a5a5a5; }
 .service--soon .service__no { border-color: #b5b5b5; color: var(--mute); }
 .service--soon h3 { color: var(--mute); }
 
 /* ---------- Testimonials ---------- */
 
-.quotes__nav { display: flex; gap: 8px; }
+.sec-head .quotes__nav { display: flex; flex: none; gap: 8px; }
 .round {
   display: grid;
   place-items: center;
@@ -536,9 +535,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background: var(--paper);
   color: var(--ink);
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
-.round:hover { background: var(--orange); }
+.round:hover { border-color: var(--glow-edge); background: var(--orange); color: var(--paper); box-shadow: var(--glow); }
 .round[disabled] { opacity: 0.35; cursor: default; background: var(--paper); }
 .round .i { width: 20px; height: 20px; }
 
@@ -591,8 +590,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .quote__logo img { width: 100%; height: 100%; object-fit: contain; }
 .quote__logo--initials {
+  border-color: var(--glow-edge);
   background: var(--orange);
-  color: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--glow);
   font: 800 1.9rem/1 var(--font-d);
   letter-spacing: -0.03em;
 }
@@ -611,28 +612,198 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- About us: the team ---------- */
 
-.team__photo { aspect-ratio: 16 / 7; margin-bottom: 24px; box-shadow: var(--shadow); }
-.team { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.person {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: clamp(24px, 3vw, 36px);
+/* Our story: Krisha's journey on sky blue and Deepak's on teal, side by side under the menu.
+   The outer padding lines each lane's content up with the page column. */
+.story { position: relative; }
+.story__lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* The line at the top, sitting on the wave where the two paths begin */
+.story__tag {
+  position: absolute;
+  top: clamp(24px, 3vw, 36px); left: 50%;
+  z-index: 2;
+  translate: -50% 0;
+  padding: 10px 22px;
   border: var(--line);
-  border-radius: 18px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  white-space: nowrap;
+}
+.lane {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: clamp(36px, 5vw, 56px);
+  padding-block: clamp(104px, 10vw, 136px) clamp(48px, 7vw, 96px);
+}
+.lane--krisha {
+  padding-inline: max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut))) clamp(40px, 5vw, 80px);
+  background: var(--sky);
+}
+.lane--deepak {
+  padding-inline: clamp(40px, 5vw, 80px) max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut)));
+  background: var(--teal);
+}
+/* The wavy edge between the lanes: a repeating tile, sky on one side of the wave and teal on the other.
+   The colours are written into the tile, so update them here if --sky or --teal change. */
+.lane--deepak::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -24px;
+  width: 48px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='120' viewBox='0 0 48 120'%3E%3Crect width='48' height='120' fill='%23a8dcf5'/%3E%3Cpath d='M24 0Q48 30 24 60Q0 90 24 120H48V0Z' fill='%232ec4b6'/%3E%3C/svg%3E") repeat-y 0 0 / 48px 120px;
+}
+
+/* A big portrait at the top of each lane, with the label, name and role centred under it */
+.person__head { display: grid; gap: 22px; width: min(100%, 380px); text-align: center; }
+.person__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  border: var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+.lane__label, .chapter__no { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: #3a3a3a; }
+.lane__label { margin-bottom: 4px; }
+.lane h2 { font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem); }
+.person__role { margin-top: 4px; font-weight: 700; }
+.lane--krisha .person__role, .lane--krisha .link-arrow { color: var(--rust); }
+.lane--deepak .person__role { color: var(--teal-ink); }
+
+/* Each journey is a dashed path with a dot for every chapter */
+.journey { position: relative; display: grid; gap: clamp(32px, 4vw, 48px); padding-left: 38px; }
+.journey::before {
+  content: "";
+  position: absolute;
+  left: 8px; top: 12px; bottom: 12px;
+  border-left: 2px dashed rgba(11, 11, 11, 0.4);
+  clip-path: inset(0 0 calc((1 - var(--drawn, 1)) * 100%) 0);
+}
+.chapter { position: relative; display: grid; gap: 8px; justify-items: start; }
+.chapter::before {
+  content: "";
+  position: absolute;
+  left: -38px; top: 0;
+  width: 20px; height: 20px;
+  border: var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+}
+/* Each dot takes the other person's colour, so it stands out on its own lane */
+.lane--krisha .chapter::before { background: var(--teal); }
+.lane--deepak .chapter::before { background: var(--sky); }
+.chapter h3 { font-size: 1.35rem; }
+.chapter > p:not(.chapter__no) { max-width: 34em; color: #3a3a3a; }
+.chapter .tags { margin-top: 4px; padding-top: 0; }
+.chapter .works { justify-self: stretch; margin-top: 4px; }
+.person__soon {
+  justify-self: stretch;
+  padding: 22px;
+  border: 2px dashed rgba(11, 11, 11, 0.35);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.3);
+  color: #3a3a3a;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Where the paths meet: the split fades into one blended colour, and both paths curve in to the logo */
+.story__meet {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: clamp(64px, 8vw, 112px);
+  background: linear-gradient(90deg, var(--sky), var(--teal));
+}
+.story__meet::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(160px, 18vw, 260px);
+  z-index: -1;
+  background: linear-gradient(90deg, var(--sky) 50%, var(--teal) 50%);
+  -webkit-mask: linear-gradient(#000, transparent);
+  mask: linear-gradient(#000, transparent);
+}
+/* Both paths draw down to the heart as you scroll, and the heart pops when they meet */
+.story__paths {
+  display: block;
+  width: 100%; height: clamp(120px, 14vw, 200px);
+  fill: none;
+  stroke: var(--ink);
+  clip-path: inset(0 0 calc((1 - var(--drawn, 1)) * 100%) 0);
+}
+.story__paths path { stroke-width: 2.5; stroke-dasharray: 8 8; vector-effect: non-scaling-stroke; }
+.story__paths.is-drawn + .story__end .story__mark { animation: meet 0.6s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes meet { from { transform: scale(0.75); } }
+.story__end { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 18px; text-align: center; }
+/* The heart sits just over the paths' ends, so they run into its dip */
+.story__mark {
+  width: 104px; height: 94px;
+  margin: -18px 0 8px;
+  overflow: visible;
+  fill: var(--heart);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  filter: drop-shadow(4px 4px 0 var(--ink));
+}
+.story__end h2 { max-width: 17ch; font-size: clamp(2.1rem, 1.3rem + 3vw, 3.6rem); }
+.story__end .lede { max-width: 40em; color: #3a3a3a; }
+.story__photo { justify-self: stretch; aspect-ratio: 16 / 9; margin-top: 28px; box-shadow: var(--shadow); }
+
+/* Hobbies: Krisha's and Deepak's close each lane on cards topped with their colour,
+   and the ones we share come where the paths meet. */
+.hobbies__wrap { justify-self: stretch; display: grid; justify-items: center; gap: 12px; margin-top: 48px; }
+.hobbies__title { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); }
+.hobby {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  width: min(100%, 380px);
+  padding: 34px 22px 22px;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: inset 0 12px 0 var(--band), var(--shadow);
+  text-align: left;
+}
+.hobby--krisha { --band: var(--sky); }
+.hobby--deepak { --band: var(--teal); }
+.hobby__who { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: #3a3a3a; }
+.hobby__list { display: grid; gap: 10px; }
+/* The ones we share sit in a row under the heading, with red dots like the heart */
+.hobby__list--together { --band: var(--heart); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin-top: 8px; }
+.hobby__list li { display: flex; align-items: center; gap: 10px; font: 700 1.1rem/1.3 var(--font-d); }
+.hobby__list li::before { content: ""; width: 10px; height: 10px; flex: none; border: var(--line); border-radius: 50%; background: var(--band); }
+
+/* Our cats, as team members */
+.cats__wrap { justify-self: stretch; display: grid; justify-items: center; gap: 18px; margin-top: 36px; }
+.cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; width: 100%; max-width: 860px; }
+.cat {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border: var(--line);
+  border-radius: var(--radius);
   background: var(--paper);
   box-shadow: var(--shadow);
+  text-align: left;
 }
-.person__head { display: flex; align-items: center; gap: 18px; }
-.person__photo { width: 84px; height: 84px; flex: none; border: var(--line); border-radius: 22px; object-fit: cover; object-position: 50% 22%; }
-.person__photo--initials { display: grid; place-items: center; background: var(--orange); color: var(--ink); font: 800 2.4rem/1 var(--font-d); }
-.person h3 { font-size: 1.75rem; }
-.person__role { margin-top: 4px; color: var(--orange-ink); font-weight: 700; }
-.person > p { color: var(--mute); }
-.person .tags { margin-top: 0; padding-top: 0; }
-.person__work { display: grid; gap: 12px; margin-top: auto; padding-top: 20px; border-top: 2px dashed var(--dash); }
-.person__label { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
-.person__soon { padding: 22px; border: 2px dashed #b5b5b5; border-radius: 14px; color: var(--mute); font-weight: 700; text-align: center; }
+.cat__photo { width: 96px; height: 96px; flex: none; border: var(--line); border-radius: 50%; object-fit: cover; }
+.cat__photo.img-ph { padding: 0; }
+.cat h3 { font-size: 1.25rem; }
+.cat__role { margin-block: 2px 4px; color: var(--orange-ink); font-weight: 700; font-size: 0.92rem; }
+.cat p:last-child { color: var(--mute); font-size: 0.95rem; }
+
+/* The closing link */
+.story__end .story__cta { justify-self: center; margin-top: 40px; color: var(--ink); font: 700 clamp(1.2rem, 1rem + 0.8vw, 1.6rem)/1.25 var(--font-d); }
+.story__end .story__cta .i { width: 1em; height: 1em; }
 
 .works { display: grid; gap: 4px; margin-inline: -8px; }
 .work {
@@ -739,7 +910,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .flow__dot svg { width: 20px; height: 20px; }
 .flow__steps li.is-running .flow__dot { background: var(--peach); color: var(--ink); animation: pulse 0.7s ease-in-out infinite; }
 .flow__steps li.is-done { border-color: var(--ink); background: var(--tint); }
-.flow__steps li.is-done .flow__dot { background: var(--orange); color: var(--ink); }
+.flow__steps li.is-done .flow__dot { background: var(--orange); color: var(--paper); box-shadow: inset 0 0 0 2px var(--glow-edge), var(--glow); }
 
 .sheet { margin-top: 14px; border: var(--line); border-radius: 12px; overflow: hidden; font-size: 0.82rem; }
 .sheet__row { display: grid; grid-template-columns: 0.9fr 0.9fr 1.5fr 0.8fr; }
@@ -777,9 +948,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .booker__slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
 .booker__slots button { padding: 12px; border-radius: 12px; font-weight: 700; }
 .booker__days button:hover, .booker__slots button:not(:disabled):hover { background: var(--tint); }
-.booker__days button[aria-pressed="true"] { background: var(--orange); box-shadow: 3px 3px 0 var(--ink); }
+.booker__days button[aria-pressed="true"] { border-color: var(--glow-edge); background: var(--orange); color: var(--paper); box-shadow: var(--glow); }
 .booker__days button[aria-pressed="true"] small,
-.booker__days button[aria-pressed="true"] span { color: var(--ink); }
+.booker__days button[aria-pressed="true"] span { color: var(--paper); }
 .booker__slots button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .booker__slots button:disabled { border-color: var(--hair); background: #f6f6f6; color: #aaa; text-decoration: line-through; cursor: not-allowed; }
 .booker__foot {
@@ -794,7 +965,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .booker__foot p { font-weight: 700; }
 .booker__done { display: grid; justify-items: center; gap: 12px; padding: 12px 0; text-align: center; }
-.booker__tick { display: grid; place-items: center; width: 64px; height: 64px; border: var(--line); border-radius: 50%; background: var(--orange); animation: pop 0.5s cubic-bezier(.3, 1.6, .5, 1) both; }
+.booker__tick { display: grid; place-items: center; width: 64px; height: 64px; border: 2px solid var(--glow-edge); border-radius: 50%; background: var(--orange); color: var(--paper); box-shadow: var(--glow); animation: pop 0.5s cubic-bezier(.3, 1.6, .5, 1) both; }
 .booker__tick svg { width: 30px; height: 30px; }
 .booker__done h3 { font-size: 1.8rem; }
 .booker__when { color: var(--orange-ink); font-weight: 700; }
@@ -828,7 +999,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.compare__tag--after { left: auto; right: 14px; background: var(--orange); color: var(--ink); }
+.compare__tag--after { left: auto; right: 14px; background: var(--orange); color: var(--paper); box-shadow: inset 0 0 0 2px var(--glow-edge), var(--glow); }
 .compare__handle {
   position: absolute;
   top: 0; bottom: 0;
@@ -871,7 +1042,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .new-form__title { font: 800 1.35rem/1.15 var(--font-d); }
 .new-form__field { display: grid; gap: 2px; padding: 10px 14px; border: 1px solid #ddd5ce; border-radius: 12px; }
 .new-form__field small { font-size: 0.75rem; font-weight: 700; color: var(--mute); }
-.new-form__btn { display: block; padding: 12px; border: var(--line); border-radius: 999px; background: var(--orange); font-weight: 700; text-align: center; }
+.new-form__btn { display: block; padding: 12px; border: 2px solid var(--glow-edge); border-radius: 999px; background: var(--orange); color: var(--paper); box-shadow: var(--glow); font-weight: 700; text-align: center; }
 .new-form__note { font-size: 0.8rem; color: var(--mute); text-align: center; }
 
 /* The demo page's heading */
@@ -908,9 +1079,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: grid;
   place-items: center;
   width: 56px; height: 56px;
-  border: var(--line);
+  border: 2px solid var(--glow-edge);
   border-radius: 50%;
   background: var(--orange);
+  color: var(--paper);
+  box-shadow: var(--glow);
   font: 800 1.05rem/1 var(--font-d);
 }
 .principle h3 { align-self: center; font-size: 1.4rem; }
@@ -926,10 +1099,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   gap: 32px 48px;
   padding: clamp(32px, 5vw, 64px);
-  border: var(--line);
+  border: 2px solid var(--glow-edge);
   border-radius: 22px;
   background: var(--orange);
-  box-shadow: 9px 9px 0 var(--ink);
+  color: var(--paper);
+  box-shadow: 0 0 0 4px rgba(255, 106, 31, 0.16), 0 0 32px rgba(255, 106, 31, 0.4);
   overflow: hidden;
 }
 /* Two soft rings for texture */
@@ -1176,18 +1350,26 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (max-width: 960px) {
+/* The full menu needs about 1,070px; below that only the logo, score and Contact us show */
+@media (max-width: 1100px) {
   .nav__links { display: none; }
   .nav__in { justify-content: space-between; }
   .score { margin-left: auto; }
 }
 
 @media (max-width: 860px) {
-  .hero__bg::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 55%, rgba(255, 255, 255, 0.55) 100%); }
   .contact__card { grid-template-columns: 1fr; }
   .contact__card > .rebus { justify-self: start; }
   .principles { grid-template-columns: 1fr; }
-  .team { grid-template-columns: 1fr; }
+  .story__lanes { grid-template-columns: 1fr; }
+  .lane--krisha, .lane--deepak { padding-inline: var(--gut); }
+  .lane--deepak { padding-top: clamp(56px, 12vw, 72px); }
+  .lane--deepak::before { inset: -24px 0 auto; width: auto; height: 48px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='48' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' fill='%23a8dcf5'/%3E%3Cpath d='M0 24Q30 48 60 24Q90 0 120 24V48H0Z' fill='%232ec4b6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 48px; }
+  .story__paths { display: none; }
+  .cats { grid-template-columns: minmax(0, 1fr); }
+  /* Stacked, the colours blend top to bottom and a single dashed path leads down to the logo */
+  .story__meet { padding-top: 64px; background: linear-gradient(180deg, var(--teal), var(--sky) 70%); }
+  .story__meet::before { inset: 0 auto auto 50%; width: 0; height: 64px; translate: -1px 0; border-left: 2px dashed var(--ink); background: none; -webkit-mask: none; mask: none; }
   .demo__grid { grid-template-columns: 1fr; }
   .review__grid { grid-template-columns: 1fr; }
   .review__preview { position: static; }
@@ -1207,9 +1389,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .services { grid-template-columns: 1fr; }
   .problems { grid-template-columns: 1fr; }
   .score { display: none; }
-  .hero__ph span { right: 16px; bottom: 12px; padding: 4px 10px; font-size: 0.72rem; }
-  .person__photo { width: 68px; height: 68px; border-radius: 18px; }
-  .team__photo { aspect-ratio: 4 / 3; }
+  .hero__shot { aspect-ratio: 4 / 3; }
+  .hero .eyebrow { flex-direction: column; gap: 10px; }
   .booker__days { gap: 6px; }
   .booker__days button { padding: 10px 2px; }
   .booker__days b { font-size: 1.15rem; }

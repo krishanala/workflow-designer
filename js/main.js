@@ -2,9 +2,10 @@
    Two Loaves Studio
    1. Blocks fade up as they scroll in
    2. Rebus puzzles: tap to solve, with a score for the page
-   3. Testimonials: loaded from the reviews Google Sheet, shown as cards
+   3. Testimonials: loaded from the reviews Google Sheet, shown as cards (placeholders until then)
    4. Review page (review.html): the form clients fill in, with a live card preview
    5. Live demos (demo.html): an enquiry workflow, a booking picker and a before/after slider
+   6. About us (about.html): the journey paths draw themselves as you scroll
 ------------------------------------------------------------------- */
 
 // The Apps Script web app that stores and serves reviews (setup: apps-script/README.md).
@@ -117,8 +118,9 @@ function quoteCard({ name, role, company, quote, logo }, placeholder = '') {
   return card;
 }
 
+// The homepage shows placeholder cards until approved reviews come back, then swaps them for the real ones.
 const testimonials = document.querySelector('[data-testimonials]');
-if (testimonials && REVIEWS_ENDPOINT) {
+if (testimonials) {
   const list = testimonials.querySelector('[data-quotes]');
   const nav = testimonials.querySelector('[data-quotes-nav]');
   const prev = testimonials.querySelector('[data-quotes-prev]');
@@ -135,22 +137,24 @@ if (testimonials && REVIEWS_ENDPOINT) {
   next.addEventListener('click', () => list.scrollBy({ left: step() }));
   list.addEventListener('scroll', updateArrows, { passive: true });
   window.addEventListener('resize', updateArrows);
+  updateArrows();
 
-  fetch(REVIEWS_ENDPOINT)
-    .then((res) => res.json())
-    .then((data) => {
-      const reviews = (data && data.testimonials) || [];
-      if (!reviews.length) return;
-      reviews.forEach((review) => {
-        const li = el('li');
-        li.append(quoteCard(review));
-        list.append(li);
-      });
-      testimonials.hidden = false;
-      document.querySelectorAll('[data-testimonials-link]').forEach((link) => { link.hidden = false; });
-      updateArrows();
-    })
-    .catch(() => { /* No reviews to show: the section stays hidden. */ });
+  if (REVIEWS_ENDPOINT) {
+    fetch(REVIEWS_ENDPOINT)
+      .then((res) => res.json())
+      .then((data) => {
+        const reviews = (data && data.testimonials) || [];
+        if (!reviews.length) return;
+        list.replaceChildren(...reviews.map((review) => {
+          const li = el('li');
+          li.append(quoteCard(review));
+          return li;
+        }));
+        list.scrollLeft = 0;
+        updateArrows();
+      })
+      .catch(() => { /* No reviews to show: the placeholder cards stay. */ });
+  }
 }
 
 /* ---------- 4. Review page ---------- */
@@ -441,3 +445,32 @@ document.querySelectorAll('[data-compare]').forEach((box) => {
   range.addEventListener('input', set);
   set();
 });
+
+/* ---------- 6. About us: the journeys draw themselves ---------- */
+
+// Each [data-draw] gets --drawn from 0 to 1 as it scrolls past 70% of the way down the screen.
+// With reduced motion it stays unset, so the CSS shows the paths fully drawn.
+const drawn = [...document.querySelectorAll('[data-draw]')];
+
+if (drawn.length && !reduceMotion.matches) {
+  let queued = false;
+  const draw = () => {
+    queued = false;
+    const line = window.innerHeight * 0.7;
+    drawn.forEach((el) => {
+      const box = el.getBoundingClientRect();
+      if (!box.height) return;
+      const progress = Math.min(1, Math.max(0, (line - box.top) / box.height));
+      el.style.setProperty('--drawn', progress.toFixed(3));
+      if (progress === 1) el.classList.add('is-drawn');
+    });
+  };
+  const queue = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(draw);
+  };
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  draw();
+}

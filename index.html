@@ -168,12 +168,12 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#services">Services</a>
-      <a href="#about">About us</a>
+      <a href="about.html">About us</a>
       <a href="demo.html">Live demo</a>
       <a href="#principles">Principles</a>
-      <a href="#testimonials" data-testimonials-link hidden>Testimonials</a>
+      <a href="#testimonials">Testimonials</a>
     </nav>
-    <p class="score" aria-live="polite"><b data-score>0</b>/<span data-total>5</span> puzzles solved</p>
+    <p class="score" aria-live="polite"><b data-score>0</b>/<span data-total>4</span> puzzles solved</p>
     <a class="btn btn--sm" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Contact us</a>
   </div>
 </header>
@@ -182,20 +182,14 @@
 
   <!-- 1. What we do -->
   <section class="hero" id="top">
-    <!-- Background picture. Placeholder for now: to add the photo, replace the hero__ph div with
-         <img src="images/hero.jpg" alt=""> (about 2400px wide). The white wash keeps the text readable. -->
-    <div class="hero__bg" aria-hidden="true">
-      <div class="hero__ph"><span>Background photo goes here</span></div>
-    </div>
+    <!-- Hero picture, edge to edge. Placeholder for now: swap for
+         <img class="shot hero__shot" src="images/hero.jpg" alt="…describe the photo…"> (2400 × 1000) -->
+    <div class="img-ph hero__shot" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Photo: hero picture · 2400 × 1000</span></div>
+
     <div class="wrap">
       <div class="hero__copy">
         <p class="eyebrow">Design &amp; engineering studio · Malaysia</p>
-        <h1>Software your team will <span class="hl">enjoy</span> using.</h1>
-        <p class="lede">We design and build websites, web apps and Google Workspace automation for growing businesses. One team, from the first sketch to launch.</p>
-        <div class="hero__cta">
-          <a class="btn" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener">Contact us <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--ghost" href="demo.html">Try a live demo</a>
-        </div>
+        <h1>We design and build websites, web apps and Google Workspace automation for growing businesses. One team, from the first sketch to launch.</h1>
       </div>
     </div>
   </section>
@@ -330,98 +324,7 @@
     </div>
   </section>
 
-  <!-- 4. About us: the team -->
-  <section class="sec sec--tint" id="about">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <p class="eyebrow">About us</p>
-          <h2>A designer and an engineer, on every project.</h2>
-          <p class="lede">Most projects pass from a designer to a separate developer, and something gets lost on the way. At Two Loaves Studio the same two people design it and build it, so what you approve is what you get.</p>
-        </div>
-        <button class="rebus" type="button" aria-pressed="false">
-          <span class="rebus__no">No. 03</span>
-          <span class="sr-only">Rebus: a full glass of juice, plus a stack of pancakes.</span>
-          <span class="rebus__pics">
-            <span class="pic"><svg aria-hidden="true"><use href="#p-glass"/></svg><span class="pic__word">full</span></span>
-            <span class="op" aria-hidden="true">+</span>
-            <span class="pic"><svg aria-hidden="true"><use href="#p-stack"/></svg><span class="pic__word">stack</span></span>
-          </span>
-          <span class="rebus__foot">
-            <span class="rebus__hint">Tap to solve</span>
-            <span class="rebus__answer">Full stack</span>
-          </span>
-        </button>
-      </div>
-
-      <!-- Image placeholder. Swap for: <img class="shot team__photo" src="images/team.jpg" alt="Krisha and Deepak working together" loading="lazy"> (1600 × 700) -->
-      <div class="img-ph team__photo" aria-hidden="true"><span><svg class="i"><use href="#i-image"/></svg>Photo: Krisha and Deepak working together · 1600 × 700</span></div>
-
-      <div class="team">
-        <article class="person reveal">
-          <div class="person__head">
-            <img class="person__photo" src="images/founder.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait of Krisha">
-            <div>
-              <h3>Krisha</h3>
-              <p class="person__role">UI/UX Designer</p>
-            </div>
-          </div>
-          <p>Krisha leads design. She’s a Google-certified UX designer who turns messy processes into screens people understand without training, and has designed websites, booking tools and app navigation for clinics and tech brands in Malaysia and Singapore.</p>
-          <ul class="tags"><li>User research</li><li>Prototyping</li><li>Design systems</li><li>Apps Script</li></ul>
-
-          <div class="person__work">
-            <p class="person__label">Selected work</p>
-            <ul class="works">
-              <li>
-                <a class="work" href="https://drsharanclinic.my/" target="_blank" rel="noopener">
-                  <img src="images/work-drsharan.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="">
-                  <span class="work__text"><b>Dr. Sharan’s Clinic</b><small>Clinic website</small></span>
-                  <svg class="i" aria-hidden="true"><use href="#i-out"/></svg>
-                  <span class="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-              <li>
-                <a class="work" href="https://krishanala.github.io/krishaPortfolio/case-study-internship.html" target="_blank" rel="noopener">
-                  <img src="images/work-navigation.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="">
-                  <span class="work__text"><b>App navigation redesign</b><small>Support queries down 40%</small></span>
-                  <svg class="i" aria-hidden="true"><use href="#i-out"/></svg>
-                  <span class="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-              <li>
-                <a class="work" href="case-study-clinic-booking.html">
-                  <span class="work__thumb"><svg aria-hidden="true"><use href="#s-cal"/></svg></span>
-                  <span class="work__text"><b>Clinic booking system</b><small>WhatsApp to Google Calendar</small></span>
-                  <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg>
-                </a>
-              </li>
-            </ul>
-            <a class="link-arrow" href="https://krishanala.github.io/krishaPortfolio/" target="_blank" rel="noopener">View Krisha’s full portfolio <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </article>
-
-        <!-- Deepak: content to come -->
-        <article class="person reveal">
-          <div class="person__head">
-            <!-- Image placeholder. Swap for: <img class="person__photo" src="images/deepak.webp" alt="Portrait of Deepak"> (about 600 × 800) -->
-            <span class="person__photo img-ph img-ph--icon" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></span>
-            <div>
-              <h3>Deepak</h3>
-              <p class="person__role">Senior Full-Stack Developer</p>
-            </div>
-          </div>
-          <p><span class="ph">Deepak leads engineering. His bio is on its way.</span></p>
-
-          <div class="person__work">
-            <p class="person__label">Selected work</p>
-            <p class="person__soon">Coming soon</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Guiding principles. Placeholder: replace the lede and each principle's title and text -->
+  <!-- 4. Guiding principles. Placeholder: replace the lede and each principle's title and text -->
   <section class="sec" id="principles">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -431,7 +334,7 @@
           <p class="lede"><span class="ph">A sentence on how these principles shape every project.</span></p>
         </div>
         <button class="rebus" type="button" aria-pressed="false">
-          <span class="rebus__no">No. 04</span>
+          <span class="rebus__no">No. 03</span>
           <span class="sr-only">Rebus: a clock, plus a briefcase.</span>
           <span class="rebus__pics">
             <span class="pic"><svg aria-hidden="true"><use href="#p-clock"/></svg><span class="pic__word">clock</span></span>
@@ -478,8 +381,9 @@
     </div>
   </section>
 
-  <!-- 6. Proof. Filled from client reviews (js/main.js); stays hidden until there's at least one. -->
-  <section class="sec sec--tint" id="testimonials" data-testimonials hidden>
+  <!-- 5. Proof. Placeholder cards for now. Once reviews are connected (REVIEWS_ENDPOINT in js/main.js)
+       and at least one is approved, the real reviews replace these. -->
+  <section class="sec sec--tint" id="testimonials" data-testimonials>
     <div class="wrap">
       <div class="sec-head sec-head--row">
         <div>
@@ -491,11 +395,33 @@
           <button class="round" type="button" data-quotes-next aria-label="More testimonials"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </div>
       </div>
-      <ul class="quotes" data-quotes></ul>
+      <ul class="quotes" data-quotes>
+          <li>
+            <figure class="quote">
+              <div class="quote__logo quote__logo--initials" aria-hidden="true">?</div>
+              <blockquote class="quote__text"><p><span class="ph">A client’s review goes here, in their own words.</span></p></blockquote>
+              <figcaption class="quote__who"><b><span class="ph">Client name</span></b><span><span class="ph">Role, Company</span></span></figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="quote">
+              <div class="quote__logo quote__logo--initials" aria-hidden="true">?</div>
+              <blockquote class="quote__text"><p><span class="ph">A client’s review goes here, in their own words.</span></p></blockquote>
+              <figcaption class="quote__who"><b><span class="ph">Client name</span></b><span><span class="ph">Role, Company</span></span></figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="quote">
+              <div class="quote__logo quote__logo--initials" aria-hidden="true">?</div>
+              <blockquote class="quote__text"><p><span class="ph">A client’s review goes here, in their own words.</span></p></blockquote>
+              <figcaption class="quote__who"><b><span class="ph">Client name</span></b><span><span class="ph">Role, Company</span></span></figcaption>
+            </figure>
+          </li>
+      </ul>
     </div>
   </section>
 
-  <!-- 7. The ask -->
+  <!-- 6. The ask -->
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="contact__card reveal">
@@ -505,7 +431,7 @@
           <a class="btn btn--ink btn--lg" href="https://calendar.app.google/YWKjsHaXESSNEb7WA" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg> Contact us</a>
         </div>
         <button class="rebus" type="button" aria-pressed="false">
-          <span class="rebus__no">No. 05</span>
+          <span class="rebus__no">No. 04</span>
           <span class="sr-only">Rebus: a book, plus a telephone handset.</span>
           <span class="rebus__pics">
             <span class="pic"><svg aria-hidden="true"><use href="#p-book"/></svg><span class="pic__word">book</span></span>
@@ -544,7 +470,7 @@
       <nav aria-label="Studio">
         <p class="footer__head">Studio</p>
         <ul>
-          <li><a href="#about">About us</a></li>
+          <li><a href="about.html">About us</a></li>
           <li><a href="demo.html">Live demo</a></li>
           <li><a href="#principles">Principles</a></li>
         </ul>
@@ -559,7 +485,7 @@
     </div>
     <div class="footer__in footer__base">
       <p>© 2026 Two Loaves Studio</p>
-      <p class="footer__score"><b data-score>0</b>/<span data-total>5</span> puzzles solved · <a href="#top">Back to top</a></p>
+      <p class="footer__score"><b data-score>0</b>/<span data-total>4</span> puzzles solved · <a href="#top">Back to top</a></p>
       <p><a href="privacy.html">Privacy policy</a></p>
     </div>
   </div>

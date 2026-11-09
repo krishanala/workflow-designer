@@ -4,7 +4,7 @@ The testimonials on the homepage come from a Google Sheet in your own account. A
 
 - **Clients** fill in the review page (`review.html`). Their review lands as a new row in a **Testimonials** sheet, and you get an email.
 - **You** tick **Show on site** on the reviews you want to publish.
-- **The homepage** asks the script for ticked reviews and shows them as cards. Until at least one is ticked, the testimonials section stays hidden.
+- **The homepage** asks the script for ticked reviews and shows them as cards. Until at least one is ticked, the testimonials section shows placeholder cards.
 
 Nothing appears on the website until you tick it, so spam or a review with a typo never goes live by accident.
 
