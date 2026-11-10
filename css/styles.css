@@ -31,10 +31,10 @@
   --glow: 0 0 0 2px rgba(255, 106, 31, 0.14), 0 0 10px rgba(255, 106, 31, 0.3);
   --glow-hi: 0 0 0 3px rgba(255, 106, 31, 0.18), 0 0 16px rgba(255, 106, 31, 0.42);
   --nav-h: 68px;
-  --sky: #a8dcf5;        /* Krisha's half of the About us page */
-  --rust: #9a3412;       /* orange text on sky (passes contrast) */
-  --teal: #2ec4b6;       /* Deepak's half */
-  --teal-ink: #0b3d38;   /* teal text on teal (passes contrast) */
+  --sky: #a8dcf5;        /* Krisha's accent on the About us page */
+  --sky-ink: #0369a1;    /* her accent as text on white (passes contrast) */
+  --teal: #2ec4b6;       /* Deepak's accent */
+  --teal-ink: #0f766e;   /* his accent as text on white (passes contrast) */
   --heart: #e63946;      /* where our paths meet */
 }
 
@@ -612,12 +612,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- About us: the team ---------- */
 
-/* Our story: Krisha's journey on sky blue and Deepak's on teal, side by side under the menu.
+/* Our story: Krisha's journey and Deepak's side by side under the menu, on white like the homepage.
+   Each has an accent colour: sky blue for Krisha, teal for Deepak.
    The outer padding lines each lane's content up with the page column. */
 .story { position: relative; }
 .story__lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-/* The line at the top, sitting on the wave where the two paths begin */
+/* The line at the top, centred where the two paths begin */
 .story__tag {
   position: absolute;
   top: clamp(24px, 3vw, 36px); left: 50%;
@@ -640,22 +641,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .lane--krisha {
   padding-inline: max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut))) clamp(40px, 5vw, 80px);
-  background: var(--sky);
 }
 .lane--deepak {
   padding-inline: clamp(40px, 5vw, 80px) max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut)));
-  background: var(--teal);
 }
-/* The wavy edge between the lanes: a repeating tile, sky on one side of the wave and teal on the other.
-   The colours are written into the tile, so update them here if --sky or --teal change. */
-.lane--deepak::before {
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0; left: -24px;
-  width: 48px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='120' viewBox='0 0 48 120'%3E%3Crect width='48' height='120' fill='%23a8dcf5'/%3E%3Cpath d='M24 0Q48 30 24 60Q0 90 24 120H48V0Z' fill='%232ec4b6'/%3E%3C/svg%3E") repeat-y 0 0 / 48px 120px;
-}
-
 /* A big portrait at the top of each lane, with the label, name and role centred under it */
 .person__head { display: grid; gap: 22px; width: min(100%, 380px); text-align: center; }
 .person__photo {
@@ -664,15 +653,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   aspect-ratio: 3 / 4;
   border: var(--line);
   border-radius: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: 10px 10px 0 var(--accent), 10px 10px 0 2px var(--ink);
   object-fit: cover;
   object-position: 50% 22%;
 }
-.lane__label, .chapter__no { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: #3a3a3a; }
+.lane--krisha { --accent: var(--sky); }
+.lane--deepak { --accent: var(--teal); }
+.lane__label, .chapter__no { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
 .lane__label { margin-bottom: 4px; }
 .lane h2 { font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem); }
 .person__role { margin-top: 4px; font-weight: 700; }
-.lane--krisha .person__role, .lane--krisha .link-arrow { color: var(--rust); }
+.lane--krisha .person__role { color: var(--sky-ink); }
 .lane--deepak .person__role { color: var(--teal-ink); }
 
 /* Each journey is a dashed path with a dot for every chapter */
@@ -694,40 +685,26 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 50%;
   background: var(--paper);
 }
-/* Each dot takes the other person's colour, so it stands out on its own lane */
-.lane--krisha .chapter::before { background: var(--teal); }
-.lane--deepak .chapter::before { background: var(--sky); }
+/* Each dot is in that person's accent colour */
+.lane .chapter::before { background: var(--accent); }
 .chapter h3 { font-size: 1.35rem; }
-.chapter > p:not(.chapter__no) { max-width: 34em; color: #3a3a3a; }
+.chapter > p:not(.chapter__no) { max-width: 34em; color: var(--mute); }
 .chapter .tags { margin-top: 4px; padding-top: 0; }
 .chapter .works { justify-self: stretch; margin-top: 4px; }
 .person__soon {
   justify-self: stretch;
   padding: 22px;
-  border: 2px dashed rgba(11, 11, 11, 0.35);
+  border: 2px dashed #b5b5b5;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.3);
-  color: #3a3a3a;
+  color: var(--mute);
   font-weight: 700;
   text-align: center;
 }
 
-/* Where the paths meet: the split fades into one blended colour, and both paths curve in to the logo */
+/* Where the paths meet: both paths curve in to the heart */
 .story__meet {
   position: relative;
-  isolation: isolate;
   padding-bottom: clamp(64px, 8vw, 112px);
-  background: linear-gradient(90deg, var(--sky), var(--teal));
-}
-.story__meet::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: clamp(160px, 18vw, 260px);
-  z-index: -1;
-  background: linear-gradient(90deg, var(--sky) 50%, var(--teal) 50%);
-  -webkit-mask: linear-gradient(#000, transparent);
-  mask: linear-gradient(#000, transparent);
 }
 /* Both paths draw down to the heart as you scroll, and the heart pops when they meet */
 .story__paths {
@@ -753,7 +730,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   filter: drop-shadow(4px 4px 0 var(--ink));
 }
 .story__end h2 { max-width: 17ch; font-size: clamp(2.1rem, 1.3rem + 3vw, 3.6rem); }
-.story__end .lede { max-width: 40em; color: #3a3a3a; }
+.story__end .lede { max-width: 40em; }
 .story__photo { justify-self: stretch; aspect-ratio: 16 / 9; margin-top: 28px; box-shadow: var(--shadow); }
 
 /* Hobbies: Krisha's and Deepak's close each lane on cards topped with their colour,
@@ -774,7 +751,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .hobby--krisha { --band: var(--sky); }
 .hobby--deepak { --band: var(--teal); }
-.hobby__who { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: #3a3a3a; }
+.hobby__who { font: 700 0.75rem/1.2 var(--font-b); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
 .hobby__list { display: grid; gap: 10px; }
 /* The ones we share sit in a row under the heading, with red dots like the heart */
 .hobby__list--together { --band: var(--heart); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin-top: 8px; }
@@ -1363,13 +1340,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .principles { grid-template-columns: 1fr; }
   .story__lanes { grid-template-columns: 1fr; }
   .lane--krisha, .lane--deepak { padding-inline: var(--gut); }
-  .lane--deepak { padding-top: clamp(56px, 12vw, 72px); }
-  .lane--deepak::before { inset: -24px 0 auto; width: auto; height: 48px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='48' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' fill='%23a8dcf5'/%3E%3Cpath d='M0 24Q30 48 60 24Q90 0 120 24V48H0Z' fill='%232ec4b6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 48px; }
+  .lane--deepak { padding-top: clamp(56px, 12vw, 72px); border-top: 2px dashed var(--dash); }
   .story__paths { display: none; }
   .cats { grid-template-columns: minmax(0, 1fr); }
-  /* Stacked, the colours blend top to bottom and a single dashed path leads down to the logo */
-  .story__meet { padding-top: 64px; background: linear-gradient(180deg, var(--teal), var(--sky) 70%); }
-  .story__meet::before { inset: 0 auto auto 50%; width: 0; height: 64px; translate: -1px 0; border-left: 2px dashed var(--ink); background: none; -webkit-mask: none; mask: none; }
+  /* Stacked, a single dashed path leads down to the heart */
+  .story__meet { padding-top: 64px; }
+  .story__meet::before { content: ""; position: absolute; top: 0; left: 50%; height: 64px; translate: -1px 0; border-left: 2px dashed var(--ink); }
   .demo__grid { grid-template-columns: 1fr; }
   .review__grid { grid-template-columns: 1fr; }
   .review__preview { position: static; }
